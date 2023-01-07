@@ -1,0 +1,31 @@
+<?xml version = "1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+
+
+     <preference for="Terrificminds\CareerPageBuilder\Api\JobCategoryRepositoryInterface" type="Terrificminds\CareerPageBuilder\Model\JobCategoryRepository"/>
+    <preference for="Terrificminds\CareerPageBuilder\Api\Data\JobCategoryInterface" type="Terrificminds\CareerPageBuilder\Model\JobCategory"/>
+   
+
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="jobcategory_listing_data_source" xsi:type="string">JobCategoryCollection</item>
+                 <item name="job_listing_data_source" xsi:type="string">JobCollection</item>
+            </argument>
+        </arguments>
+    </type>
+    
+    <virtualType name="JobCategoryCollection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">job_category</argument>
+            <argument name="resourceModel" xsi:type="string">Terrificminds\CareerPageBuilder\Model\ResourceModel\JobCategory</argument>
+        </arguments>
+    </virtualType>
+        <virtualType name="JobCollection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">job</argument>
+            <argument name="resourceModel" xsi:type="string">Terrificminds\CareerPageBuilder\Model\ResourceModel\Job</argument>
+        </arguments>
+    </virtualType>
+</config>

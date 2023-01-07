@@ -1,0 +1,32 @@
+{
+    "job_category": {
+        "column": {
+            "category_id": true,
+            "category_name": true,
+            "created_at": true,
+            "updated_at": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    },
+    "job": {
+        "column": {
+            "job_id": true,
+            "job_designation": true,
+            "small_job_description": true,
+            "detailed_job_description": true,
+            "is_active": true,
+            "button_action": true,
+            "button_url": true,
+            "sort_order": true,
+            "category_id": true,
+            "created_at": true,
+            "updated_at": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "JOB_CATEGORY_ID_JOB_CATEGORY_CATEGORY_ID": true
+        }
+    }
+}
