@@ -1,37 +1,34 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Terrificminds\CareerPageBuilder\Ui\Component\Listing\Column;
 
+use Magento\Framework\UrlInterface;
 use Magento\Framework\View\Element\UiComponent\ContextInterface;
 use Magento\Framework\View\Element\UiComponentFactory;
-use Magento\Ui\Component\Listing\Columns\Column;
-use Magento\Framework\UrlInterface;
 
-/**
- * Class Actions get the data and send to controller
- */
-class FormActions extends Column
+class CategoryFormActions extends \Magento\Ui\Component\Listing\Columns\Column
 {
+    private const URL_EDIT_PATH = 'maincareerspage/category/edit';
+    private const URL_DELETE_PATH = 'maincareerspage/category/delete';
+
     /**
      * @var UrlInterface
      */
-    protected $urlBuilder;
-
-   
-
+    protected UrlInterface $urlBuilder;
 
     /**
-     *
+     * @param UrlInterface $urlBuilder
      * @param ContextInterface $context
      * @param UiComponentFactory $uiComponentFactory
-     * @param UrlInterface $urlBuilder
      * @param array $components
      * @param array $data
      */
     public function __construct(
+        UrlInterface $urlBuilder,
         ContextInterface $context,
         UiComponentFactory $uiComponentFactory,
-        UrlInterface $urlBuilder,
         array $components = [],
         array $data = []
     ) {
@@ -39,35 +36,34 @@ class FormActions extends Column
         parent::__construct($context, $uiComponentFactory, $components, $data);
     }
 
-    /**
-     * Prepare Data Source
-     *
-     * @param array $dataSource
-     * @return array
-     */
-    public function prepareDataSource(array $dataSource)
+    public function prepareDataSource(array $dataSource): array
     {
-        
         if (isset($dataSource['data']['items'])) {
             foreach ($dataSource['data']['items'] as &$item) {
-                if (isset($item['id'])) {
+                if (isset($item['category_id'])) {
                     $item[$this->getData('name')] = [
                         'edit' => [
-                            'href' => $this->urlBuilder->getUrl('customsurveyform/index/edit',
-                                
+                            'href' => $this->urlBuilder->getUrl(
+                                static::URL_EDIT_PATH,
                                 [
-                                    'id' => $item['id'],
+                                    'id' => $item['category_id'],
                                 ]
                             ),
                             'label' => __('Edit'),
                         ],
                         'delete' => [
-                            'href' => $this->urlBuilder->getUrl('customsurveyform/index/delete',
+                            'href' => $this->urlBuilder->getUrl(
+                                static::URL_DELETE_PATH,
                                 [
-                                    'id' => $item['id'],
+                                    'id' => $item['category_id'],
                                 ]
                             ),
                             'label' => __('Delete'),
+                            'confirm' => [
+                                'title' => __('Delete %1', $item['category_name']),
+                                'message' => __('Are you sure you want to delete a %1 record?', $item['category_name']),
+                            ],
+                        
                         ],
                     ];
                 }

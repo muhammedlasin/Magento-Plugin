@@ -25,8 +25,7 @@
             "updated_at": true
         },
         "constraint": {
-            "PRIMARY": true,
-            "JOB_CATEGORY_ID_JOB_CATEGORY_CATEGORY_ID": true
+            "PRIMARY": true
         }
     }
 }

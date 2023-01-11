@@ -12,17 +12,23 @@ interface JobCategoryRepositoryInterface
 {
     
 
-    /**
-     * @param \Terrificminds\CareerPageBuilder\Api\Data\JobCategoryInterface $resources
+     /**
+     * @param $id
      * @return \Terrificminds\CareerPageBuilder\Api\Data\JobCategoryInterface
      */
-    public function save(JobCategoryInterface $resources): JobCategoryInterface;
+    public function getById($id): JobCategoryInterface;
 
     /**
-     * @param \Terrificminds\CareerPageBuilder\Api\Data\JobCategoryInterface $resources
+     * @param \Terrificminds\CareerPageBuilder\Api\Data\JobCategoryInterface $categories
+     * @return \Terrificminds\CareerPageBuilder\Api\Data\JobCategoryInterface
+     */
+    public function save(JobCategoryInterface $categories): JobCategoryInterface;
+
+    /**
+     * @param \Terrificminds\CareerPageBuilder\Api\Data\JobCategoryInterface $categories
      * @return void
      */
 
-
+    public function delete(JobCategoryInterface $categories);
  
 }

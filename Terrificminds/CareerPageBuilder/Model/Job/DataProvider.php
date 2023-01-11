@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Terrificminds\CareerPageBuilder\Model;
+namespace Terrificminds\CareerPageBuilder\Model\Job;
 
-use Terrificminds\CareerPageBuilder\Model\ResourceModel\JobCategory\CollectionFactory;
+use Terrificminds\CareerPageBuilder\Model\ResourceModel\Job\CollectionFactory;
 
 class DataProvider extends \Magento\Ui\DataProvider\AbstractDataProvider
 {
@@ -13,7 +13,7 @@ class DataProvider extends \Magento\Ui\DataProvider\AbstractDataProvider
      * @var array
      */
      
-    protected $popupCollectionFactory;
+    protected $jobCategoryCollectionFactory;
 
     /**
      * @var array
@@ -26,7 +26,7 @@ class DataProvider extends \Magento\Ui\DataProvider\AbstractDataProvider
      * @param string $name
      * @param string $primaryFieldName
      * @param string $requestFieldName
-     * @param CollectionFactory $popupCollectionFactory
+     * @param CollectionFactory $jobCollectionFactory
      * @param array $meta
      * @param array $data
      */
@@ -34,11 +34,11 @@ class DataProvider extends \Magento\Ui\DataProvider\AbstractDataProvider
         $name,
         $primaryFieldName,
         $requestFieldName,
-        CollectionFactory $popupCollectionFactory,
+        CollectionFactory $jobCollectionFactory,
         array $meta = [],
         array $data = []
     ) {
-        $this->collection = $popupCollectionFactory->create();
+        $this->collection = $jobCollectionFactory->create();
         parent::__construct($name, $primaryFieldName, $requestFieldName, $meta, $data);
     }
 
@@ -56,8 +56,8 @@ class DataProvider extends \Magento\Ui\DataProvider\AbstractDataProvider
 
         $items = $this->collection->getItems();
 
-        foreach ($items as $popup) {
-            $this->loadedData[$popup->getId()] = $popup->getData();
+        foreach ($items as $job) {
+            $this->loadedData[$job->getId()] = $job->getData();
         }
         return $this->loadedData;
     }

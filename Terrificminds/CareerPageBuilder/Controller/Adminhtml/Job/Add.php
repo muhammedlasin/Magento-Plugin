@@ -1,9 +1,9 @@
 <?php
-namespace Terrificminds\CareerPageBuilder\Controller\Adminhtml\Category;
+namespace Terrificminds\CareerPageBuilder\Controller\Adminhtml\Job;
  
 use Magento\Framework\Controller\ResultFactory;
  
-class NewAction extends \Magento\Backend\App\Action
+class Add extends \Magento\Backend\App\Action
 {
     /**
      * @return \Magento\Backend\Model\View\Result\Page
@@ -11,7 +11,7 @@ class NewAction extends \Magento\Backend\App\Action
     public function execute()
     {
         $resultPage = $this->resultFactory->create(ResultFactory::TYPE_PAGE);
-        $resultPage->getConfig()->getTitle()->prepend(__('Add Categories'));
+        $resultPage->getConfig()->getTitle()->prepend(__('Add Jobs'));
         return $resultPage;
     }
 }

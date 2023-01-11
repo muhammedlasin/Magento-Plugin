@@ -15,7 +15,7 @@
             <column name="category_id"/>
         </constraint>
     </table>
-    <table name="job" resource="default" engine="innodb" comment="Job Category Table">
+    <table name="job" resource="default" engine="innodb" comment="Job Table">
         <column xsi:type="smallint" name="job_id" unsigned="false" nullable="false" identity="true" comment="Job ID"/>
         <column xsi:type="varchar" name="job_designation" nullable="false" length="255" comment="Job Designation Name"/>
         <column xsi:type="text" name="small_job_description" nullable="false" comment="Small Job Description"/>
@@ -30,6 +30,5 @@
         <constraint xsi:type="primary" referenceId="PRIMARY">
             <column name="job_id"/>
         </constraint>
-        <constraint xsi:type="foreign" referenceId="JOB_CATEGORY_CATEGORY_ID_JOB_CATEGORY_ID" table="job" column="category_id" referenceTable="job_category" referenceColumn="category_id"/>
     </table>
 </schema>

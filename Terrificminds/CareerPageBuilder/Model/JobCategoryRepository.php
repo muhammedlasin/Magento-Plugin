@@ -11,9 +11,9 @@ use Magento\Framework\Exception\CouldNotSaveException;
 use Magento\Framework\Exception\NoSuchEntityException;
 use Terrificminds\CareerPageBuilder\Api\Data\JobCategoryInterface;
 use Terrificminds\CareerPageBuilder\Api\JobCategoryRepositoryInterface;
-use Terrificminds\CareerPageBuilder\Model\ResourceModel\JobCategory\CollectionFactory as ResourcesCollectionFactory;
+use Terrificminds\CareerPageBuilder\Model\ResourceModel\JobCategory\CollectionFactory as JobCategoryCollectionFactory;
 use Terrificminds\CareerPageBuilder\Model\ResourceModel\JobCategory\Collection;
-use Terrificminds\CareerPageBuilder\Model\ResourceModel\JobCategory as ProductResourcesResourceModel;
+use Terrificminds\CareerPageBuilder\Model\ResourceModel\JobCategory as JobCategoryResourceModel;
 
 /**
  * @SuppressWarnings(PHPMD.CouplingBetweenObjects)
@@ -23,46 +23,70 @@ class JobCategoryRepository implements JobCategoryRepositoryInterface
  
 
     /**
-     * @var ResourcesCollectionFactory
+     * @var JobCategoryCollectionFactory
      */
-    private ResourcesCollectionFactory $resourcesCollectionFactory;
+    private JobCategoryCollectionFactory $jobCategoryCollectionFactory;
 
     /**
-     * @var ProductResourcesResourceModel
+     * @var JobCategoryResourceModel
      */
-    private ProductResourcesResourceModel $productResourceResourceModel;
+    private JobCategoryResourceModel $jobCategoryResourceResourceModel;
 
     public function __construct(
        
-        ResourcesCollectionFactory $resourcesCollectionFactory,
-        ProductResourcesResourceModel $productResourceResourceModel
+        JobCategoryCollectionFactory $jobCategoryCollectionFactory,
+        JobCategoryResourceModel $jobCategoryResourceResourceModel
     ) {
         
-        $this->resourcesCollectionFactory = $resourcesCollectionFactory;
-        $this->productResourceResourceModel = $productResourceResourceModel;
+        $this->jobCategoryCollectionFactory = $jobCategoryCollectionFactory;
+        $this->jobCategoryResourceResourceModel = $jobCategoryResourceResourceModel;
     }
 
- 
+    /**
+     * @inheritDoc
+     * @throws NoSuchEntityException
+     */
+    public function getById($id): JobCategoryInterface
+    {
+        $job_category = $this->jobCategoryCollectionFactory->create()->addFieldToFilter('category_id', $id)->getFirstItem();
+        if (! $job_category->getId()) {
+            throw new NoSuchEntityException(__('Unable to find Pacvac Resource record with ID "%1"', $id));
+        }
+        return $job_category;
+    }
 
     /**
      * @inheritDoc
      * @throws CouldNotSaveException
      */
-    public function save(JobCategoryInterface $resources): JobCategoryInterface
+    public function save(JobCategoryInterface $categories): JobCategoryInterface
     {
         try {
-            if ($resources->hasDataChanges()) {
+            if ($categories->hasDataChanges()) {
                 // Clear out updated_at field so the MySQL default value (CURRENT_TIMESTAMP) is used.
-                $resources->setData('updated_at', null);
+                $categories->setData('updated_at', null);
             }
-            $this->productResourceResourceModel->save($resources);
+            $this->jobCategoryResourceResourceModel->save($categories);
         } catch (\Exception $exception) {
             throw new CouldNotSaveException(__($exception->getMessage()));
         }
-        return $resources;
+        return $categories;
     }
 
-   
+      /**
+     * @inheritDoc
+     * @throws CouldNotDeleteException
+     */
+    
+    public function delete(JobCategoryInterface $categories)
+    {
+        try {
+            $this->jobCategoryResourceResourceModel->delete($categories);
+        } catch (\Exception $exception) {
+            throw new CouldNotDeleteException(__($exception->getMessage()));
+        }
+        return true;
+    }
   
  
 

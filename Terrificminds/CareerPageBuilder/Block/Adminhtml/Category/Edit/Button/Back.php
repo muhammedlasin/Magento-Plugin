@@ -1,5 +1,5 @@
 <?php
-namespace Terrificminds\CareerPageBuilder\Block\Adminhtml\Main\Edit\Button;
+namespace Terrificminds\CareerPageBuilder\Block\Adminhtml\Category\Edit\Button;
 use Magento\Framework\View\Element\UiComponent\Control\ButtonProviderInterface;
 class Back extends Generic implements ButtonProviderInterface
 {

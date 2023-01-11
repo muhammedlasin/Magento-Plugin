@@ -5,13 +5,17 @@
 
      <preference for="Terrificminds\CareerPageBuilder\Api\JobCategoryRepositoryInterface" type="Terrificminds\CareerPageBuilder\Model\JobCategoryRepository"/>
     <preference for="Terrificminds\CareerPageBuilder\Api\Data\JobCategoryInterface" type="Terrificminds\CareerPageBuilder\Model\JobCategory"/>
+
+
+     <preference for="Terrificminds\CareerPageBuilder\Api\JobRepositoryInterface" type="Terrificminds\CareerPageBuilder\Model\JobRepository"/>
+    <preference for="Terrificminds\CareerPageBuilder\Api\Data\JobInterface" type="Terrificminds\CareerPageBuilder\Model\Job"/>
    
 
     <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
         <arguments>
             <argument name="collections" xsi:type="array">
                 <item name="jobcategory_listing_data_source" xsi:type="string">JobCategoryCollection</item>
-                 <item name="job_listing_data_source" xsi:type="string">JobCollection</item>
+                  <item name="job_listing_data_source" xsi:type="string">JobCollection</item>
             </argument>
         </arguments>
     </type>

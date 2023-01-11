@@ -2,10 +2,6 @@
 
 
 <listing xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
-    <argument name="header" xsi:type="string" translate="true">
-        Title
-    </argument>
-    <argument name="index" xsi:type="string">title</argument>
     <argument name="data" xsi:type="array">
       <item name="js_config" xsi:type="array">
          <item name="provider" xsi:type="string">job_listing.job_listing_data_source</item>
@@ -14,7 +10,7 @@
     <settings>
         <buttons>
             <button name="add">
-                <url path="maincareerspage/job/addjob" />
+                <url path="maincareerspage/job/add" />
                 <class>primary</class>
                 <label translate="true">Add Job</label>
             </button>
@@ -29,12 +25,12 @@
             <argument name="class" xsi:type="string">Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider</argument>
             <argument name="name" xsi:type="string">job_listing_data_source</argument>
             <argument name="primaryFieldName" xsi:type="string">job_id</argument>
-            <argument name="requestFieldName" xsi:type="string">id</argument>
+            <argument name="requestFieldName" xsi:type="string">job_id</argument>
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
                     <item name="update_url" xsi:type="url" path="mui/index/render"/>
                     <item name="storageConfig" xsi:type="array">
-                        <item name="indexField" xsi:type="string">id</item>
+                        <item name="indexField" xsi:type="string">job_id</item>
                     </item>
                 </item>
             </argument>
@@ -64,7 +60,7 @@
                     <item name="config" xsi:type="array">
                         <item name="type" xsi:type="string">delete</item>
                         <item name="label" xsi:type="string" translate="true">Delete</item>
-                        <item name="url" xsi:type="url" path="custompopupbuilder/index/MassDelete"/>
+                        <item name="url" xsi:type="url" path="maincareerspage/job/massdelete"/>
                         <item name="confirm" xsi:type="array">
                             <item name="title" xsi:type="string" translate="true">
                                 Delete items
@@ -83,11 +79,11 @@
                       displayArea="dataGridActions">
         </exportButton>
     </listingToolbar>    
-    <columns name="popup_coloumn">
+    <columns name="job_coloumn">
         <selectionsColumn name="ids">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
-                    <item name="indexField" xsi:type="string">id</item>
+                    <item name="indexField" xsi:type="string">job_id</item>
                 </item>
             </argument>
         </selectionsColumn>
@@ -105,7 +101,36 @@
                 <label translate="true">Job Designation</label>
             </settings>
         </column>
-  
+        <column name="is_active" class="Terrificminds\CareerPageBuilder\Ui\Component\Listing\Column\Status">
+            <settings>
+                <filter>smallint</filter>
+                <bodyTmpl>ui/grid/cells/text</bodyTmpl>
+                <label translate="true">Status</label>
+            </settings>
+        </column>
+        <column name="small_job_description">
+            <settings>
+                <filter>text</filter>
+                <bodyTmpl>ui/grid/cells/text</bodyTmpl>
+                <label translate="true">Small Job Description</label>
+            </settings>
+        </column>
+        <column name="category_id" class="Terrificminds\CareerPageBuilder\Ui\Component\Listing\Column\DisplayCategory" >
+            <settings>
+                <filter>text</filter>
+                <bodyTmpl>ui/grid/cells/text</bodyTmpl>
+                <label translate="true">Category</label>
+            </settings>
+        </column>
+          <actionsColumn name="actions" class="Terrificminds\CareerPageBuilder\Ui\Component\Listing\Column\JobFormActions" >
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="resizeEnabled" xsi:type="boolean">false</item>
+                    <item name="resizeDefaultWidth" xsi:type="string">107</item>
+                    <item name="indexField" xsi:type="string">job_id</item>
+                </item>
+            </argument>
+        </actionsColumn>
     </columns>
 </listing>
   
