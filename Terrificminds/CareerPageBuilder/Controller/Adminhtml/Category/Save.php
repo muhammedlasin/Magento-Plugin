@@ -57,11 +57,13 @@ class Save extends Action implements HttpPostActionInterface
 
         if ($data) {
             $category_id = $this->getRequest()->getParam('id');
+       
             if ($category_id) {
                 $this->jobCategoryRepository->getById($category_id);
             }
             $categories = $this->jobCategoryInterface->setData($data);
-
+            
+        
             try {
                 $this->jobCategoryRepository->save($categories);
                 $this->messageManager->addSuccessMessage(__('The job category has been saved.'));
