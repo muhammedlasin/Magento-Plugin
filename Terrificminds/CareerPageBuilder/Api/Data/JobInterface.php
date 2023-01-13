@@ -11,9 +11,9 @@ interface JobInterface extends ExtensibleDataInterface
     /**
      * Get Id
      *
-     * @return int
+     * @return 
      */
-    public function getJobId(): int;
+    public function getJobId();
 
     /**
      * Set Id
@@ -91,9 +91,9 @@ interface JobInterface extends ExtensibleDataInterface
          /**
      * Get Category Id
      *
-     * @return int
+     * 
      */
-    public function getCategoryId(): int;
+    public function getCategoryId();
 
     /**
      * Set Category Id

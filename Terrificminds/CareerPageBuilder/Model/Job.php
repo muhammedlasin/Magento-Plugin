@@ -37,7 +37,7 @@ $this->_init('Terrificminds\CareerPageBuilder\Model\ResourceModel\Job');
 /**
      * @inheritDoc
      */
-    public function getJobId(): int
+    public function getJobId()
     {
         return $this->getData(self::ID);
     }
@@ -117,7 +117,7 @@ $this->_init('Terrificminds\CareerPageBuilder\Model\ResourceModel\Job');
         /**
      * @inheritDoc
      */
-    public function getCategoryId(): int
+    public function getCategoryId()
     {
         return $this->getData(self::CATEGORY);
     }

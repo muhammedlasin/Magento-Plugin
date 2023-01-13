@@ -5,6 +5,11 @@ $jobCollection = $block->jobCollection();
 ?>
 
 <style>
+
+  .container{
+    width: 80%;
+  margin: auto;
+  }
 .accordion {
   background-color: #eee;
   color: #444;
@@ -31,6 +36,7 @@ $jobCollection = $block->jobCollection();
 </style>
 
 
+<div class="container">
 <h2>Careers</h2>
 <?php 
 foreach ($categoryCollection as $category) {
@@ -40,26 +46,29 @@ foreach ($categoryCollection as $category) {
 
 <button class="accordion"><?php echo $name ?></button>
 <div class="panel">
-<?php 
+<?php
+    foreach ($jobCollection as $job) {
+      $name = $job->getJobDesignation();
+      $description = $job->getSmallJobDescription();
+      $id = $job->getCategoryId();
+      $jobId = $job->getJobId();
 
-$filteredCollection = $jobCollection->addFieldToFilter('category_id', $categoryId);
-foreach ($filteredCollection as $job) {
-        $name = $job->getJobDesignation();
-            $description = $job->getSmallJobDescription();
-?>
-    <p></b><?php echo $name ?></p>
-    <p><?php echo $description ?></p>
-    <hr/>
-<?php } ?>
+      if ($categoryId == $id) {
+        ?>
+
+
+  <h2><a href="maincareerspage/index/index?jobId=<?php echo $jobId ?>"></b><?php echo $name ?></a></h2>
+  <p><?php echo $description?></p>
+<?php
+      }
+    }?>
 </div>
 
 <?php } ?>
-
-
+</div>>
 <script>
 var acc = document.getElementsByClassName("accordion");
 var i;
-
 for (i = 0; i < acc.length; i++) {
   acc[i].addEventListener("click", function() {
     this.classList.toggle("active");
@@ -73,7 +82,6 @@ for (i = 0; i < acc.length; i++) {
 }
 </script>
 
-</body>
-</html>
+
 
 

@@ -47,30 +47,27 @@ class DisplayCategory extends \Magento\Ui\Component\Listing\Columns\Column
     public function prepareDataSource(array $dataSource)
     {
 
-          
-
+ 
+        
         $collection = $this->collectionFactory->create();
         if(isset($dataSource['data']['items'])) {
             foreach($dataSource['data']['items'] as & $item) {
                 if($item) {
-                    $s = $collection->addFieldToFilter('category_id', $item['category_id']);
+                    $s = $collection->addFieldToFilter('category_id', $item['category_id'])->getData();
 
                     $writer = new \Zend_Log_Writer_Stream(BP . '/var/log/custom.log');
                     $logger = new \Zend_Log();
                     $logger->addWriter($writer);
                     $logger->info("/////////////////-----logger initiated-----//////////////////////");
-                    $logger->info("check" . print_r($s['category_name'], true));
-              
- 
-                    foreach($s as $it){
-
-                     
-
-                    $item['category_id'] = $it['category_name'];
-                    }            
+                    $logger->info("k" . print_r($item['category_id'], true));
+                    
+                    $item['category_id'] = $item['category_id'];
+                       
                 }
             }
         }
+
+      
 
         return $dataSource;
     }

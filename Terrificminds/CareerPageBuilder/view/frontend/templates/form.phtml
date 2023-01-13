@@ -1,0 +1,102 @@
+<?php
+ 
+?>
+
+<form action="Index/Save" method="POST" enctype="multipart/form-data">
+    <fieldset class="fieldset">
+        <legend class="legend"><span><?= $block->escapeHtmlAttr(__('Fill Detail')) ?></span></legend>
+        <fieldset class="fieldset row">
+            <div class="fields col-md-6">
+                <div class="field name required">
+                    <label class="label" for="title">
+                        <span><?= $block->escapeHtmlAttr(__('Name'))?></span>
+                    </label>
+                    <div class="control">
+                        <input name="name" id="name" title="name" 
+                               value=""
+                               class="input-text required-entry" type="text"  data-validate="{required:true}"  />
+                    </div>
+                </div>
+                <div class="field name required">
+                    <label class="label" for="title">
+                        <span><?= $block->escapeHtmlAttr(__('Email')) ?></span>
+                    </label>
+                    <div class="control">
+                        <input name="email" id="email" title="Email"
+                               value=""
+                               class="input-text" type="email"
+                               data-validate="{required:true, 'validate-email':true}" required/>
+                    </div>
+                </div>
+
+                <div class="field name required">
+                    <label class="label" for="title">
+                        <span>a</span>
+                    </label>
+                    <div class="control">
+                        <input name="qn1" id="qn1" title="Question1"
+                               class="input-text" type="text"
+                               data-validate="{required:true}" required/>
+                    </div>
+                </div>
+
+                <div class="field name required">
+                    <label class="label" for="title">
+                        <span>b</span>
+                    </label>
+                    <div class="control">
+                        <input name="qn2" id="qn2" title="Question2"
+                               class="input-text" type="text"
+                               data-validate="{required:true}" required/>
+                    </div>
+                </div>
+
+                <div class="field name required">
+                    <label class="label" for="title">
+                        <span>c</span>
+                    </label>
+                    <div class="control">
+                        <input name="qn3" id="qn3" title="Question3"
+                               class="input-text" type="text"
+                               data-validate="{required:true}" required/>
+                    </div>
+                </div>
+
+                <div class="field name required">
+                    <label class="label" for="title">
+                        <span>d</span>
+                    </label>
+                    <div class="control">
+                            <textarea name="qn4" id="qn4" title="Question4" value="" class="input-text" type="text" data-validate="{required:true}"></textarea>
+                        </div>
+                </div>
+
+                <div class="field name required">
+                    <label class="label" for="title">
+                        <span>e</span>
+                    </label>
+                    <div class="control">
+                        <input name="qn5" id="qn5" title="Question5"
+                               class="input-text" type="text"
+                               data-validate="{required:true}" required/>
+                    </div>
+                </div>
+                <div class="field name required">
+                    <label class="label" for="title">
+                        <span><strong><?= $block->escapeHtmlAttr(__('Choose Image:')) ?><strong></span>
+                    </label><br><br>
+                    <p>Allowed File extension:</p>
+                    <input type="file" name="upload_custom_file" id="upload_custom_file" title="Upload Custom File" class="input-text required" data-validate="{required:true}">
+                </div>
+            </div>
+            
+        </fieldset>
+    </fieldset>
+    <div class="actions-toolbar">
+        <div class="primary">
+            <button type="submit" class="action submit primary" title="Save">
+                <span><?= $block->escapeHtmlAttr(__('Save')) ?></span>
+            </button>
+        </div>
+    </div>
+</form>

@@ -7,7 +7,7 @@
             <parameter name="title" xsi:type="text" required="true" visible="true" sort_order="10">
                 <label>Label</label>
             </parameter>
-           <parameter name="id_path" xsi:type="block" visible="true" required="true" sort_order="10">
+           <!-- <parameter name="id_path" xsi:type="block" visible="true" required="true" sort_order="10">
                 <label translate="true">Product</label>
                 <block class="Magento\Catalog\Block\Adminhtml\Product\Widget\Chooser">
                     <data>
@@ -16,7 +16,7 @@
                         </item>
                     </data>
                 </block>
-            </parameter>
+            </parameter> -->
             <parameter name="size" xsi:type="select" visible="true" required="true" sort_order="20">
                 <label translate="true">Size</label>
                 <options>
