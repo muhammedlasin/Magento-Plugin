@@ -1,0 +1,90 @@
+<?php
+ 
+?>
+
+<form action="<?php echo $block->getUrl('maincareerspage/index/save'); ?> " method="POST" enctype="multipart/form-data">
+    <fieldset class="fieldset">
+        <legend class="legend"><span><?= $block->escapeHtmlAttr(__('Fill Detail')) ?></span></legend>
+        <fieldset class="fieldset row">
+            <div class="fields col-md-6">
+                <div class="field name required">
+                    <label class="label" for="title">
+                        <span><?= $block->escapeHtmlAttr(__('Name'))?></span>
+                    </label>
+                    <div class="control">
+                        <input name="applicant_name" id="applicant_name" title="name" 
+                               value=""
+                               class="input-text required-entry" type="text"  data-validate="{required:true}"  />
+                    </div>
+                </div>
+                <div class="field name required">
+                    <label class="label" for="title">
+                        <span><?= $block->escapeHtmlAttr(__('Email')) ?></span>
+                    </label>
+                    <div class="control">
+                        <input name="email" id="email" title="Email"
+                               value=""
+                               class="input-text" type="email"
+                               data-validate="{required:true, 'validate-email':true}" required/>
+                    </div>
+                </div>
+
+                <div class="field name required">
+                    <label class="label" for="title">
+                        <span><?= $block->escapeHtmlAttr(__('Address')) ?></span>
+                    </label>
+                    <div class="control">
+                        <textarea name="address" id="address" title="Address"
+                               data-validate="{required:true}" required ></textarea>
+                    </div>
+                </div>
+
+                <div class="field name required">
+                    <label class="label" for="title">
+                        <span><?= $block->escapeHtmlAttr(__('Phone Number')) ?></span>
+                    </label>
+                    <div class="control">
+                        <input name="phone_number" id="phone_number" title="Phone Number"
+                               class="input-text" type="number"
+                               data-validate="{required:true}" required/>
+                    </div>
+                </div>
+
+                <div class="field name required">
+                    <label class="label" for="title">
+                        <span><?= $block->escapeHtmlAttr(__('Experience')) ?></span>
+                    </label>
+                    <div class="control">
+                        <input name="experience" id="experience" title="Experience"
+                               class="input-text" type="number"
+                               data-validate="{required:true}" required/>
+                    </div>
+                </div>
+
+                <div class="field name required">
+                    <label class="label" for="title">
+                        <span><?= $block->escapeHtmlAttr(__('Cover Letter')) ?></span>
+                    </label>
+                    <div class="control">
+                            <textarea name="cover_letter" id="cover_letter" title="Cover Letter" value="" class="input-text" type="text" data-validate="{required:true}"></textarea>
+                        </div>
+                </div>
+
+                <div class="field name required">
+                    <label class="label" for="title">
+                        <span><strong><?= $block->escapeHtmlAttr(__('Upload Resume:')) ?><strong></span>
+                    </label>
+                    <input type="file" name="resume" id="resume" title="Upload Custom File" class="input-text required" data-validate="{required:true}">
+                </div>
+            </div>
+            
+        </fieldset>
+    </fieldset>
+    <div class="actions-toolbar">
+        <div class="primary">
+            <button type="submit" class="action submit primary" title="Save">
+                <span><?= $block->escapeHtmlAttr(__('Save')) ?></span>
+            </button>
+        </div>
+    </div>
+</form>

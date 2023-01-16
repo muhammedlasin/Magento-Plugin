@@ -1,0 +1,173 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+   <argument name="data" xsi:type="array">
+      <item name="js_config" xsi:type="array">
+         <item name="provider" xsi:type="string">job_form.job_form_data_source</item>
+         <item name="deps" xsi:type="string">job_form.job_form_data_source</item>
+      </item>
+      <item name="label" xsi:type="string" translate="true">General Information</item>
+      <item name="config" xsi:type="array">
+         <item name="dataScope" xsi:type="string">data</item>
+         <item name="namespace" xsi:type="string">job_form</item>
+      </item>
+      <item name="spinner" xsi:type="string">general_information</item>
+      <item name="buttons" xsi:type="array">
+         <item name="back" xsi:type="string">Terrificminds\CareerPageBuilder\Block\Adminhtml\Job\Edit\Button\Back</item>
+         <item name="save" xsi:type="string">Terrificminds\CareerPageBuilder\Block\Adminhtml\Job\Edit\Button\Save</item>
+      </item>
+      <item name="template" xsi:type="string">templates/form/collapsible</item>
+   </argument>
+   <dataSource name="job_form_data_source">
+      <argument name="dataProvider" xsi:type="configurableObject">
+         <argument name="class" xsi:type="string">Terrificminds\CareerPageBuilder\Model\Job\DataProvider</argument>
+         <argument name="name" xsi:type="string">job_form_data_source</argument>
+         <argument name="primaryFieldName" xsi:type="string">job_id</argument>
+         <argument name="requestFieldName" xsi:type="string">id</argument>
+         <argument name="data" xsi:type="array">
+            <item name="config" xsi:type="array">
+               <item name="submit_url" xsi:type="url" path="*/*/save" />
+            </item>
+         </argument>
+      </argument>
+      <argument name="data" xsi:type="array">
+         <item name="js_config" xsi:type="array">
+            <item name="component" xsi:type="string">Magento_Ui/js/form/provider</item>
+         </item>
+      </argument>
+   </dataSource>
+   <fieldset name="general_information">
+      <argument name="data" xsi:type="array">
+         <item name="config" xsi:type="array">
+            <item name="collapsible" xsi:type="boolean">false</item>
+            <item name="label" xsi:type="string" translate="true">Job Details</item>
+            <item name="sortOrder" xsi:type="number">20</item>
+         </item>
+      </argument> 
+      <field name="job_designation">
+         <argument name="data" xsi:type="array">
+            <item name="config" xsi:type="array">
+               <item name="dataType" xsi:type="string">varchar</item>
+               <item name="label" xsi:type="string" translate="true">Job Designation</item>
+               <item name="formElement" xsi:type="string">input</item>
+               <item name="source" xsi:type="string">job_designation</item>
+               <item name="dataScope" xsi:type="string">job_designation</item>
+            </item>
+         </argument>
+          <settings>
+            <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+               </settings>
+      </field>
+        <field name="small_job_description">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="formElement" xsi:type="string">textarea</item>
+                    <item name="cols" xsi:type="number">15</item>
+                    <item name="rows" xsi:type="number">5</item>
+                    <item name="label" translate="true" xsi:type="string">Small Job Description</item>
+                    <item name="dataType" translate="true" xsi:type="string">text</item>
+                </item>
+            </argument>
+            <settings>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+            </settings>
+        </field>
+        <field name="detailed_job_description" template="ui/form/field" formElement="wysiwyg">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">page</item>
+                </item>
+            </argument>
+            <settings>
+                <additionalClasses>
+                    <class name="admin__field-wide">false</class>
+                </additionalClasses>
+                    <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+                <label/>
+                <notice translate="true">Note: Keyboard shortcut to activate editor help : Alt + 0 (Windows) or &#x2325;0 (MacOS)</notice>
+                <dataScope>detailed_job_description</dataScope>
+            </settings>
+            <formElements>
+                <wysiwyg>
+                    <settings>
+                        <wysiwyg>true</wysiwyg>
+                    </settings>
+                </wysiwyg>
+            </formElements>
+        </field>
+           <field name="is_active">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="dataType" xsi:type="string">smallint</item>
+                    <item name="label" xsi:type="string" translate="true">Status</item>
+                    <item name="formElement" xsi:type="string">select</item>
+                    <item name="source" xsi:type="string">is_active</item>
+                    <item name="dataScope" xsi:type="string">is_active</item>
+                    <item name="validation" xsi:type="array">
+                        <item name="required-entry" xsi:type="boolean">true</item>
+                    </item>
+                </item>
+                <item name="options" xsi:type="object">Terrificminds\CareerPageBuilder\Model\Source\Status</item>
+            </argument>
+        </field>
+         <field name="category_id">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="dataType" xsi:type="string">smallint</item>
+                    <item name="label" xsi:type="string" translate="true">Job Category</item>
+                    <item name="formElement" xsi:type="string">select</item>
+                    <item name="source" xsi:type="string">category_id</item>
+                    <item name="dataScope" xsi:type="string">category_id</item>
+                    <item name="validation" xsi:type="array">
+                        <item name="required-entry" xsi:type="boolean">true</item>
+                    </item>
+                </item>
+                <item name="options" xsi:type="object">Terrificminds\CareerPageBuilder\Model\Source\Category</item>
+            </argument>
+        </field>
+
+          <field name="button_action">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="dataType" xsi:type="string">smallint</item>
+                    <item name="label" xsi:type="string" translate="true">Apply Now Button Action</item>
+                    <item name="formElement" xsi:type="string">select</item>
+                    <item name="source" xsi:type="string">button_action</item>
+                    <item name="dataScope" xsi:type="string">button_action</item>
+                    <item name="validation" xsi:type="array">
+                        <item name="required-entry" xsi:type="boolean">true</item>
+                    </item>
+                </item>
+                <item name="options" xsi:type="object">Terrificminds\CareerPageBuilder\Model\Source\ButtonAction</item>
+            </argument>
+        </field>
+
+      <field name="button_url">
+         <argument name="data" xsi:type="array">
+            <item name="config" xsi:type="array">
+               <item name="dataType" xsi:type="string">text</item>
+               <item name="label" xsi:type="string" translate="true">URL</item>
+               <item name="formElement" xsi:type="string">input</item>
+               <item name="source" xsi:type="string">button_url</item>
+               <item name="dataScope" xsi:type="string">button_url</item>
+            </item>
+         </argument>
+      </field>
+      <field name="sort_order">
+         <argument name="data" xsi:type="array">
+            <item name="config" xsi:type="array">
+               <item name="dataType" xsi:type="string">smallint</item>
+               <item name="label" xsi:type="string" translate="true">Sort Order</item>
+               <item name="formElement" xsi:type="string">input</item>
+               <item name="source" xsi:type="string">sort_order</item>
+               <item name="dataScope" xsi:type="string">sort_order</item>
+            </item>
+         </argument>
+      </field>
+   </fieldset>
+</form>
