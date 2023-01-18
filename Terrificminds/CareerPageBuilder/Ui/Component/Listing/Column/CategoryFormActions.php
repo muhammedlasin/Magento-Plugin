@@ -61,7 +61,7 @@ class CategoryFormActions extends \Magento\Ui\Component\Listing\Columns\Column
                             'label' => __('Delete'),
                             'confirm' => [
                                 'title' => __('Delete %1', $item['category_name']),
-                                'message' => __('Are you sure you want to delete a %1 record?', $item['category_name']),
+                                'message' => __('Deleting %1 category will delete all the job entries listed under the category. Are you sure you want to delete the %1 record?', $item['category_name']),
                             ],
                         
                         ],

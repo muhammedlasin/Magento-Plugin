@@ -7,24 +7,30 @@ use Magento\Customer\Model\Session;
 use Magento\Eav\Model\Config;
 use Magento\Customer\Model\Customer;
 use Magento\Backend\Block\Template\Context;
+use Magento\Store\Model\StoreManagerInterface;
 use Magento\Framework\App\Response\RedirectInterface;
 use Terrificminds\CareerPageBuilder\Model\ResourceModel\JobCategory\CollectionFactory as JobCategoryCollectionFactory;
 use Terrificminds\CareerPageBuilder\Model\ResourceModel\Job\CollectionFactory as JobCollectionFactory;
 
 class JobDetails extends Template
-{
+{   
+    
        
     protected $jobCategoryCollectionFactory;
     protected $jobCollectionFactory;
 
+    protected $contentProcessor;
+
     public function __construct(
         JobCategoryCollectionFactory $jobCategoryCollectionFactory,
         JobCollectionFactory $jobCollectionFactory,
+        \Magento\Cms\Model\Template\FilterProvider $contentProcessor,
         Context $context,
         array $data = []
     ) {
         $this->jobCategoryCollectionFactory = $jobCategoryCollectionFactory;
         $this->jobCollectionFactory = $jobCollectionFactory;
+        $this->contentProcessor = $contentProcessor;
         parent::__construct($context, $data);
     }
  
@@ -46,4 +52,8 @@ class JobDetails extends Template
         return $url;
          }
 
+         public function processContent($content){
+                return $this->contentProcessor->getPageFilter()->filter($content);
+            }
+        
 }

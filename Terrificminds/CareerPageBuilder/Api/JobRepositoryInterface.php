@@ -30,5 +30,8 @@ interface JobRepositoryInterface
 
     public function delete(JobInterface $jobs);
 
+
+  public function getJobByCategory($categoryId);
+
  
 }

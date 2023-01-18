@@ -52,6 +52,8 @@ class Delete extends Action implements HttpGetActionInterface
         if ($id) {
             try {
                 $categories = $this->jobCategoryRepository->getById($id);
+                $jobs = $this->jobRepository->getJobByCategory($id);
+                $this->jobRepository->delete($jobs);
                 $this->jobCategoryRepository->delete($categories);
                 $this->messageManager->addSuccessMessage(__('Job Category deleted successfully.'));
                 return $resultRedirect->setPath('*/*/');

@@ -131,23 +131,6 @@
                 <item name="options" xsi:type="object">Terrificminds\CareerPageBuilder\Model\Source\Category</item>
             </argument>
         </field>
-
-          <!-- <field name="button_action">
-            <argument name="data" xsi:type="array">
-                <item name="config" xsi:type="array">
-                    <item name="dataType" xsi:type="string">smallint</item>
-                    <item name="label" xsi:type="string" translate="true">Apply Now Button Action</item>
-                    <item name="formElement" xsi:type="string">select</item>
-                    <item name="source" xsi:type="string">button_action</item>
-                    <item name="dataScope" xsi:type="string">button_action</item>
-                    <item name="validation" xsi:type="array">
-                        <item name="required-entry" xsi:type="boolean">true</item>
-                    </item>
-                </item>
-                <item name="options" xsi:type="object">Terrificminds\CareerPageBuilder\Model\Source\ButtonAction</item>
-            </argument>
-        </field> -->
-
          <field name="button_action" formElement="select">
             <settings>
                 <dataType>text</dataType>

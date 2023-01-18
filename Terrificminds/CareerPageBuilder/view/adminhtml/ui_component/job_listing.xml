@@ -66,11 +66,25 @@
                                 Delete items
                             </item>
                             <item name="message" xsi:type="string" translate="true">
-                                Are you sure you want to delete selected items?
+                               Are you sure you want to delete selected items?
                             </item>
                         </item>
                     </item>
                 </argument>
+            </action>
+             <action name="disable">
+                <settings>
+                    <url path="maincareerspage/job/massdisable"/>
+                    <type>disable</type>
+                    <label translate="true">Disable</label>
+                </settings>
+            </action>
+            <action name="enable">
+                <settings>
+                    <url path="maincareerspage/job/massenable"/>
+                    <type>enable</type>
+                    <label translate="true">Enable</label>
+                </settings>
             </action>
         </massaction>
         <paging name="listing_paging"/>

@@ -52,7 +52,7 @@ class JobRepository implements JobRepositoryInterface
     {
         $job = $this->jobCollectionFactory->create()->addFieldToFilter('job_id', $id)->getFirstItem();
         if (! $job->getId()) {
-            throw new NoSuchEntityException(__('Unable to find Pacvac Resource record with ID "%1"', $id));
+            throw new NoSuchEntityException(__('Unable to find record with ID "%1"', $id));
         }
         return $job;
     }
@@ -89,5 +89,14 @@ class JobRepository implements JobRepositoryInterface
         }
         return true;
     }
-   
+
+    public function getJobByCategory($categoryId){
+
+
+    $job = $this->jobCollectionFactory->create()->addFieldToFilter('category_id', $categoryId)->getFirstItem();
+        if (! $job->getId()) {
+            throw new NoSuchEntityException(__('Unable to find record with ID "%1"', $categoryId));
+        }
+        return $job;
+    }
 }

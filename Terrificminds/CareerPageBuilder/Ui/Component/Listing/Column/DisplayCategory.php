@@ -59,8 +59,9 @@ class DisplayCategory extends \Magento\Ui\Component\Listing\Columns\Column
                     $logger = new \Zend_Log();
                     $logger->addWriter($writer);
                     $logger->info("/////////////////-----logger initiated-----//////////////////////");
-                    $logger->info("testing   " . print_r($s, true));
-                    // $logger->info("20   " . print_r($s, true));
+                    $logger->info("best   " . print_r($item, true));
+                    
+                 
                     
                     // $item['category_id'] = $item['category_name'];
                        

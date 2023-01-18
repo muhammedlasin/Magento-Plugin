@@ -2,7 +2,7 @@
          xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Widget:etc/widget.xsd">
     <widget class="Terrificminds\CareerPageBuilder\Block\Widget\Career" id="orange_test_widget">
            <label>Career Page Builder</label>
-        <description>This is a career page builder widget!!!</description>
+        <description>This is a career page widget!!!</description>
         <parameters>
             <parameter name="title" xsi:type="text" required="true" visible="true" sort_order="10">
                 <label>Label</label>
