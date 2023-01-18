@@ -9,6 +9,8 @@
     <table name="job_category" resource="default" engine="innodb" comment="Job Category Table">
         <column xsi:type="smallint" name="category_id" unsigned="false" nullable="false" identity="true" comment="Job Category ID"/>
         <column xsi:type="varchar" name="category_name" nullable="false" length="255" comment="Job Category Name"/>
+        <column xsi:type="smallint" name="is_active" unsigned="false" nullable="false" identity="false" default="1" comment="Is Job Category Active"/>
+        <column xsi:type="smallint" name="sort_order" unsigned="false" nullable="false" identity="false" default="0" comment="Job Category Sort Order"/>
         <column xsi:type="timestamp" name="created_at" on_update="false" nullable="false" default="CURRENT_TIMESTAMP" comment="Category Creation Time"/>
         <column xsi:type="timestamp" name="updated_at" on_update="true" nullable="false" default="CURRENT_TIMESTAMP" comment="Category Modification Time"/>
         <constraint xsi:type="primary" referenceId="PRIMARY">
@@ -34,6 +36,7 @@
     <table name="application_form" resource="default" engine="innodb" comment="Application Form Table">
          <column xsi:type="smallint" name="application_id" unsigned="false" nullable="false" identity="true" comment="Application ID"/>
          <column xsi:type="varchar" name="applicant_name" nullable="false" length="255" comment="Applicant Name"/>
+          <column xsi:type="varchar" name="job_designation" nullable="false" length="255" comment="Job Designation"/>
          <column xsi:type="varchar" name="email" nullable="false" length="25" comment="Email"/>
          <column xsi:type="text" name="address" nullable="false" comment="Address"/>
          <column xsi:type="varchar" name="phone_number" nullable="false" length="50" comment="Phone Number"/>

@@ -101,7 +101,7 @@ $this->_init('Terrificminds\CareerPageBuilder\Model\ResourceModel\Job');
         /**
      * @inheritDoc
      */
-    public function getIsActive(): int
+    public function getIsActive()
     {
         return $this->getData(self::STATUS);
     }
@@ -174,7 +174,7 @@ $this->_init('Terrificminds\CareerPageBuilder\Model\ResourceModel\Job');
     /**
      * @inheritDoc
      */
-    public function getCreatedAt(): int
+    public function getCreatedAt()
     {
         return $this->getData(self::CREATED_AT);
     }
@@ -182,7 +182,7 @@ $this->_init('Terrificminds\CareerPageBuilder\Model\ResourceModel\Job');
     /**
      * @inheritDoc
      */
-    public function setCreatedAt(int $createdAt)
+    public function setCreatedAt($createdAt)
     {
         return $this->setData(self::CREATED_AT);
     }

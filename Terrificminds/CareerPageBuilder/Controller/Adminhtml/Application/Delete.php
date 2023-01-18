@@ -2,30 +2,28 @@
 
 declare(strict_types=1);
 
-namespace Terrificminds\CareerPageBuilder\Controller\Adminhtml\Category;
+namespace Terrificminds\CareerPageBuilder\Controller\Adminhtml\Application;
 
 use Magento\Backend\App\Action;
 use Magento\Backend\App\Action\Context;
 use Magento\Backend\Model\View\Result\Redirect;
 use Magento\Framework\App\Action\HttpGetActionInterface;
 use Magento\Framework\Controller\ResultInterface;
-use Terrificminds\CareerPageBuilder\Api\JobCategoryRepositoryInterface;
-use Terrificminds\CareerPageBuilder\Api\JobRepositoryInterface;
+use Terrificminds\CareerPageBuilder\Api\ApplicationRepositoryInterface;
 
 class Delete extends Action implements HttpGetActionInterface
 {
-   
-    protected JobCategoryRepositoryInterface $jobCategoryRepository;
-    protected JobRepositoryInterface $jobRepository;
+    /**
+     * @var ApplicationRepositoryInterface
+     */
+    protected ApplicationRepositoryInterface $applicationRepository;
 
     public function __construct(
         Context $context,
-        JobCategoryRepositoryInterface $jobCategoryRepository,
-        JobRepositoryInterface $jobRepository
+        ApplicationRepositoryInterface $applicationRepository
     ) {
         parent::__construct($context);
-        $this->jobCategoryRepository = $jobCategoryRepository;
-        $this->jobRepository = $jobRepository;
+        $this->applicationRepository = $applicationRepository;
     }
 
     /**
@@ -35,7 +33,7 @@ class Delete extends Action implements HttpGetActionInterface
      */
     protected function _isAllowed(): bool
     {
-        return $this->_authorization->isAllowed('Terrificminds_CareerPageBuilder::category_delete');
+        return $this->_authorization->isAllowed('Terrificminds_CareerPageBuilder::application_delete');
     }
 
     /**
@@ -51,16 +49,16 @@ class Delete extends Action implements HttpGetActionInterface
         $resultRedirect = $this->resultRedirectFactory->create();
         if ($id) {
             try {
-                $categories = $this->jobCategoryRepository->getById($id);
-                $this->jobCategoryRepository->delete($categories);
-                $this->messageManager->addSuccessMessage(__('Job Category deleted successfully.'));
+                $application = $this->applicationRepository->getById($id);
+                $this->applicationRepository->delete($application);
+                $this->messageManager->addSuccessMessage(__('Job Application deleted successfully.'));
                 return $resultRedirect->setPath('*/*/');
             } catch (\Exception $e) {
                 $this->messageManager->addErrorMessage($e->getMessage());
                 return $resultRedirect->setPath('*/*/edit', ['id' => $id]);
             }
         }
-        $this->messageManager->addErrorMessage(__('Job Category does not exist.'));
+        $this->messageManager->addErrorMessage(__('Application does not exist.'));
         return $resultRedirect->setPath('*/*/');
     }
 }

@@ -53,7 +53,7 @@
                     <item name="config" xsi:type="array">
                         <item name="type" xsi:type="string">delete</item>
                         <item name="label" xsi:type="string" translate="true">Delete</item>
-                        <item name="url" xsi:type="url" path="maincareerspage/job/massdelete"/>
+                        <item name="url" xsi:type="url" path="maincareerspage/application/massdelete"/>
                         <item name="confirm" xsi:type="array">
                             <item name="title" xsi:type="string" translate="true">
                                 Delete items
@@ -129,6 +129,13 @@
                 <label translate="true">Cover Letter</label>
             </settings>
         </column>
+               <column name="job_designation">
+            <settings>
+                <filter>text</filter>
+                <bodyTmpl>ui/grid/cells/text</bodyTmpl>
+                <label translate="true">Job Designation</label>
+            </settings>
+        </column>
         <actionsColumn name="resume" class="Terrificminds\CareerPageBuilder\Ui\Component\Listing\Column\Resume">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
@@ -139,12 +146,12 @@
                 </item>
             </argument>
         </actionsColumn>
-          <actionsColumn name="actions" class="Terrificminds\CareerPageBuilder\Ui\Component\Listing\Column\JobFormActions" >
+          <actionsColumn name="actions" class="Terrificminds\CareerPageBuilder\Ui\Component\Listing\Column\ApplicationActions" >
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
                     <item name="resizeEnabled" xsi:type="boolean">false</item>
                     <item name="resizeDefaultWidth" xsi:type="string">107</item>
-                    <item name="indexField" xsi:type="string">job_id</item>
+                    <item name="indexField" xsi:type="string">application_id</item>
                 </item>
             </argument>
         </actionsColumn>

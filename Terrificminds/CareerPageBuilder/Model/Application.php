@@ -136,6 +136,22 @@ class Application extends AbstractModel implements ApplicationInterface
     }
 
 
+        /**
+     * @inheritDoc
+     */
+    public function getJobDesignation()
+    {
+        return parent::getData(self::JOB_DESIGNATION);
+    }
+
+       /**
+     * @inheritDoc
+     */
+    public function setJobDesignation($designation)
+    {
+        return $this->setData(self::JOB_DESIGNATION, $designation);
+    }
+
       /**
      * @inheritDoc
      */

@@ -75,9 +75,9 @@ interface JobInterface extends ExtensibleDataInterface
          /**
      * Get Status
      *
-     * @return int
+     * @return 
      */
-    public function getIsActive(): int;
+    public function getIsActive();
 
     /**
      * Set Status
@@ -157,9 +157,9 @@ interface JobInterface extends ExtensibleDataInterface
     /**
      * Get created at timestamp
      *
-     * @return int
+     * @return 
      */
-    public function getCreatedAt(): int;
+    public function getCreatedAt();
 
     /**
      * Set created at timestamp

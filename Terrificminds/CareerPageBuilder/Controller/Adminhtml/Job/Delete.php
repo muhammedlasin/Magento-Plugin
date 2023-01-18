@@ -14,7 +14,7 @@ use Terrificminds\CareerPageBuilder\Api\JobRepositoryInterface;
 class Delete extends Action implements HttpGetActionInterface
 {
     /**
-     * @var JobCRepositoryInterface
+     * @var JobRepositoryInterface
      */
     protected JobRepositoryInterface $jobRepository;
 
@@ -49,8 +49,8 @@ class Delete extends Action implements HttpGetActionInterface
         $resultRedirect = $this->resultRedirectFactory->create();
         if ($id) {
             try {
-                $categories = $this->jobRepository->getById($id);
-                $this->jobRepository->delete($categories);
+                $job = $this->jobRepository->getById($id);
+                $this->jobRepository->delete($job);
                 $this->messageManager->addSuccessMessage(__('Job deleted successfully.'));
                 return $resultRedirect->setPath('*/*/');
             } catch (\Exception $e) {

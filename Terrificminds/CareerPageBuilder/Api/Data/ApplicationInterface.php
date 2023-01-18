@@ -18,6 +18,9 @@ interface ApplicationInterface
     public const PHONE_NUMBER = 'phone_number';
     public const COVER_LETTER = 'cover_letter';
     public const RESUME = 'resume';
+
+    public const JOB_DESIGNATION = 'job_designation';
+
     public const ATTRIBUTES = [
         self::ID,
         self::NAME,
@@ -26,7 +29,8 @@ interface ApplicationInterface
         self::EXPERIENCE,
         self::PHONE_NUMBER,
         self::COVER_LETTER,
-        self::RESUME
+        self::RESUME,
+        self::JOB_DESIGNATION
     ];
     /**
      *  Id
@@ -129,6 +133,21 @@ interface ApplicationInterface
        * @return $this
        */
       public function setCoverLetter($letter);
+
+          /**
+     * Job designation
+     *
+     * @return string|null
+     */
+    public function getJobDesignation();
+
+    /**
+     * Set job designation
+     *
+     * @param string $designation
+     * @return $this
+     */
+    public function setJobDesignation($designation);
 
       /**
       * Resume

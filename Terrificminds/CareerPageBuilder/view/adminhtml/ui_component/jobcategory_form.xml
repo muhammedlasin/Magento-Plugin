@@ -63,5 +63,33 @@
                 </validation>
                </settings>
       </field>
+      <field name="is_active">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="dataType" xsi:type="string">smallint</item>
+                    <item name="label" xsi:type="string" translate="true">Status</item>
+                    <item name="formElement" xsi:type="string">select</item>
+                    <item name="source" xsi:type="string">is_active</item>
+                    <item name="dataScope" xsi:type="string">is_active</item>
+                    <item name="validation" xsi:type="array">
+                        <item name="required-entry" xsi:type="boolean">true</item>
+                    </item>
+                </item>
+                <item name="options" xsi:type="object">Terrificminds\CareerPageBuilder\Model\Source\Status</item>
+            </argument>
+        </field>
+
+        <field name="sort_order">
+         <argument name="data" xsi:type="array">
+            <item name="config" xsi:type="array">
+               <item name="dataType" xsi:type="string">smallint</item>
+               <item name="label" xsi:type="string" translate="true">Sort Order</item>
+               <item name="formElement" xsi:type="string">input</item>
+               <item name="source" xsi:type="string">sort_order</item>
+               <item name="dataScope" xsi:type="string">sort_order</item>
+            </item>
+         </argument>
+      </field>
+      
    </fieldset>
 </form>

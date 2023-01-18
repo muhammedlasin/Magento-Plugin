@@ -36,17 +36,9 @@ class Resume extends Column {
       foreach($dataSource["data"]["items"] as & $item) {
         if(!empty($item[$fieldName])){
 
-            $writer = new \Zend_Log_Writer_Stream(BP . '/var/log/custom.log');
-            $logger = new \Zend_Log();
-            $logger->addWriter($writer);
-            $logger->info("/////////////////-----logger initiated-----//////////////////////");
-            $logger->info("t   " . print_r($item, true));
-
-            $target_file = str_replace(' ', '_', $item[$fieldName]);
-          
-           $completeUrl = $url.'uploads/'.$target_file;
-
-                    $item[$fieldName] = html_entity_decode("<a href='$completeUrl'>$item[$fieldName]</a>");
+            $modifiedName = str_replace(' ', '_', $item[$fieldName]);
+            $completeUrl = $url.'uploads/'.$modifiedName;
+            $item[$fieldName] = html_entity_decode("<a href='$completeUrl'>$item[$fieldName]</a>");
                      
         }   
     }

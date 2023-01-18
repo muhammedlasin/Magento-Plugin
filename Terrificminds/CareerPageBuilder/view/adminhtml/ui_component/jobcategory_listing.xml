@@ -101,7 +101,20 @@
                 <label translate="true">Name</label>
             </settings>
         </column>
-
+        <column name="is_active" class="Terrificminds\CareerPageBuilder\Ui\Component\Listing\Column\Status">
+            <settings>
+                <filter>smallint</filter>
+                <bodyTmpl>ui/grid/cells/text</bodyTmpl>
+                <label translate="true">Status</label>
+            </settings>
+        </column>
+        <column name="sort_order">
+            <settings>
+                <filter>text</filter>
+                <bodyTmpl>ui/grid/cells/text</bodyTmpl>
+                <label translate="true">Sort Order</label>
+            </settings>
+        </column>
           <actionsColumn name="actions" class="Terrificminds\CareerPageBuilder\Ui\Component\Listing\Column\CategoryFormActions" >
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">

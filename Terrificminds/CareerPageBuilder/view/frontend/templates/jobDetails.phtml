@@ -1,23 +1,11 @@
-<?php
-$jobId = $_GET['jobId'];
-$jobCollection = $block->jobCollection()->addFieldToFilter('job_id', $jobId)->getData();
-
-$buttonAction = $jobCollection[0]['button_action'];
-if($buttonAction){
-    $url = "https://app.terrific.test/maincareerspage/index/form";
-}
-else{
-    $domain = $jobCollection[0]['button_url'];
-    $url = "https://$domain";
-}
-?>
-
-
-
-<h1><? echo $jobCollection[0]['job_designation']?></h1>
+<h1><? echo $block->getJobCollection()[0]['job_designation']?></h1>
 <div>
-    <? echo $jobCollection[0]['detailed_job_description'] ?>
+    <? echo $block->getJobCollection()[0]['detailed_job_description'] ?>
 </div>
-<div>
-    <button><a href="<?php echo $url?>">Apply Now</a></button>
+<div> 
+    <button onclick="location.href='<?php echo $block->getButtonUrl() ?>'" >Apply Now</a></button>
 </div>
+
+
+            
+          

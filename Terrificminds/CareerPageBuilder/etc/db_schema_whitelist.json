@@ -4,7 +4,9 @@
             "category_id": true,
             "category_name": true,
             "created_at": true,
-            "updated_at": true
+            "updated_at": true,
+            "is_active": true,
+            "sort_order": true
         },
         "constraint": {
             "PRIMARY": true
@@ -39,7 +41,8 @@
             "cover_letter": true,
             "resume": true,
             "created_at": true,
-            "updated_at": true
+            "updated_at": true,
+            "job_designation": true
         },
         "constraint": {
             "PRIMARY": true

@@ -23,15 +23,19 @@ class Career extends Template implements BlockInterface
         parent::__construct($context, $data);
     }
 
-    public function categoryCollection()
+    public function getCategoryCollection()
     {
         $collection = $this->jobCategoryCollectionFactory->create();
+        $collection->setOrder('sort_order','ASC');
+        $collection->addFieldToFilter('is_active', 1)->getData();
         return $collection;
     }
 
-    public function jobCollection()
+    public function getJobCollection($categoryId)
     {
-        $collection = $this->jobCollectionFactory->create();
+        $collection = $this->jobCollectionFactory->create()->addFieldToFilter('category_id', $categoryId);
+        $collection->setOrder('sort_order','ASC');
+        $collection->addFieldToFilter('is_active', 1)->getData();
         return $collection;
     }
 }

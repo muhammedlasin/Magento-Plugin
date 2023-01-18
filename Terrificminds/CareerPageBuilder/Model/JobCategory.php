@@ -16,6 +16,10 @@ const CACHE_TAG = 'category_id';
      */
     private const ID = "category_id";
     private const CATEGORY = "category_name";
+    private const SORT_ORDER = "sort_order";
+
+    private const ENABLE = "is_active";
+
     private const CREATED_AT = "created_at";
     private const UPDATED_AT = "updated_at";
 
@@ -59,6 +63,39 @@ $this->_init('Terrificminds\CareerPageBuilder\Model\ResourceModel\JobCategory');
         return $this->setData(self::CATEGORY);
     }
 
+
+    /**
+     * @inheritDoc
+     */
+    public function getSortOrder()
+    {
+        return $this->getData(self::SORT_ORDER);
+    }
+
+       /**
+     * @inheritDoc
+     */
+    public function setSortOrder(int $order): JobCategoryInterface
+    {
+        return $this->setData(self::SORT_ORDER);
+    }
+
+        /**
+     * @inheritDoc
+     */
+    public function getIsActive()
+    {
+        return $this->getData(self::ENABLE);
+    }
+
+       /**
+     * @inheritDoc
+     */
+    public function setIsActive(int $enable): JobCategoryInterface
+    {
+        return $this->setData(self::ENABLE);
+    }
+    
     
 
     /**

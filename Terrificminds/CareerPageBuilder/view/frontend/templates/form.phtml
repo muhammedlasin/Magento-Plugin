@@ -1,10 +1,6 @@
-<?php
- 
-?>
-
 <form action="<?php echo $block->getUrl('maincareerspage/index/save'); ?> " method="POST" enctype="multipart/form-data">
     <fieldset class="fieldset">
-        <legend class="legend"><span><?= $block->escapeHtmlAttr(__('Fill Detail')) ?></span></legend>
+        <legend class="legend"><span><?= $block->escapeHtmlAttr(__('Fill your details')) ?></span></legend>
         <fieldset class="fieldset row">
             <div class="fields col-md-6">
                 <div class="field name required">
@@ -14,7 +10,7 @@
                     <div class="control">
                         <input name="applicant_name" id="applicant_name" title="name" 
                                value=""
-                               class="input-text required-entry" type="text"  data-validate="{required:true}"  />
+                               class="input-text required-entry" type="text"  data-validate="{required:true}" required  />
                     </div>
                 </div>
                 <div class="field name required">
@@ -66,7 +62,7 @@
                         <span><?= $block->escapeHtmlAttr(__('Cover Letter')) ?></span>
                     </label>
                     <div class="control">
-                            <textarea name="cover_letter" id="cover_letter" title="Cover Letter" value="" class="input-text" type="text" data-validate="{required:true}"></textarea>
+                            <textarea name="cover_letter" id="cover_letter" title="Cover Letter" value="" class="input-text" type="text" data-validate="{required:true}" required></textarea>
                         </div>
                 </div>
 
@@ -74,9 +70,10 @@
                     <label class="label" for="title">
                         <span><strong><?= $block->escapeHtmlAttr(__('Upload Resume:')) ?><strong></span>
                     </label>
-                    <input type="file" name="resume" id="resume" title="Upload Custom File" class="input-text required" data-validate="{required:true}">
+                    <input type="file" name="resume" id="resume" title="Upload Custom File" class="input-text required" data-validate="{required:true}" required>
                 </div>
             </div>
+            <input type="hidden" id="job_designation" name="job_designation" value="<?php echo $block->getJobName()?>">
             
         </fieldset>
     </fieldset>

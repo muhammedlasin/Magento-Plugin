@@ -28,12 +28,22 @@ class JobDetails extends Template
         parent::__construct($context, $data);
     }
  
-    public function jobCollection()
+    public function getJobCollection()
     {
         $collection = $this->jobCollectionFactory->create();
-        return $collection;
+        $jobId = $_GET['jobId'];
+        $jobCollection = $collection->addFieldToFilter('job_id', $jobId)->getData();
+        return $jobCollection;
     }
 
- 
+    public function getButtonUrl(){
+        
+        $jobCollection = $this->getJobCollection();
+        $jobId = $_GET['jobId'];
+        $buttonAction = $jobCollection[0]['button_action'];
+        $domain = $jobCollection[0]['button_url'];
+        $url = $buttonAction ? "form?jobId=$jobId" : "https://$domain";
+        return $url;
+         }
 
 }
