@@ -5,7 +5,7 @@ namespace Terrificminds\CareerPageBuilder\Ui\Component\Listing\Column;
 use Magento\Framework\View\Element\UiComponentFactory;
 use Magento\Framework\View\Element\UiComponent\ContextInterface;
 use Magento\Store\Model\StoreManagerInterface;
-use Terrificminds\CareerPageBuilder\Model\ResourceModel\JobCategory\CollectionFactory;
+use Terrificminds\CareerPageBuilder\Api\JobCategoryRepositoryInterface;
 class DisplayCategory extends \Magento\Ui\Component\Listing\Columns\Column
 {
     /**
@@ -13,10 +13,9 @@ class DisplayCategory extends \Magento\Ui\Component\Listing\Columns\Column
      */
     protected $storeManager;
 
-      /**
-     * @var CollectionFactory
-     */
-    protected $collectionFactory;
+   
+
+    protected JobCategoryRepositoryInterface $jobCategoryRepository;
 
     /**
      * @param ContextInterface $context
@@ -29,12 +28,12 @@ class DisplayCategory extends \Magento\Ui\Component\Listing\Columns\Column
         ContextInterface $context,
         UiComponentFactory $uiComponentFactory,
         StoreManagerInterface $storeManager,
-        CollectionFactory $collectionFactory,
+        JobCategoryRepositoryInterface $jobCategoryRepository,
         array $components = [],
         array $data = []
     ) {
         $this->storeManager = $storeManager;
-        $this->collectionFactory = $collectionFactory;
+        $this->jobCategoryRepository = $jobCategoryRepository;
         parent::__construct($context, $uiComponentFactory, $components, $data);
     }
 
@@ -47,24 +46,12 @@ class DisplayCategory extends \Magento\Ui\Component\Listing\Columns\Column
     public function prepareDataSource(array $dataSource)
     {
 
- 
-        
-        $collection = $this->collectionFactory->create();
         if(isset($dataSource['data']['items'])) {
+
             foreach($dataSource['data']['items'] as & $item) {
                 if($item) {
-                    $s = $collection->addFieldToFilter('category_id', $item['category_id'])->getData();
-
-                    $writer = new \Zend_Log_Writer_Stream(BP . '/var/log/custom.log');
-                    $logger = new \Zend_Log();
-                    $logger->addWriter($writer);
-                    $logger->info("/////////////////-----logger initiated-----//////////////////////");
-                    $logger->info("best   " . print_r($item, true));
-                    
-                 
-                    
-                    // $item['category_id'] = $item['category_name'];
-                       
+                    $categories = $this->jobCategoryRepository->getById($item['category_id']);
+                    $item['category_id'] = $categories->getCategoryName();      
                 }
             }
         }

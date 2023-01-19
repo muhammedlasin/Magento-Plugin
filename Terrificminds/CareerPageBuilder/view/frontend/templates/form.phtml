@@ -1,4 +1,4 @@
-<form action="<?php echo $block->getUrl('maincareerspage/index/save'); ?> " method="POST" enctype="multipart/form-data">
+<form action="<?php echo $block->getUrl('maincareerspage/index/save'); ?> " method="POST" enctype="multipart/form-data" data-mage-init='{"validation": {}}'>
     <fieldset class="fieldset">
         <legend class="legend"><span><?= $block->escapeHtmlAttr(__('Fill your details')) ?></span></legend>
         <fieldset class="fieldset row">
@@ -70,7 +70,7 @@
                     <label class="label" for="title">
                         <span><strong><?= $block->escapeHtmlAttr(__('Upload Resume:')) ?><strong></span>
                     </label>
-                    <input type="file" name="resume" id="resume" title="Upload Custom File" class="input-text required" data-validate="{required:true}" required>
+                    <input type="file" name="resume" id="resume" title="Upload Custom File" class="input-text required" data-validate="{'required-file':true}" data-validate="{'validate-forbidden-extensions':true}" data-validation-params="pdf" required>
                 </div>
             </div>
             <input type="hidden" id="job_designation" name="job_designation" value="<?php echo $block->getJobName()?>">

@@ -83,27 +83,33 @@ class Save extends Action
     /**
      * Execute function
      *
-     * @return url
+     * @return 
      */
     public function execute()
     {
-    
+        $resultRedirect = $this->resultRedirectFactory->create();
         $params = $this->_request->getParams();
         $uploadedFile = $this->uploadFile();
+
+        if(!$uploadedFile){
+            return $resultRedirect->setUrl($this->_redirect->getRefererUrl());
+        }
         $applications = $this->applicationInterface->setData($params);
         $applications = $this->applicationInterface->setResume($uploadedFile);
 
         try {
-            
-            $this->applicationRepository->save($applications);
-            $this->messageManager->addSuccessMessage(__("Data saved successfully."));
-            
-           
+            if ($uploadedFile) {
+                $this->applicationRepository->save($applications);
+                $this->messageManager->addSuccessMessage(__("Application has sent successfully."));
+                return $resultRedirect->setUrl('*/*/');
+            }
+
         } catch (\Exception $e) {
             $this->messageManager->addErrorMessage(__("Something went wrong"));
         }
-        $resultRedirect = $this->resultRedirectFactory->create();
-        return $resultRedirect->setUrl('https://app.terrific.test');
+
+        
+       
     }
 
     public function uploadFile()
@@ -124,7 +130,7 @@ class Save extends Action
         /* @var $uploader \Magento\MediaStorage\Model\File\Uploader */
         $uploader = $this->fileUploader->create(['fileId' => $yourInputFileName]);
 
-        $extension = ['jpg', 'jpeg', 'gif', 'png', 'pdf', 'docx', 'doc'];
+        $extension = ['pdf'];
 
         // set allowed file extensions
         $uploader->setAllowedExtensions($extension);
@@ -143,9 +149,6 @@ class Save extends Action
 
         // upload file in the specified folder
         $result = $uploader->save($target, $filename);
-
-        //echo '<pre>'; print_r($result); exit;
-        $path = $target . $filename;
 
         if ($result['file']) {
         $this->messageManager->addSuccess(__('File has been successfully uploaded.')); 

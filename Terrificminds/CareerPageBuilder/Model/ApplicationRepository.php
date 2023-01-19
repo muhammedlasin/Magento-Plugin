@@ -52,7 +52,7 @@ class ApplicationRepository implements ApplicationRepositoryInterface
     {
         $application = $this->applicationCollectionFactory->create()->addFieldToFilter('application_id', $id)->getFirstItem();
         if (! $application->getId()) {
-            throw new NoSuchEntityException(__('Unable to find Pacvac Resource record with ID "%1"', $id));
+            throw new NoSuchEntityException(__('Unable to find record with ID "%1"', $id));
         }
         return $application;
     }
