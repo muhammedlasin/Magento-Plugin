@@ -9,7 +9,7 @@
                     </label>
                     <div class="control">
                         <input name="applicant_name" id="applicant_name" title="name" 
-                               value=""
+                               value="<?php echo $block->getCurrentUser() ?>"
                                class="input-text required-entry" type="text"  data-validate="{required:true}" required  />
                     </div>
                 </div>

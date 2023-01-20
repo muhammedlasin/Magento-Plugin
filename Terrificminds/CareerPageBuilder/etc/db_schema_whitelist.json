@@ -27,7 +27,8 @@
             "updated_at": true
         },
         "constraint": {
-            "PRIMARY": true
+            "PRIMARY": true,
+            "JOB_CATEGORY_ID_JOB_CATEGORY_CATEGORY_ID": true
         }
     },
     "application_form": {

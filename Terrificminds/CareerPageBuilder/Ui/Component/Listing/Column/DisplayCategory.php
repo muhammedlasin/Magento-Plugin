@@ -12,9 +12,6 @@ class DisplayCategory extends \Magento\Ui\Component\Listing\Columns\Column
      * @var \Magento\Store\Model\StoreManagerInterface
      */
     protected $storeManager;
-
-   
-
     protected JobCategoryRepositoryInterface $jobCategoryRepository;
 
     /**
@@ -50,15 +47,10 @@ class DisplayCategory extends \Magento\Ui\Component\Listing\Columns\Column
 
             foreach($dataSource['data']['items'] as & $item) {
                 if($item) {
-               
-
                     if ($item['category_id'] != 0) {
                         $categories = $this->jobCategoryRepository->getById($item['category_id']);
                         $item['category_id'] = $categories->getCategoryName();
                     }
-                    else{
-                        $item['category_id'] = 'Unassigned';
-                    }   
                 }
             }
         }

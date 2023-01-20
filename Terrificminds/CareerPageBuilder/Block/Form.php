@@ -16,18 +16,24 @@ class Form extends Template
     protected $jobCategoryCollectionFactory;
     protected $jobCollectionFactory;
     protected $request;
-
-
- 
+    protected $customer;
+    protected $customerRepositoryInterface;
+    protected $session;
     public function __construct(
         JobCategoryCollectionFactory $jobCategoryCollectionFactory,
         JobCollectionFactory $jobCollectionFactory,
         \Magento\Framework\App\RequestInterface $request,
+        Customer $customer,
+        \Magento\Customer\Api\CustomerRepositoryInterface $customerRepositoryInterface,
+        Session $session,
         Template\Context $context, array $data = []
     ) {
         $this->jobCategoryCollectionFactory = $jobCategoryCollectionFactory;
         $this->jobCollectionFactory = $jobCollectionFactory;
         $this->request = $request;
+        $this->customer = $customer;
+        $this->session = $session;
+        $this->customerRepositoryInterface = $customerRepositoryInterface;
         parent::__construct($context, $data);
     }
    
@@ -39,4 +45,18 @@ class Form extends Template
         return $jobCollection[0]['job_designation'];
     
     }
+
+    public function getCurrentUser()
+    {
+        
+        $currentSession = $this->session;
+        
+        $currentCustomer = $this->customerRepositoryInterface->getById($currentSession->getId());
+        
+        $customerName = $currentSession->getName();
+        
+        return $customerName;
+    }
+ 
+ 
 }

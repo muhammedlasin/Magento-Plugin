@@ -44,50 +44,7 @@
     <listingToolbar name="listing_top">
         <bookmark name="bookmarks"/>
         <columnsControls name="columns_controls"/>
-<!-- <filters name="listing_filters">
-            <argument name="data" xsi:type="array">
-                <item name="config" xsi:type="array">
-                    <item name="columnsProvider" xsi:type="string">job_listing.job_listing.job_columns</item>
-                    <item name="storageConfig" xsi:type="array">
-                        <item name="provider" xsi:type="string">job_listing.job_listing.listing_top.bookmarks</item>
-                        <item name="namespace" xsi:type="string">current.filters</item>
-                    </item>
-                    <item name="templates" xsi:type="array">
-                        <item name="filters" xsi:type="array">
-                            <item name="select" xsi:type="array">
-                                <item name="component" xsi:type="string">Magento_Ui/js/form/element/ui-select</item>
-                                <item name="template" xsi:type="string">ui/grid/filters/elements/ui-select</item>
-                            </item>
-                        </item>
-                    </item>
-                    <item name="childDefaults" xsi:type="array">
-                        <item name="provider" xsi:type="string">job_listing.job_listing.listing_top.listing_filters</item>
-                        <item name="imports" xsi:type="array">
-                            <item name="visible" xsi:type="string">job_listing.job_listing.job_columns.${ $.index }:visible</item>
-                        </item>
-                    </item>
-                </item>
-                <item name="observers" xsi:type="array">
-                    <item name="column" xsi:type="string">column</item>
-                </item>
-            </argument>
-            <filterSelect name="store_id">
-                <argument name="optionsProvider" xsi:type="configurableObject">
-                    <argument name="class" xsi:type="string">Magento\Cms\Ui\Component\Listing\Column\Cms\Options</argument>
-                </argument>
-                <argument name="data" xsi:type="array">
-                    <item name="config" xsi:type="array">
-                        <item name="provider" xsi:type="string">${ $.parentName }</item>
-                        <item name="imports" xsi:type="array">
-                            <item name="visible" xsi:type="string">componentType = column, index = ${ $.index }:visible</item>
-                        </item>
-                        <item name="dataScope" xsi:type="string">store_id</item>
-                        <item name="label" xsi:type="string" translate="true">Store View</item>
-                        <item name="captionValue" xsi:type="string">0</item>
-                    </item>
-                </argument>
-            </filterSelect>
-        </filters> -->
+
  <filters name="listing_filters">
             <argument name="data" xsi:type="array">
                 <item name="observers" xsi:type="array">

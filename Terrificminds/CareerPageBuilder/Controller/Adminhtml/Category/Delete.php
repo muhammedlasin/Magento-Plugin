@@ -60,9 +60,8 @@ class Delete extends Action implements HttpGetActionInterface
                 $categories = $this->jobCategoryRepository->getById($id);
                 $jobs = $this->jobRepository->getJobByCategory($id);
                 foreach($jobs as $item){
-                    $item['category_id']=0;
-                    $this->jobRepository->save($item);
-                    
+                    $item['category_id']=1;
+                    $this->jobRepository->save($item);   
                 }
                
                 // $this->jobRepository->delete($jobs);

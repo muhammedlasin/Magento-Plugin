@@ -35,11 +35,9 @@ class Resume extends Column {
 
       foreach($dataSource["data"]["items"] as & $item) {
         if(!empty($item[$fieldName])){
-
             $modifiedName = str_replace(' ', '_', $item[$fieldName]);
             $completeUrl = $url.'uploads/'.$modifiedName;
-            $item[$fieldName] = html_entity_decode("<a href='$completeUrl'>$item[$fieldName]</a>");
-                     
+            $item[$fieldName] = html_entity_decode("<a href='$completeUrl'>$item[$fieldName]</a>");             
         }   
     }
     }

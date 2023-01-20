@@ -106,10 +106,7 @@ class Save extends Action
 
         } catch (\Exception $e) {
             $this->messageManager->addErrorMessage(__("Something went wrong"));
-        }
-
-        
-       
+        } 
     }
 
     public function uploadFile()

@@ -55,7 +55,6 @@ class DataProvider extends \Magento\Ui\DataProvider\AbstractDataProvider
         }
 
         $items = $this->collection->getItems();
-
         foreach ($items as $job) {
             $this->loadedData[$job->getId()] = $job->getData();
         }

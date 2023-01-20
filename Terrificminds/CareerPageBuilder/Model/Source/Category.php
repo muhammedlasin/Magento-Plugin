@@ -19,8 +19,6 @@ class Category implements OptionSourceInterface
  
     public function toOptionArray()
     {
-        $options[] = [   'label' => 'Unassigned',
-        'value' => 0];
         $collection = $this->collectionFactory->create();
         foreach ($collection as $category) {
             $label = '';
@@ -34,7 +32,6 @@ class Category implements OptionSourceInterface
                 'value' => $value,
             ];
         }
- 
         return $options;
     }
 }

@@ -14,11 +14,8 @@ use Terrificminds\CareerPageBuilder\Model\ResourceModel\Job\CollectionFactory as
 
 class JobDetails extends Template
 {   
-    
-       
     protected $jobCategoryCollectionFactory;
     protected $jobCollectionFactory;
-
     protected $request;
     protected $contentProcessor;
 
@@ -55,7 +52,7 @@ class JobDetails extends Template
         return $url;
          }
 
-         public function processContent($content){
+    public function processContent($content){
                 return $this->contentProcessor->getPageFilter()->filter($content);
             }
         
