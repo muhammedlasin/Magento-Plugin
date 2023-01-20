@@ -2,9 +2,6 @@
 
 $content = $block->getJobCollection()[0]['detailed_job_description'];
 $detailedDescription = $block->processContent($content);?>
-
-
-
 <h1><? echo $block->getJobCollection()[0]['job_designation']?></h1>
 <div>
     <? echo $detailedDescription ?>

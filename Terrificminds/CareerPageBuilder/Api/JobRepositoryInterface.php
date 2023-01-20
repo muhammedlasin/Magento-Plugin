@@ -33,5 +33,6 @@ interface JobRepositoryInterface
 
   public function getJobByCategory($categoryId);
 
+  public function updateJobCategory($categoryId);
  
 }

@@ -11,6 +11,7 @@ use Magento\Framework\App\Action\HttpGetActionInterface;
 use Magento\Framework\Controller\ResultInterface;
 use Terrificminds\CareerPageBuilder\Api\JobCategoryRepositoryInterface;
 use Terrificminds\CareerPageBuilder\Api\JobRepositoryInterface;
+use Terrificminds\CareerPageBuilder\Api\Data\JobCategoryInterface;
 
 class Delete extends Action implements HttpGetActionInterface
 {
@@ -18,14 +19,19 @@ class Delete extends Action implements HttpGetActionInterface
     protected JobCategoryRepositoryInterface $jobCategoryRepository;
     protected JobRepositoryInterface $jobRepository;
 
+   
+    protected JobCategoryInterface $jobCategoryInterface;
+
     public function __construct(
         Context $context,
         JobCategoryRepositoryInterface $jobCategoryRepository,
-        JobRepositoryInterface $jobRepository
+        JobRepositoryInterface $jobRepository,
+        JobCategoryInterface $jobCategoryInterface
     ) {
         parent::__construct($context);
         $this->jobCategoryRepository = $jobCategoryRepository;
         $this->jobRepository = $jobRepository;
+        $this->jobCategoryInterface = $jobCategoryInterface;
     }
 
     /**
@@ -53,7 +59,13 @@ class Delete extends Action implements HttpGetActionInterface
             try {
                 $categories = $this->jobCategoryRepository->getById($id);
                 $jobs = $this->jobRepository->getJobByCategory($id);
-                $this->jobRepository->delete($jobs);
+                foreach($jobs as $item){
+                    $item['category_id']=0;
+                    $this->jobRepository->save($item);
+                    
+                }
+               
+                // $this->jobRepository->delete($jobs);
                 $this->jobCategoryRepository->delete($categories);
                 $this->messageManager->addSuccessMessage(__('Job Category deleted successfully.'));
                 return $resultRedirect->setPath('*/*/');

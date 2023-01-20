@@ -19,14 +19,19 @@ class Category implements OptionSourceInterface
  
     public function toOptionArray()
     {
-        $options[] = [];
+        $options[] = [   'label' => 'Unassigned',
+        'value' => 0];
         $collection = $this->collectionFactory->create();
-            
- 
         foreach ($collection as $category) {
+            $label = '';
+            $value = 0;
+            if ($category->getId() != 0) {
+                $label = $category->getCategoryName();
+                $value = $category->getId();
+            }
             $options[] = [
-                'label' => $category->getCategoryName(),
-                'value' => $category->getId(),
+                'label' => $label,
+                'value' => $value,
             ];
         }
  

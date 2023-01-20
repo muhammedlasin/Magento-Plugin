@@ -93,10 +93,14 @@ class JobRepository implements JobRepositoryInterface
     public function getJobByCategory($categoryId){
 
 
-    $job = $this->jobCollectionFactory->create()->addFieldToFilter('category_id', $categoryId)->getFirstItem();
-        if (! $job->getId()) {
-            throw new NoSuchEntityException(__('Unable to find record with ID "%1"', $categoryId));
-        }
+    $job = $this->jobCollectionFactory->create()->addFieldToFilter('category_id', $categoryId)->getItems();
         return $job;
+    }
+
+    public function updateJobCategory($categoryId){
+
+        $job = $this->jobCollectionFactory->create()->addFieldToFilter('category_id', $categoryId)->getFirstItem();
+        $job[0]['category_id'] = 0;
+    
     }
 }

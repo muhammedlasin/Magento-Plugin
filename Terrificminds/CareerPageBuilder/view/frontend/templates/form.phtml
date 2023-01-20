@@ -73,15 +73,36 @@
                     <input type="file" name="resume" id="resume" title="Upload Custom File" class="input-text required" data-validate="{'required-file':true}" data-validate="{'validate-forbidden-extensions':true}" data-validation-params="pdf" required>
                 </div>
             </div>
+            <p id="warning" style="display:none;color:red;">Disallowed File type</p>
             <input type="hidden" id="job_designation" name="job_designation" value="<?php echo $block->getJobName()?>">
             
         </fieldset>
     </fieldset>
     <div class="actions-toolbar">
         <div class="primary">
-            <button type="submit" class="action submit primary" title="Save">
+            <button type="submit" id="save" class="action submit primary" title="Save">
                 <span><?= $block->escapeHtmlAttr(__('Save')) ?></span>
             </button>
         </div>
     </div>
 </form>
+
+
+<script>
+    
+
+window.onload = function () {
+    document.getElementById("resume").onchange = function () {
+        let fileName = this.value;
+        let lastChar = fileName.substr(fileName.length - 3); 
+        if(lastChar != 'pdf'){
+            document.getElementById("warning").style.display = "block";    
+            document.getElementById('save').disabled = true;
+        }
+        else{
+            document.getElementById("warning").style.display = "none";    
+            document.getElementById('save').disabled = false;
+        }
+    };
+};
+</script>

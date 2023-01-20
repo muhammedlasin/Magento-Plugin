@@ -50,8 +50,15 @@ class DisplayCategory extends \Magento\Ui\Component\Listing\Columns\Column
 
             foreach($dataSource['data']['items'] as & $item) {
                 if($item) {
-                    $categories = $this->jobCategoryRepository->getById($item['category_id']);
-                    $item['category_id'] = $categories->getCategoryName();      
+               
+
+                    if ($item['category_id'] != 0) {
+                        $categories = $this->jobCategoryRepository->getById($item['category_id']);
+                        $item['category_id'] = $categories->getCategoryName();
+                    }
+                    else{
+                        $item['category_id'] = 'Unassigned';
+                    }   
                 }
             }
         }

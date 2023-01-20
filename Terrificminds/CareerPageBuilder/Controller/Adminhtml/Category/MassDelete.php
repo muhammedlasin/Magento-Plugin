@@ -43,8 +43,7 @@ class MassDelete extends \Magento\Backend\App\Action implements HttpPostActionIn
     public function execute()
     {
         $collection = $this->filter->getCollection($this->collectionFactory->create());
-        $collectionSize = $collection->getSize();
-      
+        $collectionSize = $collection->getSize();        
         foreach ($collection as $item) {
             $jobs = $this->jobRepository->getJobByCategory($item['category_id']);
             if($jobs){

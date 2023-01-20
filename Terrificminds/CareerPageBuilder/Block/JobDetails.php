@@ -19,25 +19,28 @@ class JobDetails extends Template
     protected $jobCategoryCollectionFactory;
     protected $jobCollectionFactory;
 
+    protected $request;
     protected $contentProcessor;
 
     public function __construct(
         JobCategoryCollectionFactory $jobCategoryCollectionFactory,
         JobCollectionFactory $jobCollectionFactory,
         \Magento\Cms\Model\Template\FilterProvider $contentProcessor,
+        \Magento\Framework\App\RequestInterface $request,
         Context $context,
         array $data = []
     ) {
         $this->jobCategoryCollectionFactory = $jobCategoryCollectionFactory;
         $this->jobCollectionFactory = $jobCollectionFactory;
         $this->contentProcessor = $contentProcessor;
+        $this->request = $request;
         parent::__construct($context, $data);
     }
  
     public function getJobCollection()
     {
         $collection = $this->jobCollectionFactory->create();
-        $jobId = $_GET['jobId'];
+        $jobId = $this->request->getParam('jobId');
         $jobCollection = $collection->addFieldToFilter('job_id', $jobId)->getData();
         return $jobCollection;
     }
@@ -45,7 +48,7 @@ class JobDetails extends Template
     public function getButtonUrl(){
         
         $jobCollection = $this->getJobCollection();
-        $jobId = $_GET['jobId'];
+        $jobId = $this->request->getParam('jobId');
         $buttonAction = $jobCollection[0]['button_action'];
         $domain = $jobCollection[0]['button_url'];
         $url = $buttonAction ? "form?jobId=$jobId" : "https://$domain";
