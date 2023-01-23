@@ -20,8 +20,6 @@ use Terrificminds\CareerPageBuilder\Model\ResourceModel\JobCategory as JobCatego
  */
 class JobCategoryRepository implements JobCategoryRepositoryInterface
 {
- 
-
     /**
      * @var JobCategoryCollectionFactory
      */
@@ -33,7 +31,6 @@ class JobCategoryRepository implements JobCategoryRepositoryInterface
     private JobCategoryResourceModel $jobCategoryResourceResourceModel;
 
     public function __construct(
-       
         JobCategoryCollectionFactory $jobCategoryCollectionFactory,
         JobCategoryResourceModel $jobCategoryResourceResourceModel
     ) {
@@ -74,9 +71,9 @@ class JobCategoryRepository implements JobCategoryRepositoryInterface
     }
 
       /**
-     * @inheritDoc
-     * @throws CouldNotDeleteException
-     */
+       * @inheritDoc
+       * @throws CouldNotDeleteException
+       */
     
     public function delete(JobCategoryInterface $categories)
     {
@@ -87,8 +84,4 @@ class JobCategoryRepository implements JobCategoryRepositoryInterface
         }
         return true;
     }
-  
- 
-
-   
 }

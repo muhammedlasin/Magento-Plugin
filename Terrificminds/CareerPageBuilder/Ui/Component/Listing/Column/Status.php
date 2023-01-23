@@ -39,9 +39,9 @@ class Status extends \Magento\Ui\Component\Listing\Columns\Column
      */
     public function prepareDataSource(array $dataSource)
     {
-        if(isset($dataSource['data']['items'])) {
-            foreach($dataSource['data']['items'] as & $item) {
-                if($item) {
+        if (isset($dataSource['data']['items'])) {
+            foreach ($dataSource['data']['items'] as & $item) {
+                if ($item) {
                     $item['is_active'] = ($item['is_active'] == 1 ? __('Enabled') : __('Disabled'));
                 }
             }

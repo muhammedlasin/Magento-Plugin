@@ -1,4 +1,5 @@
 <?php
+
 namespace Terrificminds\CareerPageBuilder\Model\Source;
  
 use Terrificminds\CareerPageBuilder\Model\ResourceModel\JobCategory\CollectionFactory;
@@ -35,4 +36,3 @@ class Category implements OptionSourceInterface
         return $options;
     }
 }
-

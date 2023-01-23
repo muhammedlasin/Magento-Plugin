@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Terrificminds\CareerPageBuilder\Model;
@@ -6,14 +7,13 @@ namespace Terrificminds\CareerPageBuilder\Model;
 use Magento\Framework\Model\AbstractExtensibleModel;
 use Terrificminds\CareerPageBuilder\Api\Data\JobInterface;
 
-
-class Job extends AbstractExtensibleModel implements JobInterface {
-
-const CACHE_TAG = 'category_id';
+class Job extends AbstractExtensibleModel implements JobInterface
+{
+    const CACHE_TAG = 'category_id';
 
  /**
-     * DB table column keys
-     */
+  * DB table column keys
+  */
     private const ID = "job_id";
     private const JOB_DESIGNATION = "job_designation";
     private const SMALL_DESCRIPTION = "small_job_description";
@@ -26,17 +26,15 @@ const CACHE_TAG = 'category_id';
     private const CREATED_AT = "created_at";
     private const UPDATED_AT = "updated_at";
 
-protected function _construct()
+    protected function _construct()
+    {
 
-{
-
-$this->_init('Terrificminds\CareerPageBuilder\Model\ResourceModel\Job');
-
-}
+        $this->_init('Terrificminds\CareerPageBuilder\Model\ResourceModel\Job');
+    }
 
 /**
-     * @inheritDoc
-     */
+ * @inheritDoc
+ */
     public function getJobId()
     {
         return $this->getData(self::ID);
@@ -67,8 +65,8 @@ $this->_init('Terrificminds\CareerPageBuilder\Model\ResourceModel\Job');
     }
 
         /**
-     * @inheritDoc
-     */
+         * @inheritDoc
+         */
     public function getSmallJobDescription(): string
     {
         return $this->getData(self::SMALL_DESCRIPTION);
@@ -83,8 +81,8 @@ $this->_init('Terrificminds\CareerPageBuilder\Model\ResourceModel\Job');
     }
 
         /**
-     * @inheritDoc
-     */
+         * @inheritDoc
+         */
     public function getDetailedJobDescription(): string
     {
         return $this->getData(self::DETAILED_DESCRIPTION);
@@ -99,8 +97,8 @@ $this->_init('Terrificminds\CareerPageBuilder\Model\ResourceModel\Job');
     }
 
         /**
-     * @inheritDoc
-     */
+         * @inheritDoc
+         */
     public function getIsActive()
     {
         return $this->getData(self::STATUS);
@@ -115,8 +113,8 @@ $this->_init('Terrificminds\CareerPageBuilder\Model\ResourceModel\Job');
     }
 
         /**
-     * @inheritDoc
-     */
+         * @inheritDoc
+         */
     public function getCategoryId()
     {
         return $this->getData(self::CATEGORY);
@@ -131,8 +129,8 @@ $this->_init('Terrificminds\CareerPageBuilder\Model\ResourceModel\Job');
     }
 
         /**
-     * @inheritDoc
-     */
+         * @inheritDoc
+         */
     public function getButtonAction(): string
     {
         return $this->getData(self::ACTION);
@@ -203,5 +201,3 @@ $this->_init('Terrificminds\CareerPageBuilder\Model\ResourceModel\Job');
         return $this->setData(self::UPDATED_AT);
     }
 }
-
-

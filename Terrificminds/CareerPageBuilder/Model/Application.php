@@ -1,4 +1,5 @@
 <?php
+
 namespace  Terrificminds\CareerPageBuilder\Model;
 
 use Magento\Framework\Model\AbstractModel;
@@ -88,20 +89,20 @@ class Application extends AbstractModel implements ApplicationInterface
     }
 
     /**
-      * @inheritDoc
-      */
-      public function getExperience()
-      {
-          return parent::getData(self::EXPERIENCE);
-      }
+     * @inheritDoc
+     */
+    public function getExperience()
+    {
+        return parent::getData(self::EXPERIENCE);
+    }
   
       /**
        * @inheritDoc
        */
-      public function setExperience($experience)
-      {
-          return $this->setData(self::EXPERIENCE, $experience);
-      }
+    public function setExperience($experience)
+    {
+        return $this->setData(self::EXPERIENCE, $experience);
+    }
 
     /**
      * @inheritDoc
@@ -137,24 +138,24 @@ class Application extends AbstractModel implements ApplicationInterface
 
 
         /**
-     * @inheritDoc
-     */
+         * @inheritDoc
+         */
     public function getJobDesignation()
     {
         return parent::getData(self::JOB_DESIGNATION);
     }
 
        /**
-     * @inheritDoc
-     */
+        * @inheritDoc
+        */
     public function setJobDesignation($designation)
     {
         return $this->setData(self::JOB_DESIGNATION, $designation);
     }
 
       /**
-     * @inheritDoc
-     */
+       * @inheritDoc
+       */
     public function getResume()
     {
         return parent::getData(self::RESUME);
@@ -167,7 +168,4 @@ class Application extends AbstractModel implements ApplicationInterface
     {
         return $this->setData(self::RESUME, $resume);
     }
-
-  
-   
 }

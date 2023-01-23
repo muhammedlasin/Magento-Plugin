@@ -58,7 +58,6 @@ class DataProvider extends \Magento\Ui\DataProvider\AbstractDataProvider
 
         foreach ($items as $category) {
                 $this->loadedData[$category->getId()] = $category->getData();
-            
         }
         return $this->loadedData;
     }

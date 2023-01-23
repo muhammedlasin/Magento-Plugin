@@ -1,4 +1,5 @@
 <?php
+
 namespace Terrificminds\CareerPageBuilder\Controller\Adminhtml\Job;
  
 use Magento\Framework\Controller\ResultFactory;

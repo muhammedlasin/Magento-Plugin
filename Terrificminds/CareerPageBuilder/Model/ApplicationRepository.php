@@ -20,8 +20,6 @@ use Terrificminds\CareerPageBuilder\Model\ResourceModel\Application as Applicati
  */
 class ApplicationRepository implements ApplicationRepositoryInterface
 {
- 
-
     /**
      * @var ApplicationCollectionFactory
      */
@@ -33,7 +31,6 @@ class ApplicationRepository implements ApplicationRepositoryInterface
     private ApplicationResourceModel $applicationResourceModel;
 
     public function __construct(
-       
         ApplicationCollectionFactory $applicationCollectionFactory,
         ApplicationResourceModel $applicationResourceModel
     ) {
@@ -76,9 +73,9 @@ class ApplicationRepository implements ApplicationRepositoryInterface
     }
 
        /**
-     * @inheritDoc
-     * @throws CouldNotDeleteException
-     */
+        * @inheritDoc
+        * @throws CouldNotDeleteException
+        */
     
     public function delete(ApplicationInterface $jobs)
     {
@@ -89,5 +86,4 @@ class ApplicationRepository implements ApplicationRepositoryInterface
         }
         return true;
     }
-   
 }

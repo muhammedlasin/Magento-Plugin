@@ -1,7 +1,7 @@
-<?xml version="1.0"?>
+<?xml version = "1.0"?>
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
     <menu>
-      <add id="Terrificminds_CareerPageBuilder::career" title="Career Board" translate="title" module="Terrificminds_CareerPageBuilder" parent="Magento_Backend::content" sortOrder="50" dependsOnModule="Terrificminds_CareerPageBuilder" resource="Terrificminds_CareerPageBuilder::career"/>
+      <add id="Terrificminds_CareerPageBuilder::career" title="Career Board" translate="title" module="Terrificminds_CareerPageBuilder" parent="Magento_Backend::content" sortOrder="50" dependsOnModule="Terrificminds_CareerPageBuilder" resource="Terrificminds_CareerPageBuilder::career" dependsOnConfig="career/general/enable"/>
       <add id="Terrificminds_CareerPageBuilder::career_categories" title="Manage Categories" translate="title" module="Terrificminds_CareerPageBuilder" parent="Terrificminds_CareerPageBuilder::career" sortOrder="10" dependsOnModule="Terrificminds_CareerPageBuilder" action="maincareerspage/category/index" resource="Terrificminds_CareerPageBuilder::career"/>
       <add id="Terrificminds_CareerPageBuilder::career_settings" title="Manage Careers" translate="title" module="Terrificminds_CareerPageBuilder" parent="Terrificminds_CareerPageBuilder::career" sortOrder="10" dependsOnModule="Terrificminds_CareerPageBuilder" action="maincareerspage/job/index" resource="Terrificminds_CareerPageBuilder::career"/>
       <add id="Terrificminds_CareerPageBuilder::career_applications" title="View Job Applications" translate="title" module="Terrificminds_CareerPageBuilder" parent="Terrificminds_CareerPageBuilder::career" sortOrder="10" dependsOnModule="Terrificminds_CareerPageBuilder" action="maincareerspage/application/index" resource="Terrificminds_CareerPageBuilder::career"/>

@@ -1,25 +1,28 @@
 <link rel='stylesheet' href='<?php echo $block->getViewFileUrl("Terrificminds_CareerPageBuilder::css/career.css") ?>' />
 <div class="container">
-<h2>Careers</h2>
 <?php 
 $categoryCollection = $block->getCategoryCollection();
 foreach ($categoryCollection as $category) {
-        $categoryId  = $category->getId()
-?>
+  $categoryId = $category->getId();
+  if ($categoryId != 1) {
+    ?>
 <button class="accordion"><?php echo $category->getCategoryName() ?></button>
 <div class="panel">
 <?php
-$jobCollection = $block->getJobCollection($categoryId);
-    foreach ($jobCollection as $job) {
-      $postedDate = $job->getCreatedAt();
-        ?>
-         <h2><a href="maincareerspage/index/index?jobId=<?php echo $job->getJobId() ?>"></b><?php echo $job->getJobDesignation(); ?></a></h2>
-         <p><?php echo $job->getSmallJobDescription()?></p>
-         <p><?php echo $postedDate?></p>
+        $jobCollection = $block->getJobCollection($categoryId);
+        foreach ($jobCollection as $job) {
+          $postedDate = $job->getCreatedAt();
+          $newDate = date("d-m-Y", strtotime($postedDate));  
+          ?>
+         <h3><a href="maincareerspage/index/index?jobId=<?php echo $job->getJobId() ?>"></b><?php echo $job->getJobDesignation(); ?></a></h3>
+         <p>Posted : <?php echo $newDate ?></p>
+         <p><?php echo $job->getSmallJobDescription() ?></p>
+         
 <?php
-    }?>
+        } ?>
 </div>
-<?php } ?>
+<?php }
+} ?>
 </div>
 
 

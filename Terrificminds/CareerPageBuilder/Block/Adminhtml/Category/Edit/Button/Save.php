@@ -1,5 +1,7 @@
 <?php
+
 namespace Terrificminds\CareerPageBuilder\Block\Adminhtml\Category\Edit\Button;
+
 use Magento\Framework\View\Element\UiComponent\Control\ButtonProviderInterface;
 use Magento\Ui\Component\Control\Container;
 
@@ -31,6 +33,4 @@ class Save extends Generic implements ButtonProviderInterface
 
         ];
     }
-
-
 }

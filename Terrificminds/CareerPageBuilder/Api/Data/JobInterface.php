@@ -11,7 +11,7 @@ interface JobInterface extends ExtensibleDataInterface
     /**
      * Get Id
      *
-     * @return 
+     * @return
      */
     public function getJobId();
 
@@ -41,10 +41,10 @@ interface JobInterface extends ExtensibleDataInterface
     public function setJobDesignation(string $job): JobInterface;
 
         /**
-     * Get Small Job Description
-     *
-     * @return string
-     */
+         * Get Small Job Description
+         *
+         * @return string
+         */
     public function getSmallJobDescription(): string;
 
     /**
@@ -57,10 +57,10 @@ interface JobInterface extends ExtensibleDataInterface
     public function setSmallJobDescription(string $small): JobInterface;
 
          /**
-     * Get Small Job Description
-     *
-     * @return string
-     */
+          * Get Small Job Description
+          *
+          * @return string
+          */
     public function getDetailedJobDescription(): string;
 
     /**
@@ -73,10 +73,10 @@ interface JobInterface extends ExtensibleDataInterface
     public function setDetailedJobDescription(string $detailed): JobInterface;
 
          /**
-     * Get Status
-     *
-     * @return 
-     */
+          * Get Status
+          *
+          * @return int
+          */
     public function getIsActive();
 
     /**
@@ -89,10 +89,11 @@ interface JobInterface extends ExtensibleDataInterface
     public function setIsActive(int $active): JobInterface;
 
          /**
-     * Get Category Id
-     *
-     * 
-     */
+          * Get Category Id
+          *
+          * @return int
+          */
+          
     public function getCategoryId();
 
     /**
@@ -105,10 +106,10 @@ interface JobInterface extends ExtensibleDataInterface
     public function setCategoryId(int $category): JobInterface;
 
          /**
-     * Get Button Action
-     *
-     * @return string
-     */
+          * Get Button Action
+          *
+          * @return string
+          */
     public function getButtonAction(): string;
 
     /**
@@ -120,12 +121,12 @@ interface JobInterface extends ExtensibleDataInterface
      */
     public function setButtonAction(string $action): JobInterface;
 
-
          /**
-     * Get Button Url
-     *
-     * @return string
-     */
+          * Get Button Url
+          *
+          * @return string
+          */
+
     public function getButtonUrl(): string;
 
     /**
@@ -135,14 +136,15 @@ interface JobInterface extends ExtensibleDataInterface
      *
      * @return $this
      */
+
     public function setButtonUrl(string $url): JobInterface;
 
-
          /**
-     * Get Order
-     *
-     * @return int
-     */
+          * Get Order
+          *
+          * @return int
+          */
+
     public function getSortOrder(): int;
 
     /**
@@ -152,13 +154,15 @@ interface JobInterface extends ExtensibleDataInterface
      *
      * @return $this
      */
+
     public function setSortOrder(int $order): JobInterface;
-   
+
     /**
      * Get created at timestamp
      *
-     * @return 
+     * @return
      */
+
     public function getCreatedAt();
 
     /**
@@ -168,6 +172,7 @@ interface JobInterface extends ExtensibleDataInterface
      *
      * @return $this
      */
+
     public function setCreatedAt(int $createdAt);
 
     /**
@@ -175,6 +180,7 @@ interface JobInterface extends ExtensibleDataInterface
      *
      * @return int
      */
+
     public function getUpdatedAt(): int;
 
     /**

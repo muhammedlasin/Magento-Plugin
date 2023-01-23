@@ -12,13 +12,11 @@ use Magento\MediaStorage\Model\File\UploaderFactory;
 use Magento\Framework\App\Response\RedirectInterface;
 use Magento\Framework\HTTP\PhpEnvironment\Request;
 
-
-
 class Save extends Action
 {
    /**
-     * @var \Magento\Framework\Message\ManagerInterface
-     */
+    * @var \Magento\Framework\Message\ManagerInterface
+    */
     protected $messageManager;
 
     /**
@@ -47,8 +45,8 @@ class Save extends Action
     
     protected $mediaDirectory;
     /**
-    * @var Request
-    */
+     * @var Request
+     */
     protected $request;
 
     /**
@@ -83,7 +81,7 @@ class Save extends Action
     /**
      * Execute function
      *
-     * @return 
+     * @return
      */
     public function execute()
     {
@@ -91,7 +89,7 @@ class Save extends Action
         $params = $this->_request->getParams();
         $uploadedFile = $this->uploadFile();
 
-        if(!$uploadedFile){
+        if (!$uploadedFile) {
             return $resultRedirect->setUrl($this->_redirect->getRefererUrl());
         }
         $applications = $this->applicationInterface->setData($params);
@@ -103,10 +101,9 @@ class Save extends Action
                 $this->messageManager->addSuccessMessage(__("Application has sent successfully."));
                 return $resultRedirect->setUrl('*/*/');
             }
-
         } catch (\Exception $e) {
             $this->messageManager->addErrorMessage(__("Something went wrong"));
-        } 
+        }
     }
 
     public function uploadFile()
@@ -117,45 +114,44 @@ class Save extends Action
         // "resume" is the HTML input file name
         $yourInputFileName = 'resume';
 
-        try{
-        $file = $this->getRequest()->getFiles($yourInputFileName);
-        $fileName = ($file && array_key_exists('name', $file)) ? $file['name'] : null;
+        try {
+            $file = $this->getRequest()->getFiles($yourInputFileName);
+            $fileName = ($file && array_key_exists('name', $file)) ? $file['name'] : null;
 
-        if ($file && $fileName) {
-        $target = $this->mediaDirectory->getAbsolutePath($yourFolderName); 
+            if ($file && $fileName) {
+                $target = $this->mediaDirectory->getAbsolutePath($yourFolderName);
 
-        /* @var $uploader \Magento\MediaStorage\Model\File\Uploader */
-        $uploader = $this->fileUploader->create(['fileId' => $yourInputFileName]);
+            /* @var $uploader \Magento\MediaStorage\Model\File\Uploader */
+                $uploader = $this->fileUploader->create(['fileId' => $yourInputFileName]);
 
-        $extension = ['pdf'];
+                $extension = ['pdf'];
 
-        // set allowed file extensions
-        $uploader->setAllowedExtensions($extension);
+            // set allowed file extensions
+                $uploader->setAllowedExtensions($extension);
 
-        // allow folder creation
-        $uploader->setAllowCreateFolders(true);
+            // allow folder creation
+                $uploader->setAllowCreateFolders(true);
 
-        // rename file name if already exists 
-        $uploader->setAllowRenameFiles(true); 
+            // rename file name if already exists
+                $uploader->setAllowRenameFiles(true);
 
-        $files = $this->request->getFiles()->toArray();
+                $files = $this->request->getFiles()->toArray();
 
-        $destFile = $target.'/'.$files['resume']['name'];
+                $destFile = $target . '/' . $files['resume']['name'];
 
-        $filename = $uploader->getNewFileName($destFile);
+                $filename = $uploader->getNewFileName($destFile);
 
-        // upload file in the specified folder
-        $result = $uploader->save($target, $filename);
+            // upload file in the specified folder
+                $result = $uploader->save($target, $filename);
 
-        if ($result['file']) {
-        $this->messageManager->addSuccess(__('File has been successfully uploaded.')); 
-        return $filename;
-        }
-        }
+                if ($result['file']) {
+                    $this->messageManager->addSuccess(__('File has been successfully uploaded.'));
+                    return $filename;
+                }
+            }
         } catch (\Exception $e) {
-        $this->messageManager->addError($e->getMessage());
+            $this->messageManager->addError($e->getMessage());
         }
          return false;
     }
-      
 }

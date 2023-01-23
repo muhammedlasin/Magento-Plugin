@@ -26,7 +26,8 @@ class Form extends Template
         Customer $customer,
         \Magento\Customer\Api\CustomerRepositoryInterface $customerRepositoryInterface,
         Session $session,
-        Template\Context $context, array $data = []
+        Template\Context $context,
+        array $data = []
     ) {
         $this->jobCategoryCollectionFactory = $jobCategoryCollectionFactory;
         $this->jobCollectionFactory = $jobCollectionFactory;
@@ -37,13 +38,13 @@ class Form extends Template
         parent::__construct($context, $data);
     }
    
-    public function getJobName(){
+    public function getJobName()
+    {
 
         $jobId = $this->request->getParam('jobId');
         $collection = $this->jobCollectionFactory->create();
         $jobCollection = $collection->addFieldToFilter('job_id', $jobId)->getData();
         return $jobCollection[0]['job_designation'];
-    
     }
 
     public function getCurrentUser()
@@ -57,6 +58,4 @@ class Form extends Template
         
         return $customerName;
     }
- 
- 
 }

@@ -1,99 +1,75 @@
 <?php
 
 namespace Terrificminds\CareerPageBuilder\Setup\Patch\Data;
+
 use Magento\Framework\Setup\Patch\DataPatchInterface;
 use Magento\Framework\Setup\Patch\PatchVersionInterface;
 use Magento\Framework\Module\Setup\Migration;
 use Magento\Framework\Setup\ModuleDataSetupInterface;
-
-/**
-
- * Class AddData
-
- * @package Terrificminds\CareerPageBuilder\Setup\Patch\Data
-
- */
+use Terrificminds\CareerPageBuilder\Api\JobCategoryRepositoryInterface;
+use Terrificminds\CareerPageBuilder\Api\Data\JobCategoryInterface;
 
 class AddCategory implements DataPatchInterface, PatchVersionInterface
-
 {
+    /**
+     * @var JobCategoryRepositoryInterface
+     */
+    private $categoryRepository;
 
-/**
+    /**
+     * @var JobCategoryInterface
+     */
+    private $categoryInterface;
 
-* @var \Terrificminds\CareerPageBuilder\Model\JobCategory
+    /**
+     * @param JobCategoryRepositoryInterface $categoryRepository
+     * @param JobCategoryInterface $categoryInterface
+     */
+    public function __construct(
+        JobCategoryRepositoryInterface $categoryRepository,
+        JobCategoryInterface $categoryInterface
+    ) {
+        $this->categoryRepository = $categoryRepository;
+        $this->categoryInterface = $categoryInterface;
+    }
 
-*/
+    /**
+     * {@inheritdoc}
+     */
+    public function apply()
+    {
+        $categoryData = [
+            'category_name' => 'Unassigned',
+            'is_active' => 1,
+        ];
 
-private $category;
+        $category = $this->categoryInterface->create();
+        $category->setData($categoryData);
+        $this->categoryRepository->save($category);
+        return true;
+    }
 
-/**
+    /**
+     * {@inheritdoc}
+     */
+    public static function getDependencies()
+    {
+        return [];
+    }
 
-*
+    /**
+     * {@inheritdoc}
+     */
+    public static function getVersion()
+    {
+        return '2.0.1';
+    }
 
-* @param \Terrificminds\CareerPageBuilder\Model\JobCategory $category
-
-*/
-
-public function __construct(
-
-     \Terrificminds\CareerPageBuilder\Model\JobCategory $category
-
-) {
-     $this->category = $category;
+    /**
+     * {@inheritdoc}
+     */
+    public function getAliases()
+    {
+        return [];
+    }
 }
-
-
-/**
-
-* {@inheritdoc}
-
-* @SuppressWarnings(PHPMD.ExcessiveMethodLength)
-
-*/
-
-public function apply()
-
-{
-    $categoryData = [];
-    $categoryData['category_name'] = "Unassigned";
-    $categoryData['is_active'] = 1;
-    $this->category->addData($categoryData);
-    $this->category->getResource()->save($this->category);
-}
-
-
-/**
-
-* {@inheritdoc}
-
-*/
-
-public static function getDependencies()
-
-{
-     return [];
-}
-
-
-/**
-
-* {@inheritdoc}
-
-*/
-
-public static function getVersion()
-
-{
-     return '2.0.0';
-}
-
-/**
-
-* {@inheritdoc}
-*/
-
-public function getAliases()
-{
-     return [];
-  }
-}  

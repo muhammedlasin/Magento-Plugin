@@ -39,5 +39,4 @@ class Index implements HttpGetActionInterface
     {
         return $this->resultPageFactory->create();
     }
-    
 }

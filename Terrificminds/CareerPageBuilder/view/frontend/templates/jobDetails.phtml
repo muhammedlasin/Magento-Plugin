@@ -2,12 +2,12 @@
 
 $content = $block->getJobCollection()[0]['detailed_job_description'];
 $detailedDescription = $block->processContent($content);?>
-<h1><? echo $block->getJobCollection()[0]['job_designation']?></h1>
+<h1><?php echo $block->getJobCollection()[0]['job_designation']?></h1>
 <div>
-    <? echo $detailedDescription ?>
+    <?php echo $detailedDescription ?>
 </div>
 <div> 
-    <button onclick="location.href='<?php echo $block->getButtonUrl() ?>'" >Apply Now</a></button>
+    <button style="background-color: #1979c3; color: #ffffff;" onclick="location.href='<?php echo $block->getButtonUrl() ?>'" >Apply Now</button>
 </div>
 
 

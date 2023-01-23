@@ -39,5 +39,4 @@ class Form implements HttpGetActionInterface
     {
         return $this->resultPageFactory->create();
     }
-    
 }

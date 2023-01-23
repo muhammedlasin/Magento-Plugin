@@ -1,10 +1,11 @@
 <?php
+
 namespace Terrificminds\CareerPageBuilder\Api\Data;
 
 /**
  * @api
- * @since 100.0.2
- */
+ * @since 100.0.2 */
+
 interface ApplicationInterface
 {
     /**#@+
@@ -32,6 +33,7 @@ interface ApplicationInterface
         self::RESUME,
         self::JOB_DESIGNATION
     ];
+
     /**
      *  Id
      *
@@ -46,6 +48,7 @@ interface ApplicationInterface
      * @return $this
      */
     public function setApplicationId($id);
+
     /**
      * Customer name
      *
@@ -76,11 +79,11 @@ interface ApplicationInterface
     public function setEmail($email);
 
     /**
-      * Get Address
-      *
-      * @return string|null
-      */
-      public function getAddress();
+     * Get Address
+     *
+     * @return string|null
+     */
+    public function getAddress();
 
       /**
        * Set Address
@@ -88,14 +91,14 @@ interface ApplicationInterface
        * @param string $address
        * @return $this
        */
-      public function setAddress($address);
+    public function setAddress($address);
 
        /**
-      * Get Experience
-      *
-      * @return int|null
-      */
-      public function getExperience();
+        * Get Experience
+        *
+        * @return int|null
+        */
+    public function getExperience();
 
       /**
        * Set Experience
@@ -103,14 +106,14 @@ interface ApplicationInterface
        * @param string $experience
        * @return $this
        */
-      public function setExperience($experience);
+    public function setExperience($experience);
 
        /**
-      * Phone Number
-      *
-      * @return string|null
-      */
-      public function getPhoneNumber();
+        * Phone Number
+        *
+        * @return string|null
+        */
+    public function getPhoneNumber();
 
       /**
        * Set Phone Number
@@ -118,13 +121,14 @@ interface ApplicationInterface
        * @param string $phone
        * @return $this
        */
-      public function setPhoneNumber($phone);
+    public function setPhoneNumber($phone);
+    
 /**
-      * Cover Letter
-      *
-      * @return string|null
-      */
-      public function getCoverLetter();
+ * Cover Letter
+ *
+ * @return string|null
+ */
+    public function getCoverLetter();
 
       /**
        * Set Cover Letter
@@ -132,13 +136,13 @@ interface ApplicationInterface
        * @param string $letter
        * @return $this
        */
-      public function setCoverLetter($letter);
+    public function setCoverLetter($letter);
 
           /**
-     * Job designation
-     *
-     * @return string|null
-     */
+           * Job designation
+           *
+           * @return string|null
+           */
     public function getJobDesignation();
 
     /**
@@ -150,11 +154,11 @@ interface ApplicationInterface
     public function setJobDesignation($designation);
 
       /**
-      * Resume
-      *
-      * @return string|null
-      */
-      public function getResume();
+       * Resume
+       *
+       * @return string|null
+       */
+    public function getResume();
 
       /**
        * Set Resume
@@ -162,6 +166,5 @@ interface ApplicationInterface
        * @param string $resume
        * @return $this
        */
-      public function setResume($resume);
-
+    public function setResume($resume);
 }

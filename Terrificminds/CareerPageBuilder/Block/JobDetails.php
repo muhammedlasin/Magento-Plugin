@@ -13,7 +13,7 @@ use Terrificminds\CareerPageBuilder\Model\ResourceModel\JobCategory\CollectionFa
 use Terrificminds\CareerPageBuilder\Model\ResourceModel\Job\CollectionFactory as JobCollectionFactory;
 
 class JobDetails extends Template
-{   
+{
     protected $jobCategoryCollectionFactory;
     protected $jobCollectionFactory;
     protected $request;
@@ -42,7 +42,8 @@ class JobDetails extends Template
         return $jobCollection;
     }
 
-    public function getButtonUrl(){
+    public function getButtonUrl()
+    {
         
         $jobCollection = $this->getJobCollection();
         $jobId = $this->request->getParam('jobId');
@@ -50,10 +51,10 @@ class JobDetails extends Template
         $domain = $jobCollection[0]['button_url'];
         $url = $buttonAction ? "form?jobId=$jobId" : "https://$domain";
         return $url;
-         }
+    }
 
-    public function processContent($content){
+    public function processContent($content)
+    {
                 return $this->contentProcessor->getPageFilter()->filter($content);
-            }
-        
+    }
 }

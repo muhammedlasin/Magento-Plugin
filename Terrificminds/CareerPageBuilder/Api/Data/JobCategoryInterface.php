@@ -41,10 +41,10 @@ interface JobCategoryInterface extends ExtensibleDataInterface
     public function setCategoryName(string $category): JobCategoryInterface;
 
         /**
-     * Get Sort Order
-     *
-     * @return 
-     */
+         * Get Sort Order
+         *
+         * @return
+         */
     public function getSortOrder();
 
     /**
@@ -55,13 +55,12 @@ interface JobCategoryInterface extends ExtensibleDataInterface
      * @return $this
      */
     public function setSortOrder(int $order): JobCategoryInterface;
-
-
+    
         /**
-     * Active
-     *
-     * @return 
-     */
+         * Active
+         *
+         * @return
+         */
     public function getIsActive();
 
     /**

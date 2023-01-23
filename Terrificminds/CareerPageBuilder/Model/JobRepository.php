@@ -20,8 +20,6 @@ use Terrificminds\CareerPageBuilder\Model\ResourceModel\Job as JobResourceModel;
  */
 class JobRepository implements JobRepositoryInterface
 {
- 
-
     /**
      * @var JobCollectionFactory
      */
@@ -33,7 +31,6 @@ class JobRepository implements JobRepositoryInterface
     private JobResourceModel $jobResourceModel;
 
     public function __construct(
-       
         JobCollectionFactory $jobCollectionFactory,
         JobResourceModel $jobResourceModel
     ) {
@@ -76,9 +73,9 @@ class JobRepository implements JobRepositoryInterface
     }
 
        /**
-     * @inheritDoc
-     * @throws CouldNotDeleteException
-     */
+        * @inheritDoc
+        * @throws CouldNotDeleteException
+        */
     
     public function delete(JobInterface $jobs)
     {
@@ -90,17 +87,18 @@ class JobRepository implements JobRepositoryInterface
         return true;
     }
 
-    public function getJobByCategory($categoryId){
+    public function getJobByCategory($categoryId)
+    {
 
 
-    $job = $this->jobCollectionFactory->create()->addFieldToFilter('category_id', $categoryId)->getItems();
+        $job = $this->jobCollectionFactory->create()->addFieldToFilter('category_id', $categoryId)->getItems();
         return $job;
     }
 
-    public function updateJobCategory($categoryId){
+    public function updateJobCategory($categoryId)
+    {
 
         $job = $this->jobCollectionFactory->create()->addFieldToFilter('category_id', $categoryId)->getFirstItem();
         $job[0]['category_id'] = 0;
-    
     }
 }

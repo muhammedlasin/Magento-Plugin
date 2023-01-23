@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Terrificminds\CareerPageBuilder\Model;
@@ -6,14 +7,13 @@ namespace Terrificminds\CareerPageBuilder\Model;
 use Magento\Framework\Model\AbstractExtensibleModel;
 use Terrificminds\CareerPageBuilder\Api\Data\JobCategoryInterface;
 
-
-class JobCategory extends AbstractExtensibleModel implements JobCategoryInterface {
-
-const CACHE_TAG = 'category_id';
+class JobCategory extends AbstractExtensibleModel implements JobCategoryInterface
+{
+    const CACHE_TAG = 'category_id';
 
  /**
-     * DB table column keys
-     */
+  * DB table column keys
+  */
     private const ID = "category_id";
     private const CATEGORY = "category_name";
     private const SORT_ORDER = "sort_order";
@@ -23,17 +23,15 @@ const CACHE_TAG = 'category_id';
     private const CREATED_AT = "created_at";
     private const UPDATED_AT = "updated_at";
 
-protected function _construct()
+    protected function _construct()
+    {
 
-{
-
-$this->_init('Terrificminds\CareerPageBuilder\Model\ResourceModel\JobCategory');
-
-}
+        $this->_init('Terrificminds\CareerPageBuilder\Model\ResourceModel\JobCategory');
+    }
 
 /**
-     * @inheritDoc
-     */
+ * @inheritDoc
+ */
     public function getCategoryId(): int
     {
         return $this->getData(self::ID);
@@ -73,24 +71,24 @@ $this->_init('Terrificminds\CareerPageBuilder\Model\ResourceModel\JobCategory');
     }
 
        /**
-     * @inheritDoc
-     */
+        * @inheritDoc
+        */
     public function setSortOrder(int $order): JobCategoryInterface
     {
         return $this->setData(self::SORT_ORDER);
     }
 
         /**
-     * @inheritDoc
-     */
+         * @inheritDoc
+         */
     public function getIsActive()
     {
         return $this->getData(self::ENABLE);
     }
 
        /**
-     * @inheritDoc
-     */
+        * @inheritDoc
+        */
     public function setIsActive(int $enable): JobCategoryInterface
     {
         return $this->setData(self::ENABLE);
@@ -130,5 +128,3 @@ $this->_init('Terrificminds\CareerPageBuilder\Model\ResourceModel\JobCategory');
         return $this->setData(self::UPDATED_AT);
     }
 }
-
-

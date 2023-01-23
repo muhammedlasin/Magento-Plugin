@@ -10,7 +10,6 @@ use Magento\Framework\View\Element\UiComponentFactory;
 
 class ApplicationActions extends \Magento\Ui\Component\Listing\Columns\Column
 {
-  
     private const URL_DELETE_PATH = 'maincareerspage/application/delete';
 
     /**

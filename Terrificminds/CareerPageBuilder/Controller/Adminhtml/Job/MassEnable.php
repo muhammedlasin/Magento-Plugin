@@ -13,7 +13,6 @@ use Terrificminds\CareerPageBuilder\Model\ResourceModel\Job\CollectionFactory;
  */
 class MassEnable extends \Magento\Backend\App\Action implements HttpPostActionInterface
 {
-
     /**
      * @var Filter
      */

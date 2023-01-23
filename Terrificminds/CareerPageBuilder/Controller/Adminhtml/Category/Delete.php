@@ -15,7 +15,6 @@ use Terrificminds\CareerPageBuilder\Api\Data\JobCategoryInterface;
 
 class Delete extends Action implements HttpGetActionInterface
 {
-   
     protected JobCategoryRepositoryInterface $jobCategoryRepository;
     protected JobRepositoryInterface $jobRepository;
 
@@ -59,9 +58,9 @@ class Delete extends Action implements HttpGetActionInterface
             try {
                 $categories = $this->jobCategoryRepository->getById($id);
                 $jobs = $this->jobRepository->getJobByCategory($id);
-                foreach($jobs as $item){
-                    $item['category_id']=1;
-                    $this->jobRepository->save($item);   
+                foreach ($jobs as $item) {
+                    $item['category_id'] = 1;
+                    $this->jobRepository->save($item);
                 }
                
                 // $this->jobRepository->delete($jobs);

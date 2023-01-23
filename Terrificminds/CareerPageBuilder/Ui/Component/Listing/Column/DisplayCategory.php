@@ -6,6 +6,7 @@ use Magento\Framework\View\Element\UiComponentFactory;
 use Magento\Framework\View\Element\UiComponent\ContextInterface;
 use Magento\Store\Model\StoreManagerInterface;
 use Terrificminds\CareerPageBuilder\Api\JobCategoryRepositoryInterface;
+
 class DisplayCategory extends \Magento\Ui\Component\Listing\Columns\Column
 {
     /**
@@ -43,14 +44,11 @@ class DisplayCategory extends \Magento\Ui\Component\Listing\Columns\Column
     public function prepareDataSource(array $dataSource)
     {
 
-        if(isset($dataSource['data']['items'])) {
-
-            foreach($dataSource['data']['items'] as & $item) {
-                if($item) {
-                    if ($item['category_id'] != 0) {
+        if (isset($dataSource['data']['items'])) {
+            foreach ($dataSource['data']['items'] as & $item) {
+                if ($item) {
                         $categories = $this->jobCategoryRepository->getById($item['category_id']);
                         $item['category_id'] = $categories->getCategoryName();
-                    }
                 }
             }
         }
