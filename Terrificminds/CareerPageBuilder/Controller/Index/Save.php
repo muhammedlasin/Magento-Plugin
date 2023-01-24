@@ -11,8 +11,10 @@ use Magento\Framework\Filesystem;
 use Magento\MediaStorage\Model\File\UploaderFactory;
 use Magento\Framework\App\Response\RedirectInterface;
 use Magento\Framework\HTTP\PhpEnvironment\Request;
+use Magento\Framework\App\ActionInterface;
+use Magento\Framework\View\Result\PageFactory;
 
-class Save extends Action
+class Save implements ActionInterface
 {
    /**
     * @var \Magento\Framework\Message\ManagerInterface
@@ -49,6 +51,8 @@ class Save extends Action
      */
     protected $request;
 
+    protected $resultRedirectFactory;
+
     /**
      * Construct function
      *
@@ -65,7 +69,8 @@ class Save extends Action
         ManagerInterface $messageManager,
         Filesystem $filesystem,
         UploaderFactory $fileUploader,
-        Request $request
+        Request $request,
+        PageFactory $resultRedirectFactory
     ) {
         $this->messageManager       = $messageManager;
         $this->filesystem           = $filesystem;
@@ -75,7 +80,7 @@ class Save extends Action
         $this->mediaDirectory = $filesystem->getDirectoryWrite(\Magento\Framework\App\Filesystem\DirectoryList::MEDIA);
         $this->applicationRepository = $applicationRepository;
         $this->applicationInterface = $applicationInterface;
-        parent::__construct($context);
+        $this->resultRedirectFactory = $resultRedirectFactory;
     }
     
     /**
@@ -86,11 +91,11 @@ class Save extends Action
     public function execute()
     {
         $resultRedirect = $this->resultRedirectFactory->create();
-        $params = $this->_request->getParams();
+        $params = $this->request->getParams();
         $uploadedFile = $this->uploadFile();
 
         if (!$uploadedFile) {
-            return $resultRedirect->setUrl($this->_redirect->getRefererUrl());
+            return $resultRedirect->setUrl($this->redirect->getRefererUrl());
         }
         $applications = $this->applicationInterface->setData($params);
         $applications = $this->applicationInterface->setResume($uploadedFile);

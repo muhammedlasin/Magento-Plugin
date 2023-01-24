@@ -20,6 +20,10 @@ class Index implements HttpGetActionInterface
      */
     protected $resultPageFactory;
 
+    protected $redirect;
+
+    protected $urlInterface;
+
     /**
      * Undocumented function
      *
@@ -28,15 +32,34 @@ class Index implements HttpGetActionInterface
      */
     public function __construct(
         PageFactory $resultPageFactory,
-        ForwardFactory $forwardFactory
+        ForwardFactory $forwardFactory,
+        \Magento\Framework\App\Response\RedirectInterface $redirect,
+        \Magento\Framework\UrlInterface $urlInterface
     ) {
         $this->forwardFactory = $forwardFactory;
         $this->resultPageFactory = $resultPageFactory;
+        $this->redirect = $redirect;
+        $this->urlInterface = $urlInterface;
+
     }
 
    
     public function execute()
     {
-        return $this->resultPageFactory->create();
+        $resultPageFactory = $this->resultPageFactory->create();
+
+        $breadcrumbs = $resultPageFactory->getLayout()->getBlock('breadcrumbs');
+        $breadcrumbs->addCrumb('home', [
+			'label' => __('Careers'),
+			'title' => __('Careers'),
+			'link' =>  $this->redirect->getRefererUrl()
+				]
+		);
+		$breadcrumbs->addCrumb('custom_module', [
+			'label' => __('Job Description'),
+			'title' => __('Job Description'),
+				]
+		);
+        return $resultPageFactory;
     }
 }

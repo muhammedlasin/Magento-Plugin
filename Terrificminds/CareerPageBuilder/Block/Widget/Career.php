@@ -28,6 +28,9 @@ class Career extends Template implements BlockInterface
        */
     protected $jobCollectionFactory;
 
+    protected $urlInterface;
+
+
     /**
      * Construct
      *
@@ -41,10 +44,12 @@ class Career extends Template implements BlockInterface
         JobCategoryCollectionFactory $jobCategoryCollectionFactory,
         JobCollectionFactory $jobCollectionFactory,
         Template\Context $context,
-        array $data = []
+        \Magento\Framework\UrlInterface $urlInterface,
+        array $data = [],
     ) {
         $this->jobCategoryCollectionFactory = $jobCategoryCollectionFactory;
         $this->jobCollectionFactory = $jobCollectionFactory;
+        $this->urlInterface = $urlInterface;
         parent::__construct($context, $data);
     }
 
@@ -73,5 +78,11 @@ class Career extends Template implements BlockInterface
         $collection->setOrder('sort_order', 'ASC');
         $collection->addFieldToFilter('is_active', 1)->getData();
         return $collection;
+    }
+
+    public function buildUrl(){
+
+        $currentUrl = $this->urlInterface->getCurrentUrl();
+        return $currentUrl;
     }
 }

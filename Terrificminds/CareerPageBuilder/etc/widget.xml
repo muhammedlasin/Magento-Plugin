@@ -1,6 +1,6 @@
 <widgets xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Widget:etc/widget.xsd">
-    <widget class="Terrificminds\CareerPageBuilder\Block\Widget\Career" id="orange_test_widget">
+    <widget class="Terrificminds\CareerPageBuilder\Block\Widget\Career" id="career_widget">
            <label>Career Page Builder</label>
         <description>This is a career page widget!!!</description>
         <parameters>

@@ -40,7 +40,6 @@ class Form extends Template
       * @param \Terrificminds\CareerPageBuilder\Model\ResourceModel\JobCategory $jobCategoryCollectionFactory
       * @param \Terrificminds\CareerPageBuilder\Model\ResourceModel\Job $jobCollectionFactory
       * @param \Magento\Framework\App\RequestInterface $request
-      * @param \Magento\Customer\Model\Session $session
       * @param \Magento\Framework\View\Element\Context $context
       * @param array $data
       */
@@ -48,14 +47,12 @@ class Form extends Template
         JobCategoryCollectionFactory $jobCategoryCollectionFactory,
         JobCollectionFactory $jobCollectionFactory,
         \Magento\Framework\App\RequestInterface $request,
-        Session $session,
         Template\Context $context,
         array $data = []
     ) {
         $this->jobCategoryCollectionFactory = $jobCategoryCollectionFactory;
         $this->jobCollectionFactory = $jobCollectionFactory;
         $this->request = $request;
-        $this->session = $session;
         parent::__construct($context, $data);
     }
    
