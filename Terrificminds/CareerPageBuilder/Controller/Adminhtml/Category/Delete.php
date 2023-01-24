@@ -15,12 +15,29 @@ use Terrificminds\CareerPageBuilder\Api\Data\JobCategoryInterface;
 
 class Delete extends Action implements HttpGetActionInterface
 {
+     /**
+      * @var \Terrificminds\CareerPageBuilder\Api\JobCategoryRepositoryInterface
+      */
     protected JobCategoryRepositoryInterface $jobCategoryRepository;
+
+     /**
+      * @var \Terrificminds\CareerPageBuilder\Api\JobRepositoryInterface
+      */
     protected JobRepositoryInterface $jobRepository;
 
-   
+     /**
+      * @var \Terrificminds\CareerPageBuilder\Api\Data\JobCategoryInterface
+      */
     protected JobCategoryInterface $jobCategoryInterface;
 
+     /**
+      * Construct
+      *
+      * @param \Magento\Backend\App\Action\Context $context
+      * @param \Terrificminds\CareerPageBuilder\Api\JobCategoryRepositoryInterface $jobCategoryRepository
+      * @param \Terrificminds\CareerPageBuilder\Api\JobRepositoryInterface $jobRepository
+      * @param \Terrificminds\CareerPageBuilder\Api\Data\JobCategoryInterface $jobCategoryInterface
+      */
     public function __construct(
         Context $context,
         JobCategoryRepositoryInterface $jobCategoryRepository,

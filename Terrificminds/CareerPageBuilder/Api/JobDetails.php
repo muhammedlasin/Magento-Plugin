@@ -7,69 +7,57 @@ use Magento\Customer\Model\Session;
 use Magento\Eav\Model\Config;
 use Magento\Customer\Model\Customer;
 use Magento\Backend\Block\Template\Context;
+use Magento\Store\Model\StoreManagerInterface;
 use Magento\Framework\App\Response\RedirectInterface;
 use Terrificminds\CareerPageBuilder\Model\ResourceModel\JobCategory\CollectionFactory as JobCategoryCollectionFactory;
 use Terrificminds\CareerPageBuilder\Model\ResourceModel\Job\CollectionFactory as JobCollectionFactory;
 
 /**
- * Application form block.
+ * Job Details page block.
  */
-class Form extends Template
+class JobDetails extends Template
 {
-    /**
-     * @var \Terrificminds\CareerPageBuilder\Model\ResourceModel\JobCategory\CollectionFactory
-     */
     protected $jobCategoryCollectionFactory;
-      /**
-       * @var \Terrificminds\CareerPageBuilder\Model\ResourceModel\Job\CollectionFactory
-       */
     protected $jobCollectionFactory;
-       /**
-        * @var \Magento\Framework\App\RequestInterface
-        */
     protected $request;
+    protected $contentProcessor;
 
-      /**
-       * @var \Magento\Customer\Model\Session
-       */
-    protected $session;
-
-     /**
-      * Construct
-      *
-      * @param \Terrificminds\CareerPageBuilder\Model\ResourceModel\JobCategory $jobCategoryCollectionFactory
-      * @param \Terrificminds\CareerPageBuilder\Model\ResourceModel\Job $jobCollectionFactory
-      * @param \Magento\Framework\App\RequestInterface $request
-      * @param \Magento\Customer\Model\Session $session
-      * @param \Magento\Framework\View\Element\Context $context
-      * @param array $data
-      */
     public function __construct(
         JobCategoryCollectionFactory $jobCategoryCollectionFactory,
         JobCollectionFactory $jobCollectionFactory,
+        \Magento\Cms\Model\Template\FilterProvider $contentProcessor,
         \Magento\Framework\App\RequestInterface $request,
-        Session $session,
-        Template\Context $context,
+        Context $context,
         array $data = []
     ) {
         $this->jobCategoryCollectionFactory = $jobCategoryCollectionFactory;
         $this->jobCollectionFactory = $jobCollectionFactory;
+        $this->contentProcessor = $contentProcessor;
         $this->request = $request;
-        $this->session = $session;
         parent::__construct($context, $data);
     }
-   
-      /**
-       * Get job designation
-       *
-       * @return string
-       */
-    public function getJobName()
+ 
+    public function getJobCollection()
     {
-
-        $jobId = $this->request->getParam('jobId');
         $collection = $this->jobCollectionFactory->create();
+        $jobId = $this->request->getParam('jobId');
         $jobCollection = $collection->addFieldToFilter('job_id', $jobId)->getData();
-        return $jobCollection[0]['job_designation'];
+        return $jobCollection;
+    }
+
+    public function getButtonUrl()
+    {
+        
+        $jobCollection = $this->getJobCollection();
+        $jobId = $this->request->getParam('jobId');
+        $buttonAction = $jobCollection[0]['button_action'];
+        $domain = $jobCollection[0]['button_url'];
+        $url = $buttonAction ? "form?jobId=$jobId" : "https://$domain";
+        return $url;
+    }
+
+    public function processContent($content)
+    {
+                return $this->contentProcessor->getPageFilter()->filter($content);
     }
 }

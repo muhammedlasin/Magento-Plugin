@@ -23,8 +23,19 @@ class MassDelete extends \Magento\Backend\App\Action implements HttpPostActionIn
      */
     protected CollectionFactory $collectionFactory;
 
+      /**
+       * @var JobRepositoryInterface
+       */
     protected JobRepositoryInterface $jobRepository;
 
+     /**
+      * Construct
+      *
+      * @param \Magento\Backend\App\Action\Context $context
+      * @param \Magento\Ui\Component\MassAction\Filter $filter
+      * @param \Terrificminds\CareerPageBuilder\Model\ResourceModel\JobCategory\CollectionFactory $collectionFactory
+      * @param \Terrificminds\CareerPageBuilder\Api\JobRepositoryInterface $jobRepository
+      */
     public function __construct(
         Context $context,
         Filter $filter,
@@ -38,7 +49,9 @@ class MassDelete extends \Magento\Backend\App\Action implements HttpPostActionIn
     }
 
     /**
-     * @throws \Magento\Framework\Exception\LocalizedException
+     * Mass delete action
+     *
+     * @return \Magento\Backend\Model\View\Result\Redirect
      */
     public function execute()
     {

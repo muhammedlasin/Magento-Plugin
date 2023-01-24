@@ -14,12 +14,10 @@ use Magento\Framework\View\Result\Page;
 use Magento\Framework\View\Result\PageFactory;
 
 /**
- * Class Index
+ * Application grid controller class
  */
 class Index extends Action implements HttpGetActionInterface
 {
-    const MENU_ID = 'Terrificminds_CareerPageBuilder::career_main';
-
     /**
      * @var PageFactory
      */
@@ -48,7 +46,6 @@ class Index extends Action implements HttpGetActionInterface
     public function execute()
     {
         $resultPage = $this->resultPageFactory->create();
-        $resultPage->setActiveMenu(static::MENU_ID);
         $resultPage->getConfig()->getTitle()->prepend(__('Manage Applications'));
 
         return $resultPage;

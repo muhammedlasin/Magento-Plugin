@@ -55,6 +55,9 @@
                <item name="formElement" xsi:type="string">input</item>
                <item name="source" xsi:type="string">category_name</item>
                <item name="dataScope" xsi:type="string">category_name</item>
+               <item name="validation" xsi:type="array">
+               <item name="max_text_length" xsi:type="string">255</item>
+               </item>
             </item>
          </argument>
          <settings>
@@ -87,6 +90,9 @@
                <item name="formElement" xsi:type="string">input</item>
                <item name="source" xsi:type="string">sort_order</item>
                <item name="dataScope" xsi:type="string">sort_order</item>
+                  <item name="validation" xsi:type="array">
+                <item name="validate-digits" xsi:type="boolean">true</item>
+               </item>
             </item>
          </argument>
       </field>

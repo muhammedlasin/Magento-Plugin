@@ -12,13 +12,41 @@ use Magento\Framework\App\Response\RedirectInterface;
 use Terrificminds\CareerPageBuilder\Model\ResourceModel\JobCategory\CollectionFactory as JobCategoryCollectionFactory;
 use Terrificminds\CareerPageBuilder\Model\ResourceModel\Job\CollectionFactory as JobCollectionFactory;
 
+/**
+ * Job Details page block.
+ */
 class JobDetails extends Template
 {
+     /**
+      * @var \Terrificminds\CareerPageBuilder\Model\ResourceModel\JobCategory\CollectionFactory
+      */
     protected $jobCategoryCollectionFactory;
+
+     /**
+      * @var \Terrificminds\CareerPageBuilder\Model\ResourceModel\Job\CollectionFactory
+      */
     protected $jobCollectionFactory;
+
+    /**
+     * @var \Magento\Framework\App\RequestInterface
+     */
     protected $request;
+
+     /**
+      * @var  \Magento\Cms\Model\Template\FilterProvider
+      */
     protected $contentProcessor;
 
+    /**
+     * Construct
+     *
+     * @param \Terrificminds\CareerPageBuilder\Model\ResourceModel\JobCategory $jobCategoryCollectionFactory
+     * @param \Terrificminds\CareerPageBuilder\Model\ResourceModel\Job $jobCollectionFactory
+     * @param \Magento\Cms\Model\Template\FilterProvider $contentProcessor
+     * @param \Magento\Framework\App\RequestInterface $request
+     * @param \Magento\Framework\View\Element\Context $context
+     * @param array $data
+     */
     public function __construct(
         JobCategoryCollectionFactory $jobCategoryCollectionFactory,
         JobCollectionFactory $jobCollectionFactory,
@@ -34,6 +62,11 @@ class JobDetails extends Template
         parent::__construct($context, $data);
     }
  
+      /**
+       * Get filtered job collection
+       *
+       * @return array
+       */
     public function getJobCollection()
     {
         $collection = $this->jobCollectionFactory->create();
@@ -42,6 +75,11 @@ class JobDetails extends Template
         return $jobCollection;
     }
 
+     /**
+      * Get button url
+      *
+      * @return string
+      */
     public function getButtonUrl()
     {
         
@@ -53,6 +91,12 @@ class JobDetails extends Template
         return $url;
     }
 
+ /**
+  * Get button url
+  *
+  * @param string $content
+  * @return string
+  */
     public function processContent($content)
     {
                 return $this->contentProcessor->getPageFilter()->filter($content);

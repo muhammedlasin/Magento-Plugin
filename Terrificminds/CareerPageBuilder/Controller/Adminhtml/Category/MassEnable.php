@@ -9,7 +9,7 @@ use Magento\Ui\Component\MassAction\Filter;
 use Terrificminds\CareerPageBuilder\Model\ResourceModel\JobCategory\CollectionFactory;
 
 /**
- * Class MassDisable
+ * Mass Enable categories
  */
 class MassEnable extends \Magento\Backend\App\Action implements HttpPostActionInterface
 {

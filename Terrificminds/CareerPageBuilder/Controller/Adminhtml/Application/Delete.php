@@ -11,6 +11,9 @@ use Magento\Framework\App\Action\HttpGetActionInterface;
 use Magento\Framework\Controller\ResultInterface;
 use Terrificminds\CareerPageBuilder\Api\ApplicationRepositoryInterface;
 
+/**
+ * Delete Applications class.
+ */
 class Delete extends Action implements HttpGetActionInterface
 {
     /**
@@ -18,6 +21,12 @@ class Delete extends Action implements HttpGetActionInterface
      */
     protected ApplicationRepositoryInterface $applicationRepository;
 
+     /**
+      * Construct
+      *
+      * @param \Magento\Backend\App\Action\Context $context
+      * @param \Terrificminds\CareerPageBuilder\Api\ApplicationRepositoryInterface $applicationRepository
+      */
     public function __construct(
         Context $context,
         ApplicationRepositoryInterface $applicationRepository

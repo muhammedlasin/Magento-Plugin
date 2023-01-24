@@ -8,13 +8,13 @@ use Terrificminds\CareerPageBuilder\Model\ResourceModel\JobCategory\CollectionFa
 use Terrificminds\CareerPageBuilder\Model\ResourceModel\Job\CollectionFactory as JobCollectionFactory;
 
 /**
- * Widget to add module to the page builder.
+ * Career Page Builder widget.
  */
 
 class Career extends Template implements BlockInterface
 {
      /**
-      * @var \Terrificminds\CareerPageBuilder\Block\Widget\Career
+      * @var string
       */
     protected $_template = "widget/career.phtml";
 
@@ -51,7 +51,7 @@ class Career extends Template implements BlockInterface
       /**
        * Get filtered category collection
        *
-       * @return
+       * @return \Terrificminds\CareerPageBuilder\Model\ResourceModel\JobCategory\Collection
        */
     public function getCategoryCollection()
     {
@@ -64,7 +64,8 @@ class Career extends Template implements BlockInterface
        /**
         * Get filtered job collection
         *
-        * @return
+        * @param int $categoryId
+        * @return \Terrificminds\CareerPageBuilder\Model\ResourceModel\Job\Collection
         */
     public function getJobCollection($categoryId)
     {

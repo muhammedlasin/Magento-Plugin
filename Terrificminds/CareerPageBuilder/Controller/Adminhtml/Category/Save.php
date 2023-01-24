@@ -29,6 +29,14 @@ class Save extends Action implements HttpPostActionInterface
      */
     protected JobCategoryInterface $jobCategoryInterface;
 
+       /**
+        * Construct
+        *
+        * @param \Magento\Backend\App\Action\Context $context
+        * @param \Magento\Backend\Model\Session $adminSession
+        * @param \Terrificminds\CareerPageBuilder\Api\JobCategoryRepositoryInterface $jobCategoryRepository
+        * @param \Terrificminds\CareerPageBuilder\Api\Data\JobCategoryInterface $jobCategoryInterface
+        */
     public function __construct(
         Context $context,
         Session $adminSession,
@@ -62,28 +70,16 @@ class Save extends Action implements HttpPostActionInterface
                 $this->jobCategoryRepository->getById($category_id);
             }
             $categories = $this->jobCategoryInterface->setData($data);
-            
-        
+
             try {
                 $this->jobCategoryRepository->save($categories);
                 $this->messageManager->addSuccessMessage(__('The job category has been saved.'));
                 $this->adminSession->setFormData(false);
-                // if ($this->getRequest()->getParam('back')) {
-                //     if ($this->getRequest()->getParam('back') == 'add') {
-                //         return $resultRedirect->setPath('*/*/add');
-                //     } else {
-                //         return $resultRedirect->setPath('*/*/edit', ['id' => $this->jobCategoryInterface->getId(), '_current' => true]);
-                //     }
-                // }
-                // return $resultRedirect->setPath('*/*/');
             } catch (\Magento\Framework\Exception\LocalizedException | \RuntimeException $e) {
                 $this->messageManager->addErrorMessage($e->getMessage());
             } catch (\Exception $e) {
                 $this->messageManager->addExceptionMessage($e, __('Something went wrong while saving the data.'));
             }
-
-            // $this->_getSession()->setFormData($data);
-            // return $resultRedirect->setPath('*/*/edit', ['id' => $this->getRequest()->getParam('id')]);
         }
         return $resultRedirect->setPath('*/*/');
     }
