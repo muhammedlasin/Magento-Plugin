@@ -86,9 +86,10 @@ class JobDetails extends Template
         
         $jobCollection = $this->getJobCollection();
         $jobId = $this->request->getParam('jobId');
+        $page = $this->request->getParam('page');
         $buttonAction = $jobCollection[0]['button_action'];
         $domain = $jobCollection[0]['button_url'];
-        $url = $buttonAction ? "form?jobId=$jobId" : "https://$domain";
+        $url = $buttonAction ? "form?jobId=$jobId&page=$page" : "https://$domain";
         return $url;
     }
 

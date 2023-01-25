@@ -14,7 +14,7 @@ foreach ($categoryCollection as $category) {
           $postedDate = $job->getCreatedAt();
           $newDate = date("d-m-Y", strtotime($postedDate));  
           ?>
-         <h3><a href="maincareerspage/index/index?jobId=<?php echo $job->getJobId() ?>"></b><?php echo $job->getJobDesignation(); ?></a></h3>
+         <h3><a href="<?php echo $block->buildUrl($job->getJobId()) ?>"></b><?php echo $job->getJobDesignation(); ?></a></h3>
          <p>Posted : <?php echo $newDate ?></p>
          <p><?php echo $job->getSmallJobDescription() ?></p>
          

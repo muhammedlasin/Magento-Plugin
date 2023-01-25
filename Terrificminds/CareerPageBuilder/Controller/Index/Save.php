@@ -11,10 +11,8 @@ use Magento\Framework\Filesystem;
 use Magento\MediaStorage\Model\File\UploaderFactory;
 use Magento\Framework\App\Response\RedirectInterface;
 use Magento\Framework\HTTP\PhpEnvironment\Request;
-use Magento\Framework\App\ActionInterface;
-use Magento\Framework\View\Result\PageFactory;
 
-class Save implements ActionInterface
+class Save extends Action
 {
    /**
     * @var \Magento\Framework\Message\ManagerInterface
@@ -51,7 +49,7 @@ class Save implements ActionInterface
      */
     protected $request;
 
-    protected $resultRedirectFactory;
+    protected $urlinterface;
 
     /**
      * Construct function
@@ -70,7 +68,7 @@ class Save implements ActionInterface
         Filesystem $filesystem,
         UploaderFactory $fileUploader,
         Request $request,
-        PageFactory $resultRedirectFactory
+        \Magento\Framework\UrlInterface $urlinterface
     ) {
         $this->messageManager       = $messageManager;
         $this->filesystem           = $filesystem;
@@ -80,7 +78,8 @@ class Save implements ActionInterface
         $this->mediaDirectory = $filesystem->getDirectoryWrite(\Magento\Framework\App\Filesystem\DirectoryList::MEDIA);
         $this->applicationRepository = $applicationRepository;
         $this->applicationInterface = $applicationInterface;
-        $this->resultRedirectFactory = $resultRedirectFactory;
+        $this->urlinterface = $urlinterface;
+        parent::__construct($context);
     }
     
     /**
@@ -91,20 +90,23 @@ class Save implements ActionInterface
     public function execute()
     {
         $resultRedirect = $this->resultRedirectFactory->create();
-        $params = $this->request->getParams();
+        $params = $this->_request->getParams();
         $uploadedFile = $this->uploadFile();
 
         if (!$uploadedFile) {
-            return $resultRedirect->setUrl($this->redirect->getRefererUrl());
+            return $resultRedirect->setUrl($this->_redirect->getRefererUrl());
         }
         $applications = $this->applicationInterface->setData($params);
         $applications = $this->applicationInterface->setResume($uploadedFile);
 
         try {
             if ($uploadedFile) {
+                $jobId = $this->request->getParam('jobId');
+                $baseUrl = $this->urlinterface->getBaseUrl();
+                $url = $baseUrl.'/maincareerspage/index/index?jobId='.$jobId;
                 $this->applicationRepository->save($applications);
                 $this->messageManager->addSuccessMessage(__("Application has sent successfully."));
-                return $resultRedirect->setUrl('*/*/');
+                return $resultRedirect->setUrl($url);
             }
         } catch (\Exception $e) {
             $this->messageManager->addErrorMessage(__("Something went wrong"));

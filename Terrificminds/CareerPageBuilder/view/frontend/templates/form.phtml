@@ -1,4 +1,4 @@
-<form action="<?php echo $block->getUrl('maincareerspage/index/save'); ?> " method="POST" enctype="multipart/form-data" data-mage-init='{"validation": {}}'>
+<form action="<?php echo $block->getSubmitUrl() ?> " method="POST" enctype="multipart/form-data" data-mage-init='{"validation": {}}'>
     <fieldset class="fieldset">
         <legend class="legend"><span><?= $block->escapeHtmlAttr(__('Fill your details')) ?></span></legend>
         <fieldset class="fieldset row">
@@ -24,7 +24,7 @@
                                data-validate="{required:true, 'validate-email':true}" required/>
                     </div>
                 </div>
-
+<h1><?php echo $block->getCustomerData()?></h1>
                 <div class="field name required">
                     <label class="label" for="title">
                         <span><?= $block->escapeHtmlAttr(__('Address')) ?></span>

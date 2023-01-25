@@ -34,6 +34,8 @@ class Form extends Template
        */
     protected $session;
 
+    protected $_customerRepositoryInterface;
+
      /**
       * Construct
       *
@@ -48,11 +50,13 @@ class Form extends Template
         JobCollectionFactory $jobCollectionFactory,
         \Magento\Framework\App\RequestInterface $request,
         Template\Context $context,
+        \Magento\Customer\Api\CustomerRepositoryInterface $customerRepositoryInterface,
         array $data = []
     ) {
         $this->jobCategoryCollectionFactory = $jobCategoryCollectionFactory;
         $this->jobCollectionFactory = $jobCollectionFactory;
         $this->request = $request;
+        $this->_customerRepositoryInterface = $customerRepositoryInterface;
         parent::__construct($context, $data);
     }
    
@@ -68,5 +72,22 @@ class Form extends Template
         $collection = $this->jobCollectionFactory->create();
         $jobCollection = $collection->addFieldToFilter('job_id', $jobId)->getData();
         return $jobCollection[0]['job_designation'];
+    }
+
+     /**
+       * Get submit url
+       *
+       * @return string
+       */
+    public function getSubmitUrl(){
+        $jobId = $this->request->getParam('jobId');
+        $url = 'save?jobId=' . $jobId;
+        return $url;
+    }
+
+
+    public function getCustomerData(){
+        $customer = $this->_customerRepositoryInterface->getById(1);
+       return  $customer->getFirstname();
     }
 }

@@ -80,9 +80,12 @@ class Career extends Template implements BlockInterface
         return $collection;
     }
 
-    public function buildUrl(){
+    public function buildUrl($jobId){
 
         $currentUrl = $this->urlInterface->getCurrentUrl();
-        return $currentUrl;
+        $baseUrl = $this->urlInterface->getBaseUrl();
+        $url = str_replace($baseUrl,"",$currentUrl);
+        $completeUrl = $baseUrl . 'maincareerspage/index/index?jobId=' . $jobId . '&page=' . $url;
+        return $completeUrl;
     }
 }
