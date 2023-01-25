@@ -89,6 +89,12 @@ class Form extends Template
         return $url;
     }
 
+
+     /**
+       * Get user status
+       *
+       * @return bool
+       */
     public function getuserStatus()
     {
         if ($this->session->isLoggedIn()) {
@@ -98,11 +104,15 @@ class Form extends Template
         }
     }
 
+     /**
+       * Get customer data
+       *
+       * @return \Magento\Customer\Api\Data\CustomerInterface 
+       */
+
     public function getCustomerData(){
        $customerId = $this->session->getId();
-   
        $customer = $this->_customerRepositoryInterface->getById($customerId);
-       
        return $customer;
     }
 }
