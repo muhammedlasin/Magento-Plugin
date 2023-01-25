@@ -4,15 +4,17 @@ namespace Terrificminds\CareerPageBuilder\Controller\Index;
 
 use Terrificminds\CareerPageBuilder\Api\ApplicationRepositoryInterface;
 use Terrificminds\CareerPageBuilder\Api\Data\ApplicationInterface;
-use Magento\Framework\App\Action\Action;
-use Magento\Framework\App\Action\Context;
 use Magento\Framework\Message\ManagerInterface;
 use Magento\Framework\Filesystem;
 use Magento\MediaStorage\Model\File\UploaderFactory;
 use Magento\Framework\App\Response\RedirectInterface;
 use Magento\Framework\HTTP\PhpEnvironment\Request;
+use Magento\Framework\App\Action\HttpPostActionInterface;
 
-class Save extends Action
+/**
+ * Class to save form
+ */
+class Save implements HttpPostActionInterface
 {
    /**
     * @var \Magento\Framework\Message\ManagerInterface
@@ -25,7 +27,7 @@ class Save extends Action
     protected $filesystem;
 
     /**
-     * @var \Magento\MediaStorage\Model\File\UploaderFactory $fileUploader
+     * @var \Magento\MediaStorage\Model\File\Uploader
      */
     protected $fileUploader;
     /**
@@ -40,35 +42,55 @@ class Save extends Action
      * @var RedirectInterface;
      */
     protected $redirect;
-
-    protected $data;
     
+     /**
+      * @var \Magento\Framework\Filesystem\Directory\WriteInterface
+      */
     protected $mediaDirectory;
     /**
      * @var Request
      */
     protected $request;
-
+    /**
+     * @var \Magento\Framework\UrlInterface
+     */
     protected $urlinterface;
+      /**
+       * @var \Magento\Framework\App\RequestInterface
+       */
+
+    protected $requestInterface;
+
+      /**
+       * @var \Magento\Framework\Controller\ResultFactory
+       */
+    protected $resultFactory;
 
     /**
      * Construct function
      *
-     * @param Context $context
+     * @param RedirectInterface $redirect
      * @param ApplicationRepositoryInterface $applicationRepository
      * @param ApplicationInterface $applicationInterface
+     * @param ManagerInterface $messageManager
+     * @param Filesystem $filesystem
+     * @param UploaderFactory $fileUploader
+     * @param \Magento\Framework\App\RequestInterface $requestInterface
+     * @param \Magento\Framework\UrlInterface $urlinterface
      * @param Request $request
+     * @param \Magento\Framework\Controller\ResultFactory $resultFactory
      */
     public function __construct(
-        \Magento\Framework\App\Response\RedirectInterface $redirect,
-        Context  $context,
+        RedirectInterface $redirect,
         ApplicationRepositoryInterface $applicationRepository,
         ApplicationInterface $applicationInterface,
         ManagerInterface $messageManager,
         Filesystem $filesystem,
         UploaderFactory $fileUploader,
+        \Magento\Framework\App\RequestInterface $requestInterface,
+        \Magento\Framework\UrlInterface $urlinterface,
         Request $request,
-        \Magento\Framework\UrlInterface $urlinterface
+        \Magento\Framework\Controller\ResultFactory $resultFactory,
     ) {
         $this->messageManager       = $messageManager;
         $this->filesystem           = $filesystem;
@@ -79,40 +101,47 @@ class Save extends Action
         $this->applicationRepository = $applicationRepository;
         $this->applicationInterface = $applicationInterface;
         $this->urlinterface = $urlinterface;
-        parent::__construct($context);
+        $this->requestInterface = $requestInterface;
+        $this->resultFactory = $resultFactory;
     }
     
     /**
      * Execute function
      *
-     * @return
+     * @return \Magento\Framework\Controller\ResultInterface
      */
     public function execute()
     {
-        $resultRedirect = $this->resultRedirectFactory->create();
-        $params = $this->_request->getParams();
+        $result = $this->resultFactory->create(\Magento\Framework\Controller\ResultFactory::TYPE_REDIRECT);
+        $params = $this->requestInterface->getParams();
         $uploadedFile = $this->uploadFile();
 
         if (!$uploadedFile) {
-            return $resultRedirect->setUrl($this->_redirect->getRefererUrl());
+            return $result->setUrl($this->redirect->getRefererUrl());
         }
         $applications = $this->applicationInterface->setData($params);
         $applications = $this->applicationInterface->setResume($uploadedFile);
 
         try {
             if ($uploadedFile) {
-                $jobId = $this->request->getParam('jobId');
+                $jobId = $this->requestInterface->getParam('jobId');
+                $page = $this->requestInterface->getParam('page');
                 $baseUrl = $this->urlinterface->getBaseUrl();
-                $url = $baseUrl.'/maincareerspage/index/index?jobId='.$jobId;
+                $url = $baseUrl . '/maincareerspage/index/index?jobId=' . $jobId.'&page='.$page;
                 $this->applicationRepository->save($applications);
                 $this->messageManager->addSuccessMessage(__("Application has sent successfully."));
-                return $resultRedirect->setUrl($url);
+                return $result->setUrl($url);
             }
         } catch (\Exception $e) {
             $this->messageManager->addErrorMessage(__("Something went wrong"));
         }
     }
 
+      /**
+       * Upload file function
+       *
+       * @return string
+       */
     public function uploadFile()
     {
         // this folder will be created inside "pub/media" folder
@@ -122,7 +151,7 @@ class Save extends Action
         $yourInputFileName = 'resume';
 
         try {
-            $file = $this->getRequest()->getFiles($yourInputFileName);
+            $file = $this->request->getFiles($yourInputFileName);
             $fileName = ($file && array_key_exists('name', $file)) ? $file['name'] : null;
 
             if ($file && $fileName) {
@@ -152,12 +181,12 @@ class Save extends Action
                 $result = $uploader->save($target, $filename);
 
                 if ($result['file']) {
-                    $this->messageManager->addSuccess(__('File has been successfully uploaded.'));
+                    $this->messageManager->addSuccessMessage(__('File has been successfully uploaded.'));
                     return $filename;
                 }
             }
         } catch (\Exception $e) {
-            $this->messageManager->addError($e->getMessage());
+            $this->messageManager->addErrorMessage($e->getMessage());
         }
          return false;
     }

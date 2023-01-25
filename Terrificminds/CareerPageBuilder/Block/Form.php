@@ -35,6 +35,7 @@ class Form extends Template
     protected $session;
 
     protected $_customerRepositoryInterface;
+    
 
      /**
       * Construct
@@ -51,12 +52,14 @@ class Form extends Template
         \Magento\Framework\App\RequestInterface $request,
         Template\Context $context,
         \Magento\Customer\Api\CustomerRepositoryInterface $customerRepositoryInterface,
+        Session $session,
         array $data = []
     ) {
         $this->jobCategoryCollectionFactory = $jobCategoryCollectionFactory;
         $this->jobCollectionFactory = $jobCollectionFactory;
         $this->request = $request;
         $this->_customerRepositoryInterface = $customerRepositoryInterface;
+        $this->session =$session;
         parent::__construct($context, $data);
     }
    
@@ -81,13 +84,25 @@ class Form extends Template
        */
     public function getSubmitUrl(){
         $jobId = $this->request->getParam('jobId');
-        $url = 'save?jobId=' . $jobId;
+        $page = $this->request->getParam('page');
+        $url = 'save?jobId=' . $jobId.'&page='.$page;
         return $url;
     }
 
+    public function getuserStatus()
+    {
+        if ($this->session->isLoggedIn()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 
     public function getCustomerData(){
-        $customer = $this->_customerRepositoryInterface->getById(1);
-       return  $customer->getFirstname();
+       $customerId = $this->session->getId();
+   
+       $customer = $this->_customerRepositoryInterface->getById($customerId);
+       
+       return $customer;
     }
 }
