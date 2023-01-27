@@ -13,6 +13,8 @@ class ButtonAction implements \Magento\Framework\Data\OptionSourceInterface
     public const URL = 0;
 
     /**
+     * Button action function.
+     *
      * @return array|array[]
      */
     public function toOptionArray(): array

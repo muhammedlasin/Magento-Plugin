@@ -1,5 +1,6 @@
 <link rel='stylesheet' href='<?php echo $block->getViewFileUrl("Terrificminds_CareerPageBuilder::css/career.css") ?>' />
-<div class="container">
+
+<div class="container" style="display:<?php echo $block->config() ?>;">
 <?php 
 $categoryCollection = $block->getCategoryCollection();
 foreach ($categoryCollection as $category) {

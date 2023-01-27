@@ -6,7 +6,7 @@ use Magento\Framework\View\Element\Template;
 use Magento\Widget\Block\BlockInterface;
 use Terrificminds\CareerPageBuilder\Model\ResourceModel\JobCategory\CollectionFactory as JobCategoryCollectionFactory;
 use Terrificminds\CareerPageBuilder\Model\ResourceModel\Job\CollectionFactory as JobCollectionFactory;
-
+use Terrificminds\CareerPageBuilder\Model\Config;
 /**
  * Career Page Builder widget.
  */
@@ -24,11 +24,13 @@ class Career extends Template implements BlockInterface
     protected $jobCategoryCollectionFactory;
 
       /**
-       * @var \Terrificminds\CareerPageBuilder\Model\ResourceModel\Job\CollectionFactory
+       * @var \Terrificminds\CareerPageBuilder\Model\ResourceModel\Job\Collection
        */
     protected $jobCollectionFactory;
 
     protected $urlInterface;
+
+    protected $config;
 
 
     /**
@@ -45,11 +47,13 @@ class Career extends Template implements BlockInterface
         JobCollectionFactory $jobCollectionFactory,
         Template\Context $context,
         \Magento\Framework\UrlInterface $urlInterface,
+        Config $config,
         array $data = [],
     ) {
         $this->jobCategoryCollectionFactory = $jobCategoryCollectionFactory;
         $this->jobCollectionFactory = $jobCollectionFactory;
         $this->urlInterface = $urlInterface;
+        $this->config = $config;
         parent::__construct($context, $data);
     }
 
@@ -87,5 +91,15 @@ class Career extends Template implements BlockInterface
         $url = str_replace($baseUrl,"",$currentUrl);
         $completeUrl = $baseUrl . 'maincareerspage/index/index?jobId=' . $jobId . '&page=' . $url;
         return $completeUrl;
+    }
+
+    public function config(){
+
+        if($this->config->getConfigValue('enable')){
+            return "block";
+        }
+        else{
+            return "none";
+        }
     }
 }

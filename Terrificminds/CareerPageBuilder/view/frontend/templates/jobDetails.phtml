@@ -1,7 +1,9 @@
 <?php
 $content = $block->getJobCollection()[0]['detailed_job_description'];
 $detailedDescription = $block->processContent($content);?>
-<h1><?php echo $block->getJobCollection()[0]['job_designation']?></h1>
+<div>
+<h1 style="font-weight: 400; font-size: 46px;"><?php echo $block->getJobCollection()[0]['job_designation']?></h1>
+</div>
 <div>
     <?php echo $detailedDescription ?>
 </div>

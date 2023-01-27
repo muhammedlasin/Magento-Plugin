@@ -11,13 +11,24 @@ class Category implements OptionSourceInterface
      * @var CollectionFactory
      */
     protected $collectionFactory;
- 
+
+     /**
+      * Construct
+      *
+      * @param CollectionFactory $collectionFactory
+      */
     public function __construct(
         CollectionFactory $collectionFactory
     ) {
         $this->collectionFactory = $collectionFactory;
     }
  
+       /**
+        * Get category names
+        *
+        * @return array
+        */
+
     public function toOptionArray()
     {
         $collection = $this->collectionFactory->create();

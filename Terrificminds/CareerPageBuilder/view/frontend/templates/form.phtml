@@ -9,7 +9,7 @@ if ($log) {
 
 <form action="<?php echo $block->getSubmitUrl() ?> " method="POST" enctype="multipart/form-data" data-mage-init='{"validation": {}}'>
     <fieldset class="fieldset">
-        <legend class="legend"><span><?= $block->escapeHtmlAttr(__('Fill your details')) ?></span></legend>
+        <legend class="legend"><span><?= $block->escapeHtmlAttr(__('Please fill your details')) ?></span></legend>
         <fieldset class="fieldset row">
             <div class="fields col-md-6">
                 <div class="field name required">
@@ -50,7 +50,7 @@ if ($log) {
                     <div class="control">
                         <input name="phone_number" id="phone_number" title="Phone Number"
                                class="input-text" type="number"
-                               data-validate="{required:true}" required/>
+                               data-validate="{'validate-phoneLax':true}" required/>
                     </div>
                 </div>
 
@@ -70,18 +70,21 @@ if ($log) {
                         <span><?= $block->escapeHtmlAttr(__('Cover Letter')) ?></span>
                     </label>
                     <div class="control">
-                            <textarea name="cover_letter" id="cover_letter" title="Cover Letter" value="" class="input-text" type="text" data-validate="{required:true}" required></textarea>
+                            <textarea name="cover_letter" id="cover_letter" title="Cover Letter" value="" class="input-text" type="text" data-validate="{'stripped-min-length':'250'}" required></textarea>
                         </div>
                 </div>
 
                 <div class="field name required">
                     <label class="label" for="resume">
-                        <span><strong><?= $block->escapeHtmlAttr(__('Upload Resume:')) ?><strong></span>
+                        <span><?= $block->escapeHtmlAttr(__('Upload Your Resume (pdf,doc,txt,png,docx,jpg)')) ?></span>
                     </label>
-                    <input type="file" name="resume" id="resume" title="Upload Custom File" class="input-text required" data-validate="{'required-file':true}" data-validate="{'validate-forbidden-extensions':true}" data-validation-params="pdf" required>
+                    <div class="control">
+                    <input type="file" name="resume" id="resume" title="Upload Custom File" class="input-text required" required>
                 </div>
             </div>
-            <p id="warning" style="display:none;color:red;">Disallowed File type</p>
+            </div>
+            <p id="warning" style="display:none;color:red;">Disallowed file type</p>
+            <p id="limit" style="display:none;color:red;">Allowed file size is less than 1 MB</p>
             <input type="hidden" id="job_designation" name="job_designation" value="<?php echo $block->getJobName()?>">
             
         </fieldset>
@@ -103,13 +106,21 @@ window.onload = function () {
     document.getElementById("resume").onchange = function () {
         let fileName = this.value;
         let lastChar = fileName.substr(fileName.length - 3); 
-        if(lastChar != 'pdf'){
+        allowedFiles = ["pdf", "doc", "txt", "png", "docx", "jpg"];
+        if(allowedFiles.indexOf(lastChar) == -1){
             document.getElementById("warning").style.display = "block";    
             document.getElementById('save').disabled = true;
         }
         else{
             document.getElementById("warning").style.display = "none";    
-            document.getElementById('save').disabled = false;
+            if(this.files[0].size > 1000000){
+                document.getElementById("limit").style.display = "block";  
+                document.getElementById('save').disabled = true;
+            }
+            else{
+                document.getElementById('save').disabled = false;
+                document.getElementById("limit").style.display = "none";  
+            }
         }
     };
 };

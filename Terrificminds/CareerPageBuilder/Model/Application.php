@@ -24,7 +24,6 @@ class Application extends AbstractModel implements ApplicationInterface
         $this->_init('Terrificminds\CareerPageBuilder\Model\ResourceModel\Application');
     }
 
-
     /**
      * @inheritDoc
      */
@@ -135,8 +134,7 @@ class Application extends AbstractModel implements ApplicationInterface
     {
         return $this->setData(self::COVER_LETTER, $letter);
     }
-
-
+    
         /**
          * @inheritDoc
          */

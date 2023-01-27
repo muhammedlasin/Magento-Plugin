@@ -13,6 +13,8 @@ class Status implements \Magento\Framework\Data\OptionSourceInterface
     public const DISABLED = 0;
 
     /**
+     * Get enabled/disabled value.
+     *
      * @return array|array[]
      */
     public function toOptionArray(): array

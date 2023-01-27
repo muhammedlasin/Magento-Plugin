@@ -160,7 +160,7 @@ class Save implements HttpPostActionInterface
             /* @var $uploader \Magento\MediaStorage\Model\File\Uploader */
                 $uploader = $this->fileUploader->create(['fileId' => $yourInputFileName]);
 
-                $extension = ['pdf'];
+                $extension = ["pdf", "doc", "txt", "png", "docx", "jpg"];
 
             // set allowed file extensions
                 $uploader->setAllowedExtensions($extension);
@@ -181,7 +181,6 @@ class Save implements HttpPostActionInterface
                 $result = $uploader->save($target, $filename);
 
                 if ($result['file']) {
-                    $this->messageManager->addSuccessMessage(__('File has been successfully uploaded.'));
                     return $filename;
                 }
             }

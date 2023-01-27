@@ -5,6 +5,7 @@ namespace Terrificminds\CareerPageBuilder\Controller\Index;
 use Magento\Framework\App\Action\HttpGetActionInterface;
 use Magento\Framework\View\Result\PageFactory;
 use Magento\Framework\Controller\Result\ForwardFactory;
+use Terrificminds\CareerPageBuilder\Model\Config;
 
 /**
  * Index class to create a page,get config value
@@ -30,6 +31,11 @@ class Index implements HttpGetActionInterface
          */
     protected $request;
 
+        /**
+      * @var Config
+      */
+    protected $config;
+
     /**
      * Construct
      *
@@ -37,17 +43,20 @@ class Index implements HttpGetActionInterface
      * @param ForwardFactory $forwardFactory
      * @param \Magento\Framework\UrlInterface $urlInterface
      * @param \Magento\Framework\App\RequestInterface $request
+     * @param Config $config
      */
     public function __construct(
         PageFactory $resultPageFactory,
         ForwardFactory $forwardFactory,
         \Magento\Framework\UrlInterface $urlInterface,
-        \Magento\Framework\App\RequestInterface $request
+        \Magento\Framework\App\RequestInterface $request,
+        Config $config
     ) {
         $this->forwardFactory = $forwardFactory;
         $this->resultPageFactory = $resultPageFactory;
         $this->urlInterface = $urlInterface;
         $this->request = $request;
+        $this->config = $config;
     }
 
     /**
@@ -57,20 +66,26 @@ class Index implements HttpGetActionInterface
      */
     public function execute()
     {
-        $resultPageFactory = $this->resultPageFactory->create();
-        $baseUrl = $this->urlInterface->getBaseUrl();
-        $page = $this->request->getParam('page');
+        if ($this->config->getConfigValue('enable')) {
+            $resultPageFactory = $this->resultPageFactory->create();
+            $baseUrl = $this->urlInterface->getBaseUrl();
+            $page = $this->request->getParam('page');
 
-        $breadcrumbs = $resultPageFactory->getLayout()->getBlock('breadcrumbs');
-        $breadcrumbs->addCrumb('home', [
-            'label' => __('Careers'),
-            'title' => __('Careers'),
-            'link' => $baseUrl . $page
-                ]);
-        $breadcrumbs->addCrumb('custom_module', [
-            'label' => __('Job Description'),
-            'title' => __('Job Description'),
-                ]);
-        return $resultPageFactory;
+            $breadcrumbs = $resultPageFactory->getLayout()->getBlock('breadcrumbs');
+            $breadcrumbs->addCrumb('home', [
+                'label' => __('Careers'),
+                'title' => __('Careers'),
+                'link' => $baseUrl . $page
+            ]);
+            $breadcrumbs->addCrumb('custom_module', [
+                'label' => __('Job Description'),
+                'title' => __('Job Description'),
+            ]);
+            return $resultPageFactory;
+        }
+        else{
+            $forward = $this->forwardFactory->create();
+            return $forward->forward('defaultNoRoute');
+        }
     }
 }
