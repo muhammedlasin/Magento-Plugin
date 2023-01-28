@@ -9,8 +9,6 @@ use Terrificminds\CareerPageBuilder\Api\Data\JobCategoryInterface;
 
 class JobCategory extends AbstractExtensibleModel implements JobCategoryInterface
 {
-    const CACHE_TAG = 'category_id';
-
  /**
   * DB table column keys
   */
@@ -23,10 +21,13 @@ class JobCategory extends AbstractExtensibleModel implements JobCategoryInterfac
     private const CREATED_AT = "created_at";
     private const UPDATED_AT = "updated_at";
 
+     /**
+      * Construct function
+      */
     protected function _construct()
     {
 
-        $this->_init('Terrificminds\CareerPageBuilder\Model\ResourceModel\JobCategory');
+        $this->_init(ResourceModel\JobCategory::class);
     }
 
 /**
@@ -61,7 +62,6 @@ class JobCategory extends AbstractExtensibleModel implements JobCategoryInterfac
         return $this->setData(self::CATEGORY);
     }
 
-
     /**
      * @inheritDoc
      */
@@ -93,8 +93,6 @@ class JobCategory extends AbstractExtensibleModel implements JobCategoryInterfac
     {
         return $this->setData(self::ENABLE);
     }
-    
-    
 
     /**
      * @inheritDoc

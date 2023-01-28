@@ -30,6 +30,12 @@ class ApplicationRepository implements ApplicationRepositoryInterface
      */
     private ApplicationResourceModel $applicationResourceModel;
 
+    /**
+     * Constructor function
+     *
+     * @param ApplicationCollectionFactory $applicationCollectionFactory
+     * @param ApplicationResourceModel $applicationResourceModel
+     */
     public function __construct(
         ApplicationCollectionFactory $applicationCollectionFactory,
         ApplicationResourceModel $applicationResourceModel
@@ -38,16 +44,16 @@ class ApplicationRepository implements ApplicationRepositoryInterface
         $this->applicationCollectionFactory = $applicationCollectionFactory;
         $this->applicationResourceModel = $applicationResourceModel;
     }
-
- 
-
+    
     /**
      * @inheritDoc
+     *
      * @throws NoSuchEntityException
      */
-    public function getById($id): ApplicationInterface
+    public function getById($id)
     {
-        $application = $this->applicationCollectionFactory->create()->addFieldToFilter('application_id', $id)->getFirstItem();
+        $application = $this->applicationCollectionFactory->create();
+        $application->addFieldToFilter('application_id', $id)->getFirstItem();
         if (! $application->getId()) {
             throw new NoSuchEntityException(__('Unable to find record with ID "%1"', $id));
         }
@@ -56,9 +62,10 @@ class ApplicationRepository implements ApplicationRepositoryInterface
 
     /**
      * @inheritDoc
+     *
      * @throws CouldNotSaveException
      */
-    public function save(ApplicationInterface $form): ApplicationInterface
+    public function save(ApplicationInterface $form)
     {
         try {
             if ($form->hasDataChanges()) {
@@ -74,9 +81,9 @@ class ApplicationRepository implements ApplicationRepositoryInterface
 
        /**
         * @inheritDoc
+        *
         * @throws CouldNotDeleteException
         */
-    
     public function delete(ApplicationInterface $jobs)
     {
         try {

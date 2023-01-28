@@ -2,86 +2,78 @@
 
 namespace Terrificminds\CareerPageBuilder\Setup\Patch\Data;
 
-     use Magento\Framework\Setup\Patch\DataPatchInterface;
-
-         use Magento\Framework\Setup\Patch\PatchVersionInterface;
-
-     use Magento\Framework\Module\Setup\Migration;
-
+use Magento\Framework\Setup\Patch\DataPatchInterface;
+use Magento\Framework\Setup\Patch\PatchVersionInterface;
+use Magento\Framework\Module\Setup\Migration;
 use Magento\Framework\Setup\ModuleDataSetupInterface;
 
-
-
 class AddCategory implements DataPatchInterface, PatchVersionInterface
-
-{
-private $author;
-public function __construct(
-
-     \Terrificminds\CareerPageBuilder\Model\JobCategory $author
-
-) {
-     $this->author = $author;
-}
-
-
-/**
-
-* {@inheritdoc}
-
-* @SuppressWarnings(PHPMD.ExcessiveMethodLength)
-
-*/
-
-public function apply()
-
-{
-
-     $authorData = [];
-
-       $authorData['category_name'] = "Unassigned";
-
-         $authorData['is_active'] = 1;
-
-
-       $this->author->addData($authorData);
-
-     $this->author->getResource()->save($this->author);
-}
+{    
+       /**
+     * @var JobCategory
+     */
+    private $category;
+    public function __construct(
+        \Terrificminds\CareerPageBuilder\Model\JobCategory $category
+    ) {
+         $this->category = $category;
+    }
 
 
 /**
 
-* {@inheritdoc}
+ * {@inheritdoc}
 
-*/
+ * @SuppressWarnings(PHPMD.ExcessiveMethodLength)
 
-public static function getDependencies()
+ */
 
-{
-     return [];
-}
+    public function apply()
+    {
+
+         $categoryData = [];
+
+           $categoryData['category_name'] = "Unassigned";
+
+         $categoryData['is_active'] = 1;
+
+
+           $this->category->addData($categoryData);
+
+         $this->category->getResource()->save($this->category);
+    }
 
 
 /**
 
-* {@inheritdoc}
+ * {@inheritdoc}
 
-*/
+ */
 
-public static function getVersion()
+    public static function getDependencies()
+    {
+         return [];
+    }
 
-{
-     return '2.0.0';
-}
 
 /**
 
-* {@inheritdoc}
-*/
+ * {@inheritdoc}
 
-public function getAliases()
-{
-     return [];
-  }
-}  
+ */
+
+    public static function getVersion()
+    {
+         return '2.0.0';
+    }
+
+/**
+
+ * {@inheritdoc}
+ */
+
+    public function getAliases()
+    {
+         return [];
+    }
+}

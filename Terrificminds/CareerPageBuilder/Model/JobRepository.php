@@ -30,6 +30,12 @@ class JobRepository implements JobRepositoryInterface
      */
     private JobResourceModel $jobResourceModel;
 
+        /**
+         * Constructor function
+         *
+         * @param  JobCollectionFactory $jobCollectionFactory
+         * @param  JobResourceModel $jobResourceModel
+         */
     public function __construct(
         JobCollectionFactory $jobCollectionFactory,
         JobResourceModel $jobResourceModel
@@ -39,10 +45,9 @@ class JobRepository implements JobRepositoryInterface
         $this->jobResourceModel = $jobResourceModel;
     }
 
- 
-
     /**
      * @inheritDoc
+     *
      * @throws NoSuchEntityException
      */
     public function getById($id): JobInterface
@@ -56,6 +61,7 @@ class JobRepository implements JobRepositoryInterface
 
     /**
      * @inheritDoc
+     *
      * @throws CouldNotSaveException
      */
     public function save(JobInterface $jobs): JobInterface
@@ -74,6 +80,7 @@ class JobRepository implements JobRepositoryInterface
 
        /**
         * @inheritDoc
+
         * @throws CouldNotDeleteException
         */
     
@@ -87,18 +94,12 @@ class JobRepository implements JobRepositoryInterface
         return true;
     }
 
+     /**
+      * @inheritDoc
+      */
     public function getJobByCategory($categoryId)
     {
-
-
         $job = $this->jobCollectionFactory->create()->addFieldToFilter('category_id', $categoryId)->getItems();
         return $job;
-    }
-
-    public function updateJobCategory($categoryId)
-    {
-
-        $job = $this->jobCollectionFactory->create()->addFieldToFilter('category_id', $categoryId)->getFirstItem();
-        $job[0]['category_id'] = 0;
     }
 }

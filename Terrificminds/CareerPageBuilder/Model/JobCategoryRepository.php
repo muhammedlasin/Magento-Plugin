@@ -30,6 +30,12 @@ class JobCategoryRepository implements JobCategoryRepositoryInterface
      */
     private JobCategoryResourceModel $jobCategoryResourceResourceModel;
 
+      /**
+       * Constructor function
+       *
+       * @param JobCategoryCollectionFactory $jobCategoryCollectionFactory
+       * @param  JobCategoryResourceModel $jobCategoryResourceResourceModel
+       */
     public function __construct(
         JobCategoryCollectionFactory $jobCategoryCollectionFactory,
         JobCategoryResourceModel $jobCategoryResourceResourceModel
@@ -41,19 +47,22 @@ class JobCategoryRepository implements JobCategoryRepositoryInterface
 
     /**
      * @inheritDoc
+     *
      * @throws NoSuchEntityException
      */
     public function getById($id): JobCategoryInterface
     {
-        $job_category = $this->jobCategoryCollectionFactory->create()->addFieldToFilter('category_id', $id)->getFirstItem();
-        if (! $job_category->getId()) {
+        $jobCategory = $this->jobCategoryCollectionFactory->create();
+        $jobCategory->addFieldToFilter('category_id', $id)->getFirstItem();
+        if (! $jobCategory->getId()) {
             throw new NoSuchEntityException(__('Unable to find record with ID "%1"', $id));
         }
-        return $job_category;
+        return $jobCategory;
     }
 
     /**
      * @inheritDoc
+     *
      * @throws CouldNotSaveException
      */
     public function save(JobCategoryInterface $categories): JobCategoryInterface
@@ -72,6 +81,7 @@ class JobCategoryRepository implements JobCategoryRepositoryInterface
 
       /**
        * @inheritDoc
+       *
        * @throws CouldNotDeleteException
        */
     

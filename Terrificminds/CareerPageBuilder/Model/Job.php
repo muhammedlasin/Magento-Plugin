@@ -9,8 +9,6 @@ use Terrificminds\CareerPageBuilder\Api\Data\JobInterface;
 
 class Job extends AbstractExtensibleModel implements JobInterface
 {
-    const CACHE_TAG = 'category_id';
-
  /**
   * DB table column keys
   */
@@ -26,10 +24,13 @@ class Job extends AbstractExtensibleModel implements JobInterface
     private const CREATED_AT = "created_at";
     private const UPDATED_AT = "updated_at";
 
+     /**
+      * Construct function
+      */
     protected function _construct()
     {
 
-        $this->_init('Terrificminds\CareerPageBuilder\Model\ResourceModel\Job');
+        $this->_init(ResourceModel\Job::class);
     }
 
 /**
@@ -144,6 +145,9 @@ class Job extends AbstractExtensibleModel implements JobInterface
         return $this->setData(self::ACTION);
     }
 
+     /**
+      * @inheritDoc
+      */
     public function getButtonUrl(): string
     {
         return $this->getData(self::URL);
@@ -152,11 +156,14 @@ class Job extends AbstractExtensibleModel implements JobInterface
     /**
      * @inheritDoc
      */
+
     public function setButtonUrl(string $url): JobInterface
     {
         return $this->setData(self::URL);
     }
-
+ /**
+  * @inheritDoc
+  */
     public function getSortOrder(): int
     {
         return $this->getData(self::SORT_ORDER);

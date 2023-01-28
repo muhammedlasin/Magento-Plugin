@@ -3,34 +3,5 @@
     <widget class="Terrificminds\CareerPageBuilder\Block\Widget\Career" id="career_widget">
            <label>Career Page Builder</label>
         <description>This is a career page widget!!!</description>
-        <parameters>
-            <parameter name="title" xsi:type="text" required="true" visible="true" sort_order="10">
-                <label>Label</label>
-            </parameter>
-           <!-- <parameter name="id_path" xsi:type="block" visible="true" required="true" sort_order="10">
-                <label translate="true">Product</label>
-                <block class="Magento\Catalog\Block\Adminhtml\Product\Widget\Chooser">
-                    <data>
-                        <item name="button" xsi:type="array">
-                            <item name="open" xsi:type="string" translate="true">Select Product...</item>
-                        </item>
-                    </data>
-                </block>
-            </parameter> -->
-            <parameter name="size" xsi:type="select" visible="true" required="true" sort_order="20">
-                <label translate="true">Size</label>
-                <options>
-                    <option name="s" value="S">
-                        <label>S</label>
-                    </option>
-                    <option name="m" value="M" selected="true">
-                        <label>M</label>
-                    </option>
-                    <option name="l" value="L">
-                        <label>L</label>
-                    </option>
-                </options>
-            </parameter>
-        </parameters>
     </widget>
 </widgets>
