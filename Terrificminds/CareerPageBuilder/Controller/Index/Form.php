@@ -31,8 +31,8 @@ class Form implements HttpGetActionInterface
     protected $request;
     
       /**
-      * @var Config
-      */
+       * @var Config
+       */
     protected $config;
 
     /**
@@ -70,7 +70,7 @@ class Form implements HttpGetActionInterface
             $baseUrl = $this->urlInterface->getBaseUrl();
             $jobId = $this->request->getParam('jobId');
             $page = $this->request->getParam('page');
-            $jobDescriptionUrl = $baseUrl . '/maincareerspage/index/index?jobId=' . $jobId;
+            $jobDescriptionUrl = $baseUrl . '/maincareerspage/index/index?jobId=' . $jobId.'&page='.$page;
             $breadcrumbs = $resultPageFactory->getLayout()->getBlock('breadcrumbs');
             $breadcrumbs->addCrumb('career', [
                 'label' => __('Careers'),
@@ -87,8 +87,7 @@ class Form implements HttpGetActionInterface
                 'title' => __('Form')
             ]);
             return $resultPageFactory;
-        }
-        else{
+        } else {
             $forward = $this->forwardFactory->create();
             return $forward->forward('defaultNoRoute');
         }

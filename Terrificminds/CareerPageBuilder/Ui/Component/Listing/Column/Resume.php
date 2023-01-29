@@ -16,6 +16,15 @@ class Resume extends Column
    */
     protected $storeManagerInterface;
 
+    /**
+     * Constructor function
+     *
+     * @param ContextInterface $context
+     * @param UiComponentFactory $uiComponentFactory
+     * @param StoreManagerInterface $storeManagerInterface
+     * @param array $components
+     * @param array $data
+     */
     public function __construct(
         ContextInterface $context,
         UiComponentFactory $uiComponentFactory,
@@ -23,10 +32,16 @@ class Resume extends Column
         array $components = [],
         array $data = []
     ) {
-        parent::__construct($context, $uiComponentFactory, $components, $data);
         $this->storeManagerInterface = $storeManagerInterface;
+        parent::__construct($context, $uiComponentFactory, $components, $data);
     }
 
+     /**
+      * Prepare Data Source
+      *
+      * @param array $dataSource
+      * @return array
+      */
     public function prepareDataSource(array $dataSource)
     {
         $url = $this->storeManagerInterface->getStore()->getBaseUrl(UrlInterface::URL_TYPE_MEDIA);
@@ -37,7 +52,7 @@ class Resume extends Column
                 if (!empty($item[$fieldName])) {
                     $modifiedName = str_replace(' ', '_', $item[$fieldName]);
                     $completeUrl = $url . 'uploads/' . $modifiedName;
-                    $item[$fieldName] = html_entity_decode("<a href='$completeUrl'>$item[$fieldName]</a>");
+                    $item[$fieldName] = "<a href='$completeUrl'>$item[$fieldName]</a>";
                 }
             }
         }

@@ -7,6 +7,7 @@ use Magento\Widget\Block\BlockInterface;
 use Terrificminds\CareerPageBuilder\Model\ResourceModel\JobCategory\CollectionFactory as JobCategoryCollectionFactory;
 use Terrificminds\CareerPageBuilder\Model\ResourceModel\Job\CollectionFactory as JobCollectionFactory;
 use Terrificminds\CareerPageBuilder\Model\Config;
+
 /**
  * Career Page Builder widget.
  */
@@ -19,7 +20,7 @@ class Career extends Template implements BlockInterface
     protected $_template = "widget/career.phtml";
 
     /**
-     * @var \Terrificminds\CareerPageBuilder\Model\ResourceModel\JobCategory\CollectionFactory
+     * @var \Terrificminds\CareerPageBuilder\Model\ResourceModel\JobCategory\Collection
      */
     protected $jobCategoryCollectionFactory;
 
@@ -28,10 +29,14 @@ class Career extends Template implements BlockInterface
        */
     protected $jobCollectionFactory;
 
+      /**
+       * @var \Magento\Framework\UrlInterface
+       */
     protected $urlInterface;
-
+       /**
+        * @var Config
+        */
     protected $config;
-
 
     /**
      * Construct
@@ -39,6 +44,8 @@ class Career extends Template implements BlockInterface
      * @param \Terrificminds\CareerPageBuilder\Model\ResourceModel\JobCategory $jobCategoryCollectionFactory
      * @param \Terrificminds\CareerPageBuilder\Model\ResourceModel\Job $jobCollectionFactory
      * @param \Magento\Framework\View\Element\Context $context
+     * @param \Magento\Framework\UrlInterface $urlInterface
+     * @param Config $config
      * @param array $data
      */
  
@@ -84,21 +91,33 @@ class Career extends Template implements BlockInterface
         return $collection;
     }
 
-    public function buildUrl($jobId){
+      /**
+       * Get url
+       *
+       * @param int $jobId
+       * @return string
+       */
+    public function buildUrl($jobId)
+    {
 
         $currentUrl = $this->urlInterface->getCurrentUrl();
         $baseUrl = $this->urlInterface->getBaseUrl();
-        $url = str_replace($baseUrl,"",$currentUrl);
+        $url = str_replace($baseUrl, "", $currentUrl);
         $completeUrl = $baseUrl . 'maincareerspage/index/index?jobId=' . $jobId . '&page=' . $url;
         return $completeUrl;
     }
 
-    public function config(){
+     /**
+      * Get Configuration
+      *
+      * @return string
+      */
+    public function config()
+    {
 
-        if($this->config->getConfigValue('enable')){
+        if ($this->config->getConfigValue('enable')) {
             return "block";
-        }
-        else{
+        } else {
             return "none";
         }
     }

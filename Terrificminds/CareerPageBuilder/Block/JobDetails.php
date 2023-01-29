@@ -12,7 +12,6 @@ use Magento\Framework\App\Response\RedirectInterface;
 use Terrificminds\CareerPageBuilder\Model\ResourceModel\JobCategory\CollectionFactory as JobCategoryCollectionFactory;
 use Terrificminds\CareerPageBuilder\Model\ResourceModel\Job\CollectionFactory as JobCollectionFactory;
 
-
 /**
  * Job Details page block.
  */

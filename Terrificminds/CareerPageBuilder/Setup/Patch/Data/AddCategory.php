@@ -6,72 +6,66 @@ use Magento\Framework\Setup\Patch\DataPatchInterface;
 use Magento\Framework\Setup\Patch\PatchVersionInterface;
 use Magento\Framework\Module\Setup\Migration;
 use Magento\Framework\Setup\ModuleDataSetupInterface;
+use Terrificminds\CareerPageBuilder\Api\JobCategoryRepositoryInterface;
+use Terrificminds\CareerPageBuilder\Api\Data\JobCategoryInterface;
 
 class AddCategory implements DataPatchInterface, PatchVersionInterface
-{    
+{
        /**
-     * @var JobCategory
-     */
-    private $category;
+        * @var JobCategoryRepositoryInterface
+        */
+    protected $jobCategoryRepository;
+   /**
+    * @var JobCategoryInterface
+    */
+    protected $jobCategoryInterface;
+
+     /**
+      * Constructor function
+      *
+      * @param  JobCategoryRepositoryInterface $jobCategoryRepository
+      * @param  JobCategoryInterface $jobCategoryInterface
+      */
     public function __construct(
-        \Terrificminds\CareerPageBuilder\Model\JobCategory $category
+        JobCategoryRepositoryInterface $jobCategoryRepository,
+        JobCategoryInterface $jobCategoryInterface
     ) {
-         $this->category = $category;
+         $this->jobCategoryRepository = $jobCategoryRepository;
+         $this->jobCategoryInterface = $jobCategoryInterface;
     }
 
-
 /**
-
- * {@inheritdoc}
-
+ * @inheritdoc
+ *
  * @SuppressWarnings(PHPMD.ExcessiveMethodLength)
-
  */
-
     public function apply()
     {
-
-         $categoryData = [];
-
-           $categoryData['category_name'] = "Unassigned";
-
-         $categoryData['is_active'] = 1;
-
-
-           $this->category->addData($categoryData);
-
-         $this->category->getResource()->save($this->category);
+        $categoryData = [];
+        $categoryData['category_name'] = "Unassigned";
+        $categoryData['is_active'] = 1;
+        $category = $this->jobCategoryInterface->setData($categoryData);
+        $this->jobCategoryRepository->save($category);
     }
-
-
 /**
-
- * {@inheritdoc}
-
+ * @inheritdoc
  */
-
     public static function getDependencies()
     {
          return [];
     }
 
-
 /**
-
- * {@inheritdoc}
-
+ * @inheritdoc
  */
-
     public static function getVersion()
     {
          return '2.0.0';
     }
 
 /**
-
- * {@inheritdoc}
+ * @inheritdoc
  */
-
     public function getAliases()
     {
          return [];

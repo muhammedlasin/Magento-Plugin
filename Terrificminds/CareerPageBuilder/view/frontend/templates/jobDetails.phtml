@@ -1,14 +1,17 @@
 <?php
+
 $content = $block->getJobCollection()[0]['detailed_job_description'];
 $detailedDescription = $block->processContent($content);?>
 <div>
-<h1 style="font-weight: 400; font-size: 46px;"><?php echo $block->getJobCollection()[0]['job_designation']?></h1>
+<h1 style="font-weight: 400; font-size: 46px;">
+<?= /* @noEscape */$block->getJobCollection()[0]['job_designation']?></h1>
 </div>
 <div>
-    <?php echo $detailedDescription ?>
+    <?=$detailedDescription?>
 </div>
 <div> 
-    <button style="background-color: #1979c3; color: #ffffff;" onclick="location.href='<?php echo $block->getButtonUrl() ?>'" >Apply Now</button>
+    <button style="background-color: #1979c3; color: #ffffff;" 
+     onclick="location.href='<?=/* @noEscape */$block->getButtonUrl()?>'" >Apply Now</button>
 </div>
 
 

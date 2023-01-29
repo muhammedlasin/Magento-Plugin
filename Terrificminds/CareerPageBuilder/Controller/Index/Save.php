@@ -127,9 +127,9 @@ class Save implements HttpPostActionInterface
                 $jobId = $this->requestInterface->getParam('jobId');
                 $page = $this->requestInterface->getParam('page');
                 $baseUrl = $this->urlinterface->getBaseUrl();
-                $url = $baseUrl . '/maincareerspage/index/index?jobId=' . $jobId.'&page='.$page;
+                $url = $baseUrl . '/maincareerspage/index/index?jobId=' . $jobId . '&page=' . $page;
                 $this->applicationRepository->save($applications);
-                $this->messageManager->addSuccessMessage(__("Application has sent successfully."));
+                $this->messageManager->addSuccessMessage(__("The application has been sent successfully."));
                 return $result->setUrl($url);
             }
         } catch (\Exception $e) {

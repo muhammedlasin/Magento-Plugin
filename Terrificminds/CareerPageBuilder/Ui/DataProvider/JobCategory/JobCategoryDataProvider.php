@@ -6,7 +6,21 @@ use Terrificminds\CareerPageBuilder\Model\ResourceModel\JobCategory\CollectionFa
 
 class JobCategoryDataProvider extends \Magento\Ui\DataProvider\AbstractDataProvider
 {
+    /**
+     * @var CollectionFactory
+     */
     protected $collection;
+
+     /**
+      * Constructor function
+      *
+      * @param CollectionFactory $collectionFactory
+      * @param string $name
+      * @param string $primaryFieldName
+      * @param string $requestFieldName
+      * @param array $meta
+      * @param array $data
+      */
     public function __construct(
         CollectionFactory $collectionFactory,
         $name,

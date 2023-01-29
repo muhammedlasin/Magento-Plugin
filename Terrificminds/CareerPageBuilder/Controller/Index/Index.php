@@ -32,8 +32,8 @@ class Index implements HttpGetActionInterface
     protected $request;
 
         /**
-      * @var Config
-      */
+         * @var Config
+         */
     protected $config;
 
     /**
@@ -82,8 +82,7 @@ class Index implements HttpGetActionInterface
                 'title' => __('Job Description'),
             ]);
             return $resultPageFactory;
-        }
-        else{
+        } else {
             $forward = $this->forwardFactory->create();
             return $forward->forward('defaultNoRoute');
         }

@@ -13,12 +13,18 @@ class DisplayCategory extends \Magento\Ui\Component\Listing\Columns\Column
      * @var \Magento\Store\Model\StoreManagerInterface
      */
     protected $storeManager;
+      /**
+       * @var JobCategoryRepositoryInterface
+       */
     protected JobCategoryRepositoryInterface $jobCategoryRepository;
 
     /**
+     * Constructor function
+     *
      * @param ContextInterface $context
      * @param UiComponentFactory $uiComponentFactory
      * @param StoreManagerInterface $storeManager
+     * @param JobCategoryRepositoryInterface $jobCategoryRepository
      * @param array $components
      * @param array $data
      */

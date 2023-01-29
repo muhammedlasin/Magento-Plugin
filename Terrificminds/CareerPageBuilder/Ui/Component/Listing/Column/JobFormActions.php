@@ -19,6 +19,8 @@ class JobFormActions extends \Magento\Ui\Component\Listing\Columns\Column
     protected UrlInterface $urlBuilder;
 
     /**
+     * Constructor function
+     *
      * @param UrlInterface $urlBuilder
      * @param ContextInterface $context
      * @param UiComponentFactory $uiComponentFactory
@@ -36,6 +38,12 @@ class JobFormActions extends \Magento\Ui\Component\Listing\Columns\Column
         parent::__construct($context, $uiComponentFactory, $components, $data);
     }
 
+      /**
+       * Prepare Data Source
+       *
+       * @param array $dataSource
+       * @return array
+       */
     public function prepareDataSource(array $dataSource): array
     {
         if (isset($dataSource['data']['items'])) {
@@ -60,8 +68,8 @@ class JobFormActions extends \Magento\Ui\Component\Listing\Columns\Column
                             ),
                             'label' => __('Delete'),
                             'confirm' => [
-                                'title' => __('Delete %1', $item['job_designation']),
-                                'message' => __('Are you sure you want to delete a %1 record?', $item['job_designation']),
+                              'title' => __('Delete %1', $item['job_designation']),
+                              'message' => __('Are you sure you want to delete a %1 record?', $item['job_designation']),
                             ],
                         ],
                     ];

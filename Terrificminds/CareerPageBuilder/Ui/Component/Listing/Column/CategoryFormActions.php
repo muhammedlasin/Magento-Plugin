@@ -19,6 +19,8 @@ class CategoryFormActions extends \Magento\Ui\Component\Listing\Columns\Column
     protected UrlInterface $urlBuilder;
 
     /**
+     * Constructor function
+     *
      * @param UrlInterface $urlBuilder
      * @param ContextInterface $context
      * @param UiComponentFactory $uiComponentFactory
@@ -36,6 +38,12 @@ class CategoryFormActions extends \Magento\Ui\Component\Listing\Columns\Column
         parent::__construct($context, $uiComponentFactory, $components, $data);
     }
 
+     /**
+      * Prepare Data Source for category delete action.
+      *
+      * @param array $dataSource
+      * @return array|array[]
+      */
     public function prepareDataSource(array $dataSource): array
     {
         if (isset($dataSource['data']['items'])) {
@@ -60,8 +68,8 @@ class CategoryFormActions extends \Magento\Ui\Component\Listing\Columns\Column
                             ),
                             'label' => __('Delete'),
                             'confirm' => [
-                                'title' => __('Delete %1', $item['category_name']),
-                                'message' => __('Are you sure you want to delete the %1 record?', $item['category_name']),
+                             'title' => __('Delete %1', $item['category_name']),
+                             'message' => __('Are you sure you want to delete the %1 record?', $item['category_name']),
                             ],
                         
                         ],

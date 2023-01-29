@@ -34,9 +34,11 @@ class Form extends Template
        */
     protected $session;
 
+      /**
+       * @var \Magento\Customer\Api\CustomerRepositoryInterface
+       */
     protected $_customerRepositoryInterface;
     
-
      /**
       * Construct
       *
@@ -44,6 +46,8 @@ class Form extends Template
       * @param \Terrificminds\CareerPageBuilder\Model\ResourceModel\Job $jobCollectionFactory
       * @param \Magento\Framework\App\RequestInterface $request
       * @param \Magento\Framework\View\Element\Context $context
+      * @param \Magento\Customer\Api\CustomerRepositoryInterface $customerRepositoryInterface
+      * @param Session $session
       * @param array $data
       */
     public function __construct(
@@ -59,7 +63,7 @@ class Form extends Template
         $this->jobCollectionFactory = $jobCollectionFactory;
         $this->request = $request;
         $this->_customerRepositoryInterface = $customerRepositoryInterface;
-        $this->session =$session;
+        $this->session = $session;
         parent::__construct($context, $data);
     }
    
@@ -78,23 +82,23 @@ class Form extends Template
     }
 
      /**
-       * Get submit url
-       *
-       * @return string
-       */
-    public function getSubmitUrl(){
+      * Get submit url
+      *
+      * @return string
+      */
+    public function getSubmitUrl()
+    {
         $jobId = $this->request->getParam('jobId');
         $page = $this->request->getParam('page');
-        $url = 'save?jobId=' . $jobId.'&page='.$page;
+        $url = 'save?jobId=' . $jobId . '&page=' . $page;
         return $url;
     }
 
-
      /**
-       * Get user status
-       *
-       * @return bool
-       */
+      * Get user status
+      *
+      * @return bool
+      */
     public function getuserStatus()
     {
         if ($this->session->isLoggedIn()) {
@@ -105,14 +109,15 @@ class Form extends Template
     }
 
      /**
-       * Get customer data
-       *
-       * @return \Magento\Customer\Api\Data\CustomerInterface 
-       */
+      * Get customer data
+      *
+      * @return \Magento\Customer\Api\Data\CustomerInterface
+      */
 
-    public function getCustomerData(){
-       $customerId = $this->session->getId();
-       $customer = $this->_customerRepositoryInterface->getById($customerId);
-       return $customer;
+    public function getCustomerData()
+    {
+        $customerId = $this->session->getId();
+        $customer = $this->_customerRepositoryInterface->getById($customerId);
+        return $customer;
     }
 }

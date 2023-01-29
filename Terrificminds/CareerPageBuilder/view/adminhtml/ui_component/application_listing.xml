@@ -142,7 +142,7 @@
             <column name="cover_letter">
             <settings>
                 <filter>text</filter>
-                <bodyTmpl>ui/grid/cells/text</bodyTmpl>
+                <bodyTmpl>ui/grid/cells/html</bodyTmpl>
                 <label translate="true">Cover Letter</label>
             </settings>
         </column>

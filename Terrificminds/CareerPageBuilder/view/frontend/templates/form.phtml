@@ -1,15 +1,15 @@
-<?php 
+<?php
+
  $log = $block->getuserStatus();
 if ($log) {
-    $customerName = $block->getCustomerData()->getFirstName()." ".$block->getCustomerData()->getLastName();
+    $customerName = $block->getCustomerData()->getFirstName() . " " . $block->getCustomerData()->getLastName();
     $customerEmail = $block->getCustomerData()->getEmail();
 }
- ?>
-
-
-<form action="<?php echo $block->getSubmitUrl() ?> " method="POST" enctype="multipart/form-data" data-mage-init='{"validation": {}}'>
+?>
+<form action="<?= /* @noEscape */ $block->getSubmitUrl()?>" method="POST" enctype="multipart/form-data"
+ data-mage-init='{"validation":{}}'>
     <fieldset class="fieldset">
-        <legend class="legend"><span><?= $block->escapeHtmlAttr(__('Please fill your details')) ?></span></legend>
+        <legend class="legend"><span><?= $block->escapeHtmlAttr(__('Please fill in your details')) ?></span></legend>
         <fieldset class="fieldset row">
             <div class="fields col-md-6">
                 <div class="field name required">
@@ -18,8 +18,9 @@ if ($log) {
                     </label>
                     <div class="control">
                         <input name="applicant_name" id="applicant_name" title="name" 
-                               value="<?php echo $log ? $customerName: ""?>"
-                               class="input-text required-entry" type="text"  data-validate="{required:true}" required  />
+                               value="<?=$log ? $block->escapeHtmlAttr($customerName) : ""?>"
+                               class="input-text required-entry" type="text" 
+                               data-validate="{required:true}" required  />
                     </div>
                 </div>
                 <div class="field name required">
@@ -28,7 +29,7 @@ if ($log) {
                     </label>
                     <div class="control">
                         <input name="email" id="email" title="Email"
-                               value="<?php echo $log ? $customerEmail: ""?>"
+                               value="<?=$log ? $block->escapeHtmlAttr($customerEmail) : ""?>"
                                class="input-text" type="email"
                                data-validate="{required:true, 'validate-email':true}" required/>
                     </div>
@@ -60,33 +61,34 @@ if ($log) {
                     </label>
                     <div class="control">
                         <input name="experience" id="experience" title="Experience"
-                               class="input-text" type="number"
-                               data-validate="{required:true}" required/>
+                        class="integer" type="number"
+                               data-validate="{'validate-digits-range':'0-100'}" required/>
                     </div>
                 </div>
-
                 <div class="field name required">
                     <label class="label" for="cover_letter">
                         <span><?= $block->escapeHtmlAttr(__('Cover Letter')) ?></span>
                     </label>
                     <div class="control">
-                            <textarea name="cover_letter" id="cover_letter" title="Cover Letter" value="" class="input-text" type="text" data-validate="{'stripped-min-length':'250'}" required></textarea>
+                            <textarea name="cover_letter" id="cover_letter" title="Cover Letter" value=""
+                             class="input-text" type="text"
+                              data-validate="{'stripped-min-length':'250'}" required></textarea>
                         </div>
                 </div>
-
                 <div class="field name required">
                     <label class="label" for="resume">
                         <span><?= $block->escapeHtmlAttr(__('Upload Your Resume (pdf,doc,txt,png,docx,jpg)')) ?></span>
                     </label>
                     <div class="control">
-                    <input type="file" name="resume" id="resume" title="Upload Custom File" class="input-text required" required>
+                    <input type="file" name="resume" id="resume" title="Upload Custom File" 
+                    class="input-text required" required>
                 </div>
             </div>
             </div>
-            <p id="warning" style="display:none;color:red;">Disallowed file type</p>
-            <p id="limit" style="display:none;color:red;">Allowed file size is less than 1 MB</p>
-            <input type="hidden" id="job_designation" name="job_designation" value="<?php echo $block->getJobName()?>">
-            
+            <p id="warning" style="display:none;color: #e02b27;font-size: 1.2rem;">Disallowed file type</p>
+            <p id="limit" style="display:none;color: #e02b27;font-size: 1.2rem;">The allowed file size is less than 1 MB</p>
+            <input type="hidden" id="job_designation" name="job_designation"
+             value="<?= /* @noEscape */ $block->getJobName()?>">    
         </fieldset>
     </fieldset>
     <div class="actions-toolbar">
@@ -98,10 +100,7 @@ if ($log) {
     </div>
 </form>
 
-
 <script>
-    
-
 window.onload = function () {
     document.getElementById("resume").onchange = function () {
         let fileName = this.value;

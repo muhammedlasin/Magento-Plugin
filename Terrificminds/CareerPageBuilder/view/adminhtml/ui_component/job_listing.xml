@@ -12,7 +12,7 @@
             <button name="add">
                 <url path="maincareerspage/job/add" />
                 <class>primary</class>
-                <label translate="true">Add Job</label>
+                <label translate="true">Add New Job</label>
             </button>
         </buttons>
         <spinner>job_coloumn</spinner>

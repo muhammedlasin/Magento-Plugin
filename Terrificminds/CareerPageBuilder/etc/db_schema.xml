@@ -32,7 +32,7 @@
         <constraint xsi:type="primary" referenceId="PRIMARY">
             <column name="job_id"/>
         </constraint>
-        <!-- <constraint xsi:type="foreign" referenceId="JOB_CATEGORY_CATEGORY_ID_JOB_CATEGORY_ID" table="job" column="category_id" referenceTable="job_category" referenceColumn="category_id"/> -->
+        <constraint xsi:type="foreign" referenceId="JOB_CATEGORY_CATEGORY_ID_JOB_CATEGORY_ID" table="job" column="category_id" referenceTable="job_category" referenceColumn="category_id"/>
     </table>
     <table name="application_form" resource="default" engine="innodb" comment="Application Form Table">
          <column xsi:type="smallint" name="application_id" unsigned="false" nullable="false" identity="true" comment="Application ID"/>
