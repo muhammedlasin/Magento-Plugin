@@ -70,7 +70,7 @@ class Form implements HttpGetActionInterface
             $baseUrl = $this->urlInterface->getBaseUrl();
             $jobId = $this->request->getParam('jobId');
             $page = $this->request->getParam('page');
-            $jobDescriptionUrl = $baseUrl . '/maincareerspage/index/index?jobId=' . $jobId.'&page='.$page;
+            $jobDescriptionUrl = $baseUrl . '/maincareerspage/index/index?jobId=' . $jobId . '&page=' . $page;
             $breadcrumbs = $resultPageFactory->getLayout()->getBlock('breadcrumbs');
             $breadcrumbs->addCrumb('career', [
                 'label' => __('Careers'),

@@ -7,7 +7,9 @@ use Magento\Framework\Controller\ResultFactory;
 class Add extends \Magento\Backend\App\Action
 {
     /**
-     * @return \Magento\Backend\Model\View\Result\Page
+     * Add new jobs function
+     *
+     * @return \Magento\Framework\Controller\ResultInterface
      */
     public function execute()
     {

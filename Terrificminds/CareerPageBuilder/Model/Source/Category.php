@@ -32,6 +32,7 @@ class Category implements OptionSourceInterface
     public function toOptionArray()
     {
         $collection = $this->collectionFactory->create();
+        $options = [];
         foreach ($collection as $category) {
             $label = '';
             $value = 0;

@@ -7,8 +7,9 @@ $detailedDescription = $block->processContent($content);?>
 <?= /* @noEscape */$block->getJobCollection()[0]['job_designation']?></h1>
 </div>
 <div>
-    <?=$detailedDescription?>
+    <?= /* @noEscape */$detailedDescription?>
 </div>
+<br>
 <div> 
     <button style="background-color: #1979c3; color: #ffffff;" 
      onclick="location.href='<?=/* @noEscape */$block->getButtonUrl()?>'" >Apply Now</button>

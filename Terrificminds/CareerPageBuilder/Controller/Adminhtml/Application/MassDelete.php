@@ -51,7 +51,10 @@ class MassDelete extends \Magento\Backend\App\Action implements HttpPostActionIn
         foreach ($collection as $item) {
             $item->delete();
         }
-        $this->messageManager->addSuccessMessage(__('A total of %1 job application(s) have been deleted.', $collectionSize));
+        $this->messageManager->addSuccessMessage(__(
+            'A total of %1 job application(s) have been deleted.',
+            $collectionSize
+        ));
         /** @var Redirect $resultRedirect */
         $resultRedirect = $this->resultFactory->create(ResultFactory::TYPE_REDIRECT);
         return $resultRedirect->setPath('*/*/');

@@ -18,6 +18,11 @@ class Delete extends Action implements HttpGetActionInterface
      */
     protected JobRepositoryInterface $jobRepository;
 
+     /**
+      * @param Context $context
+      * @param JobRepositoryInterface $jobRepository
+      */
+
     public function __construct(
         Context $context,
         JobRepositoryInterface $jobRepository

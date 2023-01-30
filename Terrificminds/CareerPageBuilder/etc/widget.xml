@@ -3,5 +3,10 @@
     <widget class="Terrificminds\CareerPageBuilder\Block\Widget\Career" id="career_widget">
            <label>Career Page Builder</label>
         <description>This is a career page widget!!!</description>
+        <parameters>
+            <parameter name="title" xsi:type="text" visible="true" sort_order="10">
+                <label>Title</label>
+            </parameter>
+        </parameters>
     </widget>
 </widgets>

@@ -21,7 +21,7 @@ class Application extends AbstractModel implements ApplicationInterface
      */
     protected function _construct()
     {
-        $this->_init('Terrificminds\CareerPageBuilder\Model\ResourceModel\Application');
+        $this->_init(ResourceModel\Application::class);
     }
 
     /**

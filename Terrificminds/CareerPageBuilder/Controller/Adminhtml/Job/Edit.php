@@ -12,6 +12,8 @@ use Magento\Framework\Controller\ResultInterface;
 class Edit extends Action implements HttpGetActionInterface
 {
     /**
+     * Edit job
+     *
      * @return ResultInterface
      */
     public function execute(): ResultInterface

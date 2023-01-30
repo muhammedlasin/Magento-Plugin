@@ -1,6 +1,7 @@
 <link rel='stylesheet'
 href='<?= /* @noEscape */$block->getViewFileUrl("Terrificminds_CareerPageBuilder::css/career.css")?>' />
 <div class="container" style="display:<?= /* @noEscape */ $block->config()?>;">
+<h2 style="display:<?= /* @noEscape */ $block->checkTitle()?>;"><?= $block->escapeHtml($block->getData('title')) ?></h2>
 <?php
 $categoryCollection = $block->getCategoryCollection();
 foreach ($categoryCollection as $category) {
@@ -17,18 +18,14 @@ foreach ($categoryCollection as $category) {
             ?>
          <h3><a href="<?= /* @noEscape */ $block->buildUrl($job->getJobId()) ?>">
          </b><?=/* @noEscape */$job->getJobDesignation(); ?></a></h3>
-         <p>Posted : <?=$block->escapeHtmlAttr($newDate)?></p>
+         <p><i>Posted: <?=$block->escapeHtmlAttr($newDate)?></i></p>
          <p><?= /* @noEscape */ $job->getSmallJobDescription() ?></p>
-         
             <?php
         } ?>
 </div>
   <?php }
 } ?>
 </div>
-
-
-
 <script>
 var acc = document.getElementsByClassName("accordion");
 var i;

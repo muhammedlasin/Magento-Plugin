@@ -29,6 +29,12 @@ class Save extends Action implements HttpPostActionInterface
      */
     protected JobInterface $jobInterface;
 
+     /**
+      * @param Context $context
+      * @param Session $adminSession
+      * @param JobRepositoryInterface $jobRepository
+      * @param  JobInterface $jobInterface
+      */
     public function __construct(
         Context $context,
         Session $adminSession,

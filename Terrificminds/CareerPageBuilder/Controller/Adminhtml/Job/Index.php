@@ -7,7 +7,9 @@ use Magento\Framework\Controller\ResultFactory;
 class Index extends \Magento\Backend\App\Action
 {
     /**
-     * @return \Magento\Backend\Model\View\Result\Page
+     * Job Grid controller
+     *
+     * @return \Magento\Framework\Controller\ResultInterface
      */
     public function execute()
     {

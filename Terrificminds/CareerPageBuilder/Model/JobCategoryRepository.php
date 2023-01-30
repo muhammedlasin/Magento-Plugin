@@ -52,7 +52,10 @@ class JobCategoryRepository implements JobCategoryRepositoryInterface
      */
     public function getById($id): JobCategoryInterface
     {
-        $jobCategory = $this->jobCategoryCollectionFactory->create()->addFieldToFilter('category_id', $id)->getFirstItem();
+        $jobCategory = $this->jobCategoryCollectionFactory->create()->addFieldToFilter(
+            'category_id',
+            $id
+        )->getFirstItem();
         if (! $jobCategory->getId()) {
             throw new NoSuchEntityException(__('Unable to find record with ID "%1"', $id));
         }
