@@ -24,6 +24,9 @@ class View extends Action implements HttpGetActionInterface
      */
     protected $resultPageFactory;
 
+     /**
+      * @var ApplicationRepositoryInterface
+      */
     protected $applicationRepository;
 
     /**
@@ -31,6 +34,7 @@ class View extends Action implements HttpGetActionInterface
      *
      * @param Context $context
      * @param PageFactory $resultPageFactory
+     * @param ApplicationRepositoryInterface $applicationRepository
      */
     public function __construct(
         Context $context,
@@ -38,7 +42,6 @@ class View extends Action implements HttpGetActionInterface
         ApplicationRepositoryInterface $applicationRepository
     ) {
         parent::__construct($context);
-
         $this->resultPageFactory = $resultPageFactory;
         $this->applicationRepository = $applicationRepository;
     }
@@ -49,13 +52,13 @@ class View extends Action implements HttpGetActionInterface
      * @return Page
      */
     public function execute()
-    {   $id = $this->getRequest()->getParam('id');
+    {
+        $id = $this->getRequest()->getParam('id');
         if ($id) {
             $applications = $this->applicationRepository->getById($id);
         }
         $resultPage = $this->resultPageFactory->create();
-        $resultPage->getConfig()->getTitle()->prepend(__('Application Number : '. $applications->getApplicationId()));
-
+        $resultPage->getConfig()->getTitle()->prepend(__('Application Number : ' . $applications->getApplicationId()));
         return $resultPage;
     }
 }

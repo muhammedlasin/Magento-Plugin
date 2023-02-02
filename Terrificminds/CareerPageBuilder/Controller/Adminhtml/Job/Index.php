@@ -3,8 +3,9 @@
 namespace Terrificminds\CareerPageBuilder\Controller\Adminhtml\Job;
  
 use Magento\Framework\Controller\ResultFactory;
+use Magento\Framework\App\Action\HttpPostActionInterface;
  
-class Index extends \Magento\Backend\App\Action
+class Index extends \Magento\Backend\App\Action implements HttpPostActionInterface
 {
     /**
      * Job Grid controller

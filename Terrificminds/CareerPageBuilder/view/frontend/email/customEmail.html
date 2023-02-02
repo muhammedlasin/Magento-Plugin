@@ -1,4 +1,9 @@
 <!--@subject Job Application @-->
+<!--@vars {
+"var name":"Applicant Name",
+"var role":"Job Role",
+"var owner": "Owner"
+} @-->
 {{template config_path="design/email/header_template"}}
 <p>{{trans "Dear %name" name=$name}},</p>
 <p>Iam writing to acknowledge the receipt of your job application for the {{trans "%role" role=$role}} role. We

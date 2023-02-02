@@ -99,7 +99,7 @@ class Form extends Template
       *
       * @return bool
       */
-    public function getuserStatus()
+    public function isUserStatus()
     {
         return $this->session->isLoggedIn() ? true : false;
     }

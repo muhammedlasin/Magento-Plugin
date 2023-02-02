@@ -69,7 +69,11 @@ class CategoryFormActions extends \Magento\Ui\Component\Listing\Columns\Column
                             'label' => __('Delete'),
                             'confirm' => [
                              'title' => __('Delete %1', $item['category_name']),
-                             'message' => __('The jobs assigned to this category will be unassigned. Are you sure you want to delete the %1 category?', $item['category_name']),
+                             'message' => __(
+                                 'The jobs assigned to this category will be unassigned.
+                                  Are you sure you want to delete the %1 category?',
+                                 $item['category_name']
+                             ),
                             ],
                         
                         ],

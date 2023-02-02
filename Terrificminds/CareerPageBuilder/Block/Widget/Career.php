@@ -117,14 +117,13 @@ class Career extends Template implements BlockInterface
         return $this->config->getConfigValue('enable') ? "block" : "none";
     }
 
-
      /**
       * Check Title
       *
       * @return string
       */
-      public function checkTitle()
-      {
-          return $this->getData('title') ? "block" : "none";
-      }
+    public function checkTitle()
+    {
+        return $this->getData('title') ? "block" : "none";
+    }
 }

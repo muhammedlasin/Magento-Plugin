@@ -1,7 +1,8 @@
 <?xml version = "1.0" encoding = "UTF-8"?>
 
 
-<listing xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+<listing xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
     <argument name="data" xsi:type="array">
       <item name="js_config" xsi:type="array">
          <item name="provider" xsi:type="string">job_listing.job_listing_data_source</item>
@@ -22,7 +23,8 @@
     </settings>
     <dataSource name="job_listing_data_source">
         <argument name="dataProvider" xsi:type="configurableObject">
-            <argument name="class" xsi:type="string">Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider</argument>
+            <argument name="class" 
+            xsi:type="string">Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider</argument>
             <argument name="name" xsi:type="string">job_listing_data_source</argument>
             <argument name="primaryFieldName" xsi:type="string">job_id</argument>
             <argument name="requestFieldName" xsi:type="string">job_id</argument>
@@ -151,7 +153,7 @@
                 <label translate="true">Short Description</label>
             </settings>
         </column>
-        <column name="category_id" class="Terrificminds\CareerPageBuilder\Ui\Component\Listing\Column\DisplayCategory" >
+        <column name="category_id" class="Terrificminds\CareerPageBuilder\Ui\Component\Listing\Column\DisplayCategory">
         <settings>
                 <options class="Terrificminds\CareerPageBuilder\Model\Source\Category"/>
                 <filter>select</filter>
@@ -169,7 +171,8 @@
                 <label translate="true">Sort Order</label>
             </settings>
         </column>
-          <actionsColumn name="actions" class="Terrificminds\CareerPageBuilder\Ui\Component\Listing\Column\JobFormActions" >
+          <actionsColumn name="actions"
+           class="Terrificminds\CareerPageBuilder\Ui\Component\Listing\Column\JobFormActions">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
                     <item name="resizeEnabled" xsi:type="boolean">false</item>

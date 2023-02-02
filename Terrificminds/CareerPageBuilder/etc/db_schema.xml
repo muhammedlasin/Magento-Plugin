@@ -25,34 +25,55 @@
         </constraint>
     </table>
     <table name="job" resource="default" engine="innodb" comment="Job Table">
-        <column xsi:type="smallint" name="job_id" unsigned="false" nullable="false" identity="true" comment="Job ID"/>
-        <column xsi:type="varchar" name="job_designation" nullable="false" length="255" comment="Job Designation Name"/>
-        <column xsi:type="text" name="small_job_description" nullable="false" comment="Small Job Description"/>
-        <column xsi:type="mediumtext" name="detailed_job_description" nullable="false" comment="Detailed Job Description"/>
-        <column xsi:type="smallint" name="is_active" unsigned="false" nullable="false" identity="false" default="1" comment="Is Job Active"/>
-        <column xsi:type="smallint" name="button_action" unsigned="false" nullable="false" identity="false" default="1" comment="Apply Now Button Action"/>
+        <column xsi:type="smallint" name="job_id" unsigned="false" nullable="false"
+         identity="true" comment="Job ID"/>
+        <column xsi:type="varchar" name="job_designation" nullable="false"
+         length="255" comment="Job Designation Name"/>
+        <column xsi:type="text" name="small_job_description" nullable="false"
+         comment="Small Job Description"/>
+        <column xsi:type="mediumtext" name="detailed_job_description" nullable="false"
+         comment="Detailed Job Description"/>
+        <column xsi:type="smallint" name="is_active" unsigned="false" nullable="false"
+         identity="false" default="1" comment="Is Job Active"/>
+        <column xsi:type="smallint" name="button_action" unsigned="false" nullable="false"
+         identity="false" default="1" comment="Apply Now Button Action"/>
         <column xsi:type="text" name="button_url" nullable="false" comment="Apply Now Button URL"/>
-        <column xsi:type="smallint" name="sort_order" unsigned="false" nullable="false" identity="false" default="0" comment="Job Sort Order"/>
-        <column xsi:type="smallint" name="category_id" unsigned="false" nullable="false" identity="false" comment="Category ID - Foreign Key"/>
-        <column xsi:type="timestamp" name="created_at" on_update="false" nullable="false" default="CURRENT_TIMESTAMP" comment="Job Creation Time"/>
-        <column xsi:type="timestamp" name="updated_at" on_update="true" nullable="false" default="CURRENT_TIMESTAMP" comment="Job Modification Time"/>
+        <column xsi:type="smallint" name="sort_order" unsigned="false" nullable="false"
+         identity="false" default="0" comment="Job Sort Order"/>
+        <column xsi:type="smallint" name="category_id" unsigned="false" nullable="false"
+         identity="false" comment="Category ID - Foreign Key"/>
+        <column xsi:type="timestamp" name="created_at" on_update="false" nullable="false"
+         default="CURRENT_TIMESTAMP" comment="Job Creation Time"/>
+        <column xsi:type="timestamp" name="updated_at" on_update="true" nullable="false"
+         default="CURRENT_TIMESTAMP" comment="Job Modification Time"/>
         <constraint xsi:type="primary" referenceId="PRIMARY">
             <column name="job_id"/>
         </constraint>
-        <constraint xsi:type="foreign" referenceId="JOB_CATEGORY_CATEGORY_ID_JOB_CATEGORY_ID" table="job" column="category_id" referenceTable="job_category" referenceColumn="category_id"/>
+        <constraint xsi:type="foreign" referenceId="JOB_CATEGORY_CATEGORY_ID_JOB_CATEGORY_ID"
+         table="job" column="category_id" referenceTable="job_category" referenceColumn="category_id"/>
     </table>
     <table name="application_form" resource="default" engine="innodb" comment="Application Form Table">
-         <column xsi:type="smallint" name="application_id" unsigned="false" nullable="false" identity="true" comment="Application ID"/>
-         <column xsi:type="varchar" name="applicant_name" nullable="false" length="255" comment="Applicant Name"/>
-          <column xsi:type="varchar" name="job_designation" nullable="false" length="255" comment="Job Designation"/>
-         <column xsi:type="varchar" name="email" nullable="false" length="25" comment="Email"/>
+         <column xsi:type="smallint" name="application_id" unsigned="false"
+          nullable="false" identity="true" comment="Application ID"/>
+         <column xsi:type="varchar" name="applicant_name" nullable="false"
+          length="255" comment="Applicant Name"/>
+          <column xsi:type="varchar" name="job_designation" nullable="false"
+           length="255" comment="Job Designation"/>
+         <column xsi:type="varchar" name="email" nullable="false" length="25"
+          comment="Email"/>
          <column xsi:type="text" name="address" nullable="false" comment="Address"/>
-         <column xsi:type="varchar" name="phone_number" nullable="false" length="50" comment="Phone Number"/>
-         <column xsi:type="smallint" name="experience" nullable="false" unsigned="false" comment="Experience"/>
-         <column xsi:type="text" name="cover_letter" nullable="false" comment="Cover Letter"/>
-         <column xsi:type="text" name="resume" nullable="false"  comment="Resume Upload"/>
-         <column xsi:type="timestamp" name="created_at" nullable="true" default="CURRENT_TIMESTAMP" on_update="false" comment="Created Datetime"/>
-         <column xsi:type="timestamp" name="updated_at" nullable="false" default="CURRENT_TIMESTAMP" on_update="true" comment="Updated Datetime"/>
+         <column xsi:type="varchar" name="phone_number" nullable="false"
+          length="50" comment="Phone Number"/>
+         <column xsi:type="smallint" name="experience" nullable="false"
+          unsigned="false" comment="Experience"/>
+         <column xsi:type="text" name="cover_letter" nullable="false" 
+         comment="Cover Letter"/>
+         <column xsi:type="text" name="resume" nullable="false"
+          comment="Resume Upload"/>
+         <column xsi:type="timestamp" name="created_at" nullable="true"
+          default="CURRENT_TIMESTAMP" on_update="false" comment="Created Datetime"/>
+         <column xsi:type="timestamp" name="updated_at" nullable="false"
+          default="CURRENT_TIMESTAMP" on_update="true" comment="Updated Datetime"/>
         <constraint xsi:type="primary" referenceId="PRIMARY">
             <column name="application_id"/>
         </constraint>

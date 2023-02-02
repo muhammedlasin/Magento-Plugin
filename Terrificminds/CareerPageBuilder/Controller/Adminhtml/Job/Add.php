@@ -3,8 +3,9 @@
 namespace Terrificminds\CareerPageBuilder\Controller\Adminhtml\Job;
  
 use Magento\Framework\Controller\ResultFactory;
+use Magento\Framework\App\Action\HttpPostActionInterface;
  
-class Add extends \Magento\Backend\App\Action
+class Add extends \Magento\Backend\App\Action implements HttpPostActionInterface
 {
     /**
      * Add new jobs function

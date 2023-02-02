@@ -59,7 +59,6 @@ class Email extends AbstractHelper
         //admin
         $adminEmail = $this->scopeConfig->getValue('career/general/adminEmail', ScopeInterface::SCOPE_STORE);
         $adminName = $this->scopeConfig->getValue('career/general/adminName', ScopeInterface::SCOPE_STORE);
-        $emailContent = 'dd';
         try {
             $storeId = $this->storeManager->getStore()->getId();
             $from = ['email' => $fromEmail, 'name' => $fromName];

@@ -1,7 +1,7 @@
 <!--@subject Job Application @-->
+<!--@vars {
+"var role":"Job Role",
+} @-->
 {{template config_path="design/email/header_template"}}
-<p>{{trans "Dear %adminName" adminName=$adminName}},</p>
 <p>A new job application for the {{trans "%role" role=$role}} role has been received.</p>
-<p>Best Regards,</p>
-<p>{{trans "%owner" owner=$owner}}</p>
 {{template config_path="design/email/footer_template"}}

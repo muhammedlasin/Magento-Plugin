@@ -1,5 +1,6 @@
 <?xml version = "1.0" encoding = "UTF-8"?>
-<form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+<form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
    <argument name="data" xsi:type="array">
       <item name="js_config" xsi:type="array">
          <item name="provider" xsi:type="string">job_form.job_form_data_source</item>
@@ -77,7 +78,7 @@
                     <rule name="required-entry" xsi:type="boolean">true</rule>
                 </validation>
                 <tooltip>
-<description translate="true">It will be displayed under the job title.</description>
+<description translate="true">This will display under the job title on the job listing page.</description>
 </tooltip>
             </settings>
         </field>
@@ -103,7 +104,8 @@
                     <rule name="required-entry" xsi:type="boolean">true</rule>
                 </validation>
                 <label/>
-                <notice translate="true">Note: Keyboard shortcut to activate editor help : Alt + 0 (Windows) or &#x2325;0 (MacOS)</notice>
+                <notice translate="true">
+                Note: Keyboard shortcut to activate editor help : Alt + 0 (Windows) or &#x2325;0 (MacOS)</notice>
                 <dataScope>detailed_job_description</dataScope>
             </settings>
             <formElements>

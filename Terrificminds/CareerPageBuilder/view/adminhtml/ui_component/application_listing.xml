@@ -1,7 +1,8 @@
 <?xml version = "1.0" encoding = "UTF-8"?>
 
 
-<listing xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+<listing xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
     <argument name="data" xsi:type="array">
       <item name="js_config" xsi:type="array">
          <item name="provider" xsi:type="string">application_listing.application_listing_data_source</item>
@@ -15,7 +16,8 @@
     </settings>
     <dataSource name="job_listing_data_source">
         <argument name="dataProvider" xsi:type="configurableObject">
-            <argument name="class" xsi:type="string">Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider</argument>
+            <argument name="class"
+             xsi:type="string">Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider</argument>
             <argument name="name" xsi:type="string">application_listing_data_source</argument>
             <argument name="primaryFieldName" xsi:type="string">application_id</argument>
             <argument name="requestFieldName" xsi:type="string">application_id</argument>
@@ -163,7 +165,8 @@
                 </item>
             </argument>
         </actionsColumn>
-          <actionsColumn name="actions" class="Terrificminds\CareerPageBuilder\Ui\Component\Listing\Column\ApplicationActions" >
+          <actionsColumn name="actions"
+           class="Terrificminds\CareerPageBuilder\Ui\Component\Listing\Column\ApplicationActions">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
                     <item name="resizeEnabled" xsi:type="boolean">false</item>

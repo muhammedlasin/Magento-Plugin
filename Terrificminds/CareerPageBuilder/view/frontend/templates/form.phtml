@@ -1,6 +1,6 @@
 <?php
 
- $log = $block->getuserStatus();
+ $log = $block->isUserStatus();
 if ($log) {
     $customerName = $block->getCustomerData()->getFirstName() . " " . $block->getCustomerData()->getLastName();
     $customerEmail = $block->getCustomerData()->getEmail();

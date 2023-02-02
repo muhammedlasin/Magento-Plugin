@@ -46,6 +46,7 @@ class AddCategory implements DataPatchInterface, PatchVersionInterface
         $categoryData['is_active'] = 1;
         $category = $this->jobCategoryInterface->setData($categoryData);
         $this->jobCategoryRepository->save($category);
+        return $this;
     }
 /**
  * @inheritdoc

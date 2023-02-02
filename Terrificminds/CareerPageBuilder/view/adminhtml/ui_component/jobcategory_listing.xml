@@ -1,7 +1,8 @@
 <?xml version = "1.0" encoding = "UTF-8"?>
 
 
-<listing xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+<listing xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
     <argument name="data" xsi:type="array">
       <item name="js_config" xsi:type="array">
          <item name="provider" xsi:type="string">jobcategory_listing.jobcategory_listing_data_source</item>
@@ -22,7 +23,9 @@
     </settings>
     <dataSource name="jobcategory_listing_data_source">
         <argument name="dataProvider" xsi:type="configurableObject">
-            <argument name="class" xsi:type="string">Terrificminds\CareerPageBuilder\Ui\DataProvider\JobCategory\JobCategoryDataProvider</argument>
+            <argument name="class"
+            xsi:type="string">
+            Terrificminds\CareerPageBuilder\Ui\DataProvider\JobCategory\JobCategoryDataProvider</argument>
             <argument name="name" xsi:type="string">jobcategory_listing_data_source</argument>
             <argument name="primaryFieldName" xsi:type="string">category_id</argument>
             <argument name="requestFieldName" xsi:type="string">category_id</argument>
@@ -84,7 +87,8 @@
                                 Delete items
                             </item>
                             <item name="message" xsi:type="string" translate="true">
-                                All the Jobs listed under the categories will be unassigned. Are you sure you want to delete selected items?
+                                All the Jobs listed under the categories will be unassigned.
+                                Are you sure you want to delete selected items?
                             </item>
                         </item>
                     </item>
@@ -151,7 +155,8 @@
                 <label translate="true">Sort Order</label>
             </settings>
         </column>
-          <actionsColumn name="actions" class="Terrificminds\CareerPageBuilder\Ui\Component\Listing\Column\CategoryFormActions" >
+          <actionsColumn name="actions"
+           class="Terrificminds\CareerPageBuilder\Ui\Component\Listing\Column\CategoryFormActions" >
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
                     <item name="resizeEnabled" xsi:type="boolean">false</item>
