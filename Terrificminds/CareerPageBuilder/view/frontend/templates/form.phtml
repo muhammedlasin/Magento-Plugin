@@ -72,12 +72,12 @@ if ($log) {
                     <div class="control">
                             <textarea name="cover_letter" id="cover_letter" title="Cover Letter" value=""
                              class="input-text" type="text"
-                              data-validate="{'stripped-min-length':'250'}" required></textarea>
+                             data-validate="{'min-words':250, 'max-words':400 }"></textarea>
                         </div>
                 </div>
                 <div class="field name required">
                     <label class="label" for="resume">
-                        <span><?= $block->escapeHtmlAttr(__('Upload Your Resume (pdf,doc,txt,png,docx,jpg)')) ?></span>
+                        <span><?= $block->escapeHtmlAttr(__('Upload Your Resume (pdf,doc,docx)')) ?></span>
                     </label>
                     <div class="control">
                     <input type="file" name="resume" id="resume" title="Upload Custom File" 
@@ -106,7 +106,7 @@ window.onload = function () {
     document.getElementById("resume").onchange = function () {
         let fileName = this.value;
         let lastChar = fileName.substr(fileName.length - 3); 
-        allowedFiles = ["pdf", "doc", "txt", "png", "docx", "jpg"];
+        allowedFiles = ["pdf", "doc", "docx"];
         if(allowedFiles.indexOf(lastChar) == -1){
             document.getElementById("warning").style.display = "block";    
             document.getElementById('save').disabled = true;

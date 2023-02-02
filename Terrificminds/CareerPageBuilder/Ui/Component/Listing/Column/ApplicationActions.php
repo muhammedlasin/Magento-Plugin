@@ -11,6 +11,7 @@ use Magento\Framework\View\Element\UiComponentFactory;
 class ApplicationActions extends \Magento\Ui\Component\Listing\Columns\Column
 {
     private const URL_DELETE_PATH = 'maincareerspage/application/delete';
+    private const URL_VIEW_PATH = 'maincareerspage/application/view';
 
     /**
      * @var UrlInterface
@@ -49,6 +50,15 @@ class ApplicationActions extends \Magento\Ui\Component\Listing\Columns\Column
             foreach ($dataSource['data']['items'] as &$item) {
                 if (isset($item['application_id'])) {
                     $item[$this->getData('name')] = [
+                        'view' => [
+                            'href' => $this->urlBuilder->getUrl(
+                                static::URL_VIEW_PATH,
+                                [
+                                    'id' => $item['application_id'],
+                                ]
+                            ),
+                            'label' => __('View'),
+                        ],
                         'delete' => [
                             'href' => $this->urlBuilder->getUrl(
                                 static::URL_DELETE_PATH,

@@ -148,7 +148,7 @@
         <column name="small_job_description">
             <settings>
                 <bodyTmpl>ui/grid/cells/text</bodyTmpl>
-                <label translate="true">Small Job Description</label>
+                <label translate="true">Short Description</label>
             </settings>
         </column>
         <column name="category_id" class="Terrificminds\CareerPageBuilder\Ui\Component\Listing\Column\DisplayCategory" >

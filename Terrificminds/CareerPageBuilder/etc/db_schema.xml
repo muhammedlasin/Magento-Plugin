@@ -5,14 +5,21 @@
  * See COPYING.txt for license details.
  */
 -->
-<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
     <table name="job_category" resource="default" engine="innodb" comment="Job Category Table">
-        <column xsi:type="smallint" name="category_id" unsigned="false" nullable="false" identity="true" comment="Job Category ID"/>
-        <column xsi:type="varchar" name="category_name" nullable="false" length="255" comment="Job Category Name" default="Unassigned"/>
-        <column xsi:type="smallint" name="is_active" unsigned="false" nullable="false" identity="false" default="1" comment="Is Job Category Active"/>
-        <column xsi:type="smallint" name="sort_order" unsigned="false" nullable="false" identity="false" default="0" comment="Job Category Sort Order"/>
-        <column xsi:type="timestamp" name="created_at" on_update="false" nullable="false" default="CURRENT_TIMESTAMP" comment="Category Creation Time"/>
-        <column xsi:type="timestamp" name="updated_at" on_update="true" nullable="false" default="CURRENT_TIMESTAMP" comment="Category Modification Time"/>
+        <column xsi:type="smallint" name="category_id" unsigned="false" nullable="false"
+         identity="true" comment="Job Category ID"/>
+        <column xsi:type="varchar" name="category_name" nullable="false"
+         length="255" comment="Job Category Name" default="Unassigned"/>
+        <column xsi:type="smallint" name="is_active" unsigned="false" nullable="false"
+         identity="false" default="1" comment="Is Job Category Active"/>
+        <column xsi:type="smallint" name="sort_order" unsigned="false" nullable="false"
+         identity="false" default="0" comment="Job Category Sort Order"/>
+        <column xsi:type="timestamp" name="created_at" on_update="false" nullable="false"
+         default="CURRENT_TIMESTAMP" comment="Category Creation Time"/>
+        <column xsi:type="timestamp" name="updated_at" on_update="true" nullable="false"
+         default="CURRENT_TIMESTAMP" comment="Category Modification Time"/>
         <constraint xsi:type="primary" referenceId="PRIMARY">
             <column name="category_id"/>
         </constraint>

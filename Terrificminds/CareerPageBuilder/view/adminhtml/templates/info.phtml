@@ -1,0 +1,29 @@
+<?php
+
+$applications = $block->getJobApplication();
+?>
+<div class="preview">
+<div>
+<label><b>Name</b></label>
+<p><?= $block->escapeHtmlAttr(__($applications[0]['applicant_name'])) ?></p>
+</div>
+<label><b>Address</b></label>
+<p><?= $block->escapeHtmlAttr(__($applications[0]['address'])) ?></p>
+<label><b>Phone Number</b></label>
+<p><?= $block->escapeHtmlAttr(__($applications[0]['phone_number'])) ?></p>
+<label><b>Job Designation</b></label>
+<p><?= $block->escapeHtmlAttr(__($applications[0]['job_designation']))?></p>
+<label><b>Experience</b></label>
+<p><?= $block->escapeHtmlAttr(__($applications[0]['experience']))?></p>
+<label><b>Cover Letter</b></label>
+<p><?= $block->escapeHtmlAttr(__($applications[0]['cover_letter'])) ?></p>
+<label><b>Resume</b></label>
+<p><?=/* @noEscape */$block->getResume();?></p>
+</div>
+
+<style>
+.preview{
+    width: 98%;
+    margin: auto;
+}
+</style>

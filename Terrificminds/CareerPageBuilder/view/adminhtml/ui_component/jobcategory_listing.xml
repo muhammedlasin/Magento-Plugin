@@ -84,7 +84,7 @@
                                 Delete items
                             </item>
                             <item name="message" xsi:type="string" translate="true">
-                                All the Jobs listed under the categories will be deleted. Are you sure you want to delete selected items?
+                                All the Jobs listed under the categories will be unassigned. Are you sure you want to delete selected items?
                             </item>
                         </item>
                     </item>

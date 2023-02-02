@@ -12,7 +12,6 @@ class DataProvider extends \Magento\Ui\DataProvider\AbstractDataProvider
      * To connect to db
      * @var array
      */
-   
     protected $applicationCollectionFactory;
 
     /**

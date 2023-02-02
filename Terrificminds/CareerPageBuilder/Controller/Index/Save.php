@@ -66,6 +66,8 @@ class Save implements HttpPostActionInterface
        */
     protected $resultFactory;
 
+    protected $email;
+
     /**
      * Construct function
      *
@@ -91,6 +93,7 @@ class Save implements HttpPostActionInterface
         \Magento\Framework\UrlInterface $urlinterface,
         Request $request,
         \Magento\Framework\Controller\ResultFactory $resultFactory,
+        \Terrificminds\CareerPageBuilder\Model\Email $email
     ) {
         $this->messageManager       = $messageManager;
         $this->filesystem           = $filesystem;
@@ -103,6 +106,7 @@ class Save implements HttpPostActionInterface
         $this->urlinterface = $urlinterface;
         $this->requestInterface = $requestInterface;
         $this->resultFactory = $resultFactory;
+        $this->email=$email;
     }
     
     /**
@@ -129,6 +133,7 @@ class Save implements HttpPostActionInterface
                 $baseUrl = $this->urlinterface->getBaseUrl();
                 $url = $baseUrl . '/maincareerspage/index/index?jobId=' . $jobId . '&page=' . $page;
                 $this->applicationRepository->save($applications);
+                $this->email->sendEmail($params);
                 $this->messageManager->addSuccessMessage(__("The application has been sent successfully."));
                 return $result->setUrl($url);
             }

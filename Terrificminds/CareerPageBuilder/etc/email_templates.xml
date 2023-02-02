@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Email:etc/email_templates.xsd">
+ <template id="career_general_template" label="Email Template"
+  file="customemail.html" type="html" module="Terrificminds_CareerPageBuilder" area="frontend"/> 
+   <template id="career_general_admin" label="Admin Email Template"
+  file="adminEmail.html" type="html" module="Terrificminds_CareerPageBuilder" area="frontend"/>        
+</config>

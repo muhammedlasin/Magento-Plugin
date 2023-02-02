@@ -65,11 +65,11 @@ class Form implements HttpGetActionInterface
      */
     public function execute()
     {
-        if ($this->config->getConfigValue('enable')) {
+        $jobId = $this->request->getParam('jobId');
+        $page = $this->request->getParam('page');
+        if ($this->config->getConfigValue('enable') && $jobId && $page ) {
             $resultPageFactory = $this->resultPageFactory->create();
             $baseUrl = $this->urlInterface->getBaseUrl();
-            $jobId = $this->request->getParam('jobId');
-            $page = $this->request->getParam('page');
             $jobDescriptionUrl = $baseUrl . '/maincareerspage/index/index?jobId=' . $jobId . '&page=' . $page;
             $breadcrumbs = $resultPageFactory->getLayout()->getBlock('breadcrumbs');
             $breadcrumbs->addCrumb('career', [

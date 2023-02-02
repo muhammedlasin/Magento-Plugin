@@ -21,7 +21,7 @@ class DataProvider extends \Magento\Ui\DataProvider\AbstractDataProvider
     protected $loadedData;
 
     /**
-     * Undocumented function
+     * Constructor function
      *
      * @param string $name
      * @param string $primaryFieldName
