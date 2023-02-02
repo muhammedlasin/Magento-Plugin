@@ -25,6 +25,11 @@ class Email extends AbstractHelper
         */
     protected $inlineTranslation;
 
+       /**
+        * @var \Magento\Framework\UrlInterface
+        */
+    protected $urlinterface;
+
      /**
       * Constructor function
       *
@@ -32,16 +37,19 @@ class Email extends AbstractHelper
       * @param TransportBuilder $transportBuilder
       * @param StoreManagerInterface $storeManager
       * @param StateInterface $state
+      * @param \Magento\Framework\UrlInterface $urlinterface
       */
     public function __construct(
         Context $context,
         TransportBuilder $transportBuilder,
         StoreManagerInterface $storeManager,
-        StateInterface $state
+        StateInterface $state,
+        \Magento\Framework\UrlInterface $urlinterface,
     ) {
         $this->transportBuilder = $transportBuilder;
         $this->storeManager = $storeManager;
         $this->inlineTranslation = $state;
+        $this->urlinterface = $urlinterface;
         parent::__construct($context);
     }
 
@@ -59,6 +67,8 @@ class Email extends AbstractHelper
         //admin
         $adminEmail = $this->scopeConfig->getValue('career/general/adminEmail', ScopeInterface::SCOPE_STORE);
         $adminName = $this->scopeConfig->getValue('career/general/adminName', ScopeInterface::SCOPE_STORE);
+        $baseUrl = $this->urlinterface->getBaseUrl();
+        $adminUrl = $baseUrl . 'backend';
         try {
             $storeId = $this->storeManager->getStore()->getId();
             $from = ['email' => $fromEmail, 'name' => $fromName];
@@ -84,7 +94,8 @@ class Email extends AbstractHelper
                     ->setTemplateVars([
                         'name' => $params['applicant_name'],
                         'role' => $params['job_designation'],
-                        'adminName' => $adminName
+                        'adminName' => $adminName,
+                        'adminUrl' => $adminUrl
                     ])
                     ->setFromByScope($from)
                     ->addTo($adminEmail, $adminName)

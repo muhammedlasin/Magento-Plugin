@@ -1,7 +1,15 @@
 <!--@subject Job Application @-->
 <!--@vars {
 "var role":"Job Role",
+"var adminUrl":"Admin link",
 } @-->
 {{template config_path="design/email/header_template"}}
 <p>A new job application for the {{trans "%role" role=$role}} role has been received.</p>
+<p>
+    {{trans
+    'Please <a href="%reset_url">Click here</a> to login.'
+
+    reset_url="$adminUrl"
+    |raw}}
+</p>
 {{template config_path="design/email/footer_template"}}
