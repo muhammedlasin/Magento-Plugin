@@ -64,10 +64,10 @@ class Save extends Action implements HttpPostActionInterface
         $resultRedirect = $this->resultRedirectFactory->create();
 
         if ($data) {
-            $category_id = $this->getRequest()->getParam('id');
+            $categoryId = $this->getRequest()->getParam('id');
        
-            if ($category_id) {
-                $this->jobCategoryRepository->getById($category_id);
+            if ($categoryId) {
+                $this->jobCategoryRepository->getById($categoryId);
             }
                 $categories = $this->jobCategoryInterface->setData($data);
             try {

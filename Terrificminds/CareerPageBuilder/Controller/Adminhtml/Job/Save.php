@@ -62,9 +62,9 @@ class Save extends Action implements HttpPostActionInterface
         $resultRedirect = $this->resultRedirectFactory->create();
 
         if ($data) {
-            $job_id = $this->getRequest()->getParam('id');
-            if ($job_id) {
-                $this->jobRepository->getById($job_id);
+            $jobId = $this->getRequest()->getParam('id');
+            if ($jobId) {
+                $this->jobRepository->getById($jobId);
             }
             $jobs = $this->jobInterface->setData($data);
 
