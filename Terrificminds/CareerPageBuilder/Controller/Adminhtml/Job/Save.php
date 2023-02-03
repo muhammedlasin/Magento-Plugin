@@ -69,7 +69,7 @@ class Save extends Action implements HttpPostActionInterface
             try {
                 $jobs = $this->jobInterface->setData($data);
                 $this->jobRepository->save($jobs);
-                $this->messageManager->addSuccessMessage(__('The job data has been saved.'));
+                $this->messageManager->addSuccessMessage(__('The job has been saved.'));
             } catch (\Magento\Framework\Exception\LocalizedException | \RuntimeException $e) {
                 $this->messageManager->addErrorMessage($e->getMessage());
             } catch (\Exception $e) {

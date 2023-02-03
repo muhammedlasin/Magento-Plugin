@@ -12,25 +12,17 @@ class Save extends Generic implements ButtonProviderInterface
      *
      * @return array
      */
-    public function getButtonData()
+
+    public function getButtonData(): array
     {
         return [
-            'label' => __('Save'),
-            'class' => 'save primary',
-            'data_attribute' => [
-                'mage-init' => [
-                    'buttonAdapter' => [
-                        'actions' => [
-                            [
-                                'targetName' => 'jobcategory_form.jobcategory_form',
-                                'actionName' => 'save',
-                                'params' => [false],
-                            ],
-                        ],
-                    ],
-                ],
-            ],
-
+        'label' => __('Save'),
+        'class' => 'save primary',
+        'data_attribute' => [
+           'mage-init' => ['button' => ['event' => 'save']],
+           'form-role' => 'save',
+        ],
+        'sort_order' => 10
         ];
     }
 }

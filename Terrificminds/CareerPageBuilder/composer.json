@@ -1,1 +1,22 @@
-{}
+{
+    "name": "terrific-minds/careerpagebuilder",
+    "description": "Magento 2 extension which enable admin to add job positions to required pages.",
+    "type": "magento2-module",
+    "license": "proprietary",
+    "version": "1.0.1",
+    "authors": [
+        {
+            "name": "TerrificMinds",
+            "email": "support@terrificminds.com"
+        }
+    ],
+    "require": {},
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "TerrificMinds\\careerpagebuilder\\": ""
+        }
+    }
+}
