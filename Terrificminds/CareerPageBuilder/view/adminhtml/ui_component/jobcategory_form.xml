@@ -49,7 +49,6 @@
             <item name="sortOrder" xsi:type="number">20</item>
          </item>
       </argument>
-      
       <field name="category_name">
          <argument name="data" xsi:type="array">
             <item name="config" xsi:type="array">
@@ -84,7 +83,6 @@
                 <item name="options" xsi:type="object">Terrificminds\CareerPageBuilder\Model\Source\Status</item>
             </argument>
         </field>
-
         <field name="sort_order">
          <argument name="data" xsi:type="array">
             <item name="config" xsi:type="array">
@@ -98,7 +96,6 @@
                </item>
             </item>
          </argument>
-      </field>
-      
+      </field> 
    </fieldset>
 </form>

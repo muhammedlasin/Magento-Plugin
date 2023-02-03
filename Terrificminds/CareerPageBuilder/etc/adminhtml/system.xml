@@ -22,12 +22,12 @@
                 <field id="adminName" translate="label" type="text"
                  sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Admin Name</label>
-                    <comment>It will be used in email templates where admin name is required.</comment>
+                    <comment>This will be used in email where admin name is required.</comment>
                 </field>
                 <field id="adminEmail" translate="label" type="text"
                  sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Admin Email</label>
-                    <comment>The email entered in this field will get job application notifications.</comment>
+                    <comment>This email will get job application notifications.</comment>
                 </field>
                 <field id="template" translate="label" sortOrder="50"
                  showInDefault="1" showInWebsite="1" showInStore="1" type="select">

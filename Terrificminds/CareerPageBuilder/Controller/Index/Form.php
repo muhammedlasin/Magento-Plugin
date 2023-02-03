@@ -67,7 +67,7 @@ class Form implements HttpGetActionInterface
     {
         $jobId = $this->request->getParam('jobId');
         $page = $this->request->getParam('page');
-        if ($this->config->getConfigValue('enable') && $jobId && $page) {
+        if ($this->config->getConfigValue('enable')) {
             $resultPageFactory = $this->resultPageFactory->create();
             $baseUrl = $this->urlInterface->getBaseUrl();
             $jobDescriptionUrl = $baseUrl . '/maincareerspage/index/index?jobId=' . $jobId . '&page=' . $page;

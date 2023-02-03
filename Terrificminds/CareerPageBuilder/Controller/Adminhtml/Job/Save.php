@@ -48,7 +48,7 @@ class Save extends Action implements HttpPostActionInterface
     }
 
     /**
-     * Save Resource data action
+     * Save Job data action
      *
      * @return Redirect
      *
@@ -66,28 +66,15 @@ class Save extends Action implements HttpPostActionInterface
             if ($jobId) {
                 $this->jobRepository->getById($jobId);
             }
-            $jobs = $this->jobInterface->setData($data);
-
             try {
+                $jobs = $this->jobInterface->setData($data);
                 $this->jobRepository->save($jobs);
                 $this->messageManager->addSuccessMessage(__('The job data has been saved.'));
-                $this->adminSession->setFormData(false);
-                // if ($this->getRequest()->getParam('back')) {
-                //     if ($this->getRequest()->getParam('back') == 'add') {
-                //         return $resultRedirect->setPath('*/*/add');
-                //     } else {
-                //         return $resultRedirect->setPath('*/*/edit', ['id' => $this->jobInterface->getId(), '_current' => true]);
-                //     }
-                // }
-                // return $resultRedirect->setPath('*/*/');
             } catch (\Magento\Framework\Exception\LocalizedException | \RuntimeException $e) {
                 $this->messageManager->addErrorMessage($e->getMessage());
             } catch (\Exception $e) {
                 $this->messageManager->addExceptionMessage($e, __('Something went wrong while saving the data.'));
             }
-
-            // $this->_getSession()->setFormData($data);
-            // return $resultRedirect->setPath('*/*/edit', ['id' => $this->getRequest()->getParam('id')]);
         }
         return $resultRedirect->setPath('*/*/');
     }

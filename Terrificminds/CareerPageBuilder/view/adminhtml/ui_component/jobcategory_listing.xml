@@ -1,6 +1,4 @@
 <?xml version = "1.0" encoding = "UTF-8"?>
-
-
 <listing xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
  xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
     <argument name="data" xsi:type="array">
@@ -64,7 +62,6 @@
                 </templates>
             </settings>
         </filters>
-
         <massaction name="listing_massaction">
             <argument name="data" xsi:type="array">
                 <item name="data" xsi:type="array">
@@ -87,7 +84,7 @@
                                 Delete items
                             </item>
                             <item name="message" xsi:type="string" translate="true">
-                                All the Jobs listed under the categories will be unassigned.
+                                All the Jobs listed under the selected categories will be unassigned.
                                 Are you sure you want to delete selected items?
                             </item>
                         </item>
@@ -166,7 +163,6 @@
                 </item>
             </argument>
         </actionsColumn>
-  
     </columns>
 </listing>
   

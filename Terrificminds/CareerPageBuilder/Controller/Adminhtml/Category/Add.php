@@ -2,10 +2,10 @@
 
 namespace Terrificminds\CareerPageBuilder\Controller\Adminhtml\Category;
 
-use Magento\Framework\App\Action\HttpPostActionInterface;
+use Magento\Framework\App\Action\HttpGetActionInterface;
 use Magento\Framework\Controller\ResultFactory;
  
-class Add extends \Magento\Backend\App\Action
+class Add extends \Magento\Backend\App\Action implements HttpGetActionInterface
 {
     /**
      * Add categories form

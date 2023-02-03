@@ -50,7 +50,7 @@ class Save extends Action implements HttpPostActionInterface
     }
 
     /**
-     * Save Resource data action
+     * Save Category data action
      *
      * @return Redirect
      *
@@ -69,26 +69,15 @@ class Save extends Action implements HttpPostActionInterface
             if ($categoryId) {
                 $this->jobCategoryRepository->getById($categoryId);
             }
-                $categories = $this->jobCategoryInterface->setData($data);
             try {
+                $categories = $this->jobCategoryInterface->setData($data);
                 $this->jobCategoryRepository->save($categories);
                 $this->messageManager->addSuccessMessage(__('The job category has been saved.'));
-                $this->adminSession->setFormData(false);
-                if ($this->getRequest()->getParam('back')) {
-                    if ($this->getRequest()->getParam('back') == 'add') {
-                        return $resultRedirect->setPath('*/*/add');
-                    } else {
-                        return $resultRedirect->setPath('*/*/edit', ['id' => $this->jobCategoryInterface->getCategoryId(), '_current' => true]);
-                    }
-                }
-                return $resultRedirect->setPath('*/*/');
             } catch (\Magento\Framework\Exception\LocalizedException | \RuntimeException $e) {
                 $this->messageManager->addErrorMessage($e->getMessage());
             } catch (\Exception $e) {
                 $this->messageManager->addExceptionMessage($e, __('Something went wrong while saving the data.'));
             }
-            $this->_getSession()->setFormData($data);
-            return $resultRedirect->setPath('*/*/edit', ['id' => $this->getRequest()->getParam('id')]);
         }
         return $resultRedirect->setPath('*/*/');
     }

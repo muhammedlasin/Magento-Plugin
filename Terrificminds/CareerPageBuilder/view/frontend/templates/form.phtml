@@ -65,7 +65,7 @@ if ($log) {
                                data-validate="{'validate-digits-range':'0-100'}" required/>
                     </div>
                 </div>
-                <div class="field name required">
+                <div class="field name">
                     <label class="label" for="cover_letter">
                         <span><?= $block->escapeHtmlAttr(__('Cover Letter')) ?></span>
                     </label>
@@ -109,11 +109,12 @@ window.onload = function () {
         let lastChar = fileName.substr(fileName.length - 3); 
         allowedFiles = ["pdf", "doc", "docx"];
         if(allowedFiles.indexOf(lastChar) == -1){
+            document.getElementById("limit").style.display = "none"; 
             document.getElementById("warning").style.display = "block";    
             document.getElementById('save').disabled = true;
         }
         else{
-            document.getElementById("warning").style.display = "none";    
+            document.getElementById("warning").style.display = "none";     
             if(this.files[0].size > 1000000){
                 document.getElementById("limit").style.display = "block";  
                 document.getElementById('save').disabled = true;

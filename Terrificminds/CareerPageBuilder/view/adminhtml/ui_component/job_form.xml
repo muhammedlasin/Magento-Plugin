@@ -184,7 +184,6 @@
                 </select>
             </formElements>
         </field>
-
       <field name="button_url">
          <argument name="data" xsi:type="array">
             <item name="config" xsi:type="array">
